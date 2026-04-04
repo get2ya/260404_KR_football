@@ -1,0 +1,499 @@
+{
+  "metadata": {
+    "title": "대한민국 초등학교(U-12) 축구 주요 대회 체계 조사",
+    "updated": "2026-04-04",
+    "note": "웹 검색 기반 조사. 일부 연도의 역대 결과는 공식 기록 미공개로 미확인 상태. '미확인'으로 표기된 항목은 대한축구협회(KFA) 또는 대한체육회 공식 기록 확인 필요.",
+    "dataConfidence": "검증된 데이터만 수록. 추정/소문 데이터는 제외."
+  },
+  "tournaments": [
+    {
+      "id": "elementary_football_league",
+      "name": "전국 초등 축구리그",
+      "alias": "전국 초중고 축구리그 초등부",
+      "organizer": "대한축구협회(KFA), 교육부",
+      "period": "3월~10월 (연간 리그)",
+      "location": "전국 권역별 홈/어웨이",
+      "participants": "KFA 등록 초등학교 축구부 + 클럽팀",
+      "format": "시도별 권역 리그 (8인제). 초등부는 왕중왕전 미개최 (2018년 폐지, 중·고등부만 왕중왕전 운영)",
+      "notes": "2009년 시작. 2018년 왕중왕전 폐지 후 '꿈자람 페스티벌'로 대체. 초등부는 권역별 리그 성적이 최종 순위. 고등부/중등부만 왕중왕전 별도 개최.",
+      "history": [
+        {"year": 2025, "winner": "GS경수클럽 U-12 (경기12 권역 우승)", "runnerUp": "수원삼성 U-12", "third": "", "fourth": "", "note": "권역별 우승. 초등부 왕중왕전 미개최. 9승1무1패 승점28"},
+        {"year": 2025, "winner": "화북초 (제주A 스플릿리그)", "runnerUp": "", "third": "", "fourth": "", "note": "제주A 권역 무패 우승"},
+        {"year": 2025, "winner": "연수구청 유소년축구단 (인천 권역)", "runnerUp": "", "third": "", "fourth": "", "note": "인천 권역 우승"},
+        {"year": 2021, "winner": "포항제철초 (경북 권역)", "runnerUp": "", "third": "", "fourth": "", "note": "경북 권역 우승"},
+        {"year": 2018, "winner": "미확인", "runnerUp": "", "third": "", "fourth": "", "note": "이 해부터 초등부 왕중왕전 폐지"}
+      ]
+    },
+    {
+      "id": "national_youth_sports_festival",
+      "name": "전국소년체육대회 축구 초등부 남자",
+      "alias": "소년체전 축구 초등부",
+      "organizer": "대한체육회",
+      "period": "매년 5월 (4일간)",
+      "location": "매년 변경 (시도 순환 개최)",
+      "participants": "16개 시도 대표팀 (각 시도 예선 통과팀)",
+      "format": "토너먼트 (11인제)",
+      "notes": "1972년 제1회 시작. 가장 권위 있는 초등 축구 대회 중 하나. 시도 대표 자격으로 출전하므로 학교팀 기반. 2020년(제49회) 코로나로 종목별 겸임대회 대체, 2021년(제50회)도 축소 운영.",
+      "history": [
+        {"year": 2025, "winner": "경북 포항제철초 (포항스틸러스 U-12)", "runnerUp": "강원 원주태장초", "third": "", "fourth": "", "note": "제54회. 결승 7-2. 2년 연속 우승. 송시율 MVP."},
+        {"year": 2024, "winner": "경북 포항제철초 (포항스틸러스 U-12)", "runnerUp": "부산 해운대FC U-12", "third": "", "fourth": "", "note": "제53회. 결승 3-2. 2015년 이후 9년만의 우승."},
+        {"year": 2023, "winner": "미확인", "runnerUp": "미확인", "third": "", "fourth": "", "note": "제52회. 울산 개최."},
+        {"year": 2022, "winner": "미확인", "runnerUp": "미확인", "third": "", "fourth": "", "note": "제51회. 경북 구미 추정. 코로나 후 정상 개최 복귀."},
+        {"year": 2021, "winner": "미확인", "runnerUp": "", "third": "", "fourth": "", "note": "제50회. 코로나로 종목별 겸임대회 대체."},
+        {"year": 2020, "winner": "미확인", "runnerUp": "", "third": "", "fourth": "", "note": "제49회. 코로나로 축소/겸임대회."},
+        {"year": 2019, "winner": "미확인", "runnerUp": "미확인", "third": "", "fourth": "", "note": "제48회. 전라북도 개최."},
+        {"year": 2018, "winner": "미확인", "runnerUp": "미확인", "third": "", "fourth": "", "note": "제47회. 충북 충주 개최."},
+        {"year": 2015, "winner": "경북 포항제철초", "runnerUp": "미확인", "third": "", "fourth": "", "note": "포항제철초 2024년 우승이 9년만이라는 기사에서 역산"}
+      ]
+    },
+    {
+      "id": "hwarangdaegi",
+      "name": "화랑대기 전국 유소년 축구대회",
+      "alias": "화랑대기",
+      "organizer": "한국유소년축구연맹, 경주시, 경주시축구협회",
+      "period": "매년 8월 (약 14일간, 1차/2차 나눠 개최)",
+      "location": "경북 경주 (경주시민운동장 외 10개 구장 22면)",
+      "participants": "전국 학교팀 + 클럽팀 (U-12, U-11, U-10, U-9 등 연령별)",
+      "format": "조별 풀리그(연맹전) → 상하위 스플릿리그. U-12/U-11은 8인제.",
+      "notes": "2003년 '눈높이컵'으로 시작, 2007년 '화랑대기'로 개칭. 국내 최대 규모 유소년 축구대회 (2024년: 610팀 12,000명 1,780경기). 페스티벌 성격이 강하나 1위 리그 최종 순위로 챔피언 결정.",
+      "history": [
+        {"year": 2025, "winner": "PEC유나이티드 (U-12)", "runnerUp": "여주SD", "third": "", "fourth": "", "note": "4년 연속 U-12 우승. 결선 1위 리그 최종전 2-1 승리."},
+        {"year": 2025, "winner": "연수구청 유소년축구단 (U-11)", "runnerUp": "", "third": "", "fourth": "", "note": "U-11 부문. 6전 전승. 174팀 참가."},
+        {"year": 2024, "winner": "PEC유나이티드 (U-12)", "runnerUp": "미확인", "third": "", "fourth": "", "note": "3년 연속 U-12 우승. 610팀 참가."},
+        {"year": 2023, "winner": "PEC유나이티드 (U-12)", "runnerUp": "용인 블루윙즈", "third": "", "fourth": "", "note": "2년 연속 U-12 우승. 결선 7-1 대파."},
+        {"year": 2022, "winner": "PEC유나이티드 (U-12)", "runnerUp": "미확인", "third": "", "fourth": "", "note": "U-12 우승 시작 연도 (4연패의 시작)."},
+        {"year": 2019, "winner": "미확인", "runnerUp": "미확인", "third": "성덕초(강원)", "fourth": "", "note": "성덕초 3위 입상 확인"},
+        {"year": 2018, "winner": "FC 서울 U-12 (E그룹)", "runnerUp": "미확인", "third": "", "fourth": "", "note": "그룹별 운영"},
+        {"year": 2008, "winner": "이문초(서울)", "runnerUp": "성거초(충남)", "third": "", "fourth": "", "note": "제6회"},
+        {"year": 2007, "winner": "신일초(경기)", "runnerUp": "합성초(경남)", "third": "", "fourth": "", "note": "제5회"}
+      ]
+    },
+    {
+      "id": "kleague_youth_championship_u12",
+      "name": "K리그 유스 챔피언십 U-12",
+      "alias": "GROUND.N K리그 U12 챔피언십",
+      "organizer": "한국프로축구연맹",
+      "period": "매년 7월 (약 7일간)",
+      "location": "경북 영덕군 유소년전용축구경기장",
+      "participants": "K리그1 + K리그2 전 구단 U-12팀 (약 25팀)",
+      "format": "조별리그. 2019년부터 토너먼트가 아닌 리그 형식. 공식 우승팀 선정 없이 리그 순위만 산출하는 '페스티벌' 취지였으나, 최근 사실상 종합 1위를 우승으로 인정.",
+      "notes": "2019년 U-12/U-11 신설. 2020년 코로나로 미개최. 2021년도 미개최 추정. 2022년 재개. 일본 팀 초청 참가도 있음 (2025년 고후U12 등).",
+      "history": [
+        {"year": 2025, "winner": "경남FC U-12", "runnerUp": "", "third": "", "fourth": "", "note": "7전 전승. 포항 4-2, 서울 1-0 등 격파."},
+        {"year": 2024, "winner": "포항제철초 (포항 스틸러스 U-12)", "runnerUp": "미확인", "third": "", "fourth": "", "note": "위키백과 기록 확인."},
+        {"year": 2023, "winner": "울산 HD U-12", "runnerUp": "김포FC U-12", "third": "", "fourth": "", "note": "2연속 최종 1위. 최종전 6-3 승리."},
+        {"year": 2022, "winner": "포항 스틸러스 U-12", "runnerUp": "인천 유나이티드 U-12", "third": "", "fourth": "", "note": "C/D조 통합 우승. 6전 전승 47득점 무실점. 최종전 인천 2-0."},
+        {"year": 2019, "winner": "미확인", "runnerUp": "", "third": "", "fourth": "", "note": "U-12 신설 첫 해. 공식 우승팀 미지정 방침."}
+      ]
+    },
+    {
+      "id": "kleague_youth_championship_u11",
+      "name": "K리그 유스 챔피언십 U-11",
+      "alias": "GROUND.N K리그 U11 챔피언십",
+      "organizer": "한국프로축구연맹",
+      "period": "매년 7월 (U-12와 동시 개최)",
+      "location": "경북 영덕군 유소년전용축구경기장",
+      "participants": "K리그1 + K리그2 전 구단 U-11팀",
+      "format": "조별리그 (U-12와 동일 방식)",
+      "notes": "2019년 신설. U-12와 함께 운영.",
+      "history": [
+        {"year": 2025, "winner": "경남FC U-11", "runnerUp": "", "third": "", "fourth": "", "note": "5승 1무 무패 우승."},
+        {"year": 2024, "winner": "미확인", "runnerUp": "", "third": "", "fourth": ""},
+        {"year": 2023, "winner": "미확인", "runnerUp": "", "third": "", "fourth": ""},
+        {"year": 2022, "winner": "미확인", "runnerUp": "", "third": "", "fourth": "", "note": "포항 U-11은 3승 2패로 마감."}
+      ]
+    },
+    {
+      "id": "geumseok_cup",
+      "name": "금석배 전국초등학생축구대회",
+      "alias": "금석배",
+      "organizer": "대한축구협회, 전라북도축구협회 (전북특별자치도축구협회)",
+      "period": "매년 7월경",
+      "location": "전북 군산",
+      "participants": "전국 초등학교 축구부 + 클럽팀 (U-12, U-11)",
+      "format": "조별리그 → 순위결정전. 리그 형식 (공동 우승 가능).",
+      "notes": "1992년 창설. 축구인 채금석 선생 기념 대회. 전국 90개 이상 팀 참가. 짝수년 초등+중등, 홀수년 고등부라는 설도 있으나 최근에는 매년 U-12/U-11 개최 확인.",
+      "history": [
+        {"year": 2025, "winner": "연수구청 유소년축구단 (U-12 공동우승)", "runnerUp": "", "third": "", "fourth": "", "note": "U-12 6경기 전승. U-11도 공동우승. 베스트플레이어 이시원(U-12), 이시안(U-11)."},
+        {"year": 2024, "winner": "미확인", "runnerUp": "", "third": "", "fourth": ""},
+        {"year": 2023, "winner": "미확인", "runnerUp": "", "third": "", "fourth": ""},
+        {"year": 2016, "winner": "FC 서울 U-12", "runnerUp": "", "third": "", "fourth": ""},
+        {"year": 2000, "winner": "안산광덕초", "runnerUp": "포항제철동초", "third": "", "fourth": ""},
+        {"year": 1999, "winner": "이리동초", "runnerUp": "", "third": "", "fourth": ""},
+        {"year": 1998, "winner": "이리동초", "runnerUp": "", "third": "", "fourth": ""},
+        {"year": 1997, "winner": "서정리초", "runnerUp": "", "third": "", "fourth": ""},
+        {"year": 1996, "winner": "고창남초", "runnerUp": "", "third": "", "fourth": ""},
+        {"year": 1995, "winner": "해남동초", "runnerUp": "", "third": "", "fourth": ""},
+        {"year": 1994, "winner": "인천부평초", "runnerUp": "", "third": "", "fourth": ""},
+        {"year": 1993, "winner": "봉동초", "runnerUp": "", "third": "", "fourth": ""},
+        {"year": 1992, "winner": "인천부평동초", "runnerUp": "", "third": "", "fourth": "", "note": "제1회"}
+      ]
+    },
+    {
+      "id": "taebaek_cup",
+      "name": "태백산배 전국유소년축구대회",
+      "alias": "태백시장배",
+      "organizer": "태백시, 강원일보",
+      "period": "매년 5~6월경",
+      "location": "강원 태백시",
+      "participants": "전국 유소년 클럽팀 (학년별 U-7~U-12)",
+      "format": "학년별 조별리그 → '태백부'/'함백부'로 나뉘어 결승",
+      "notes": "강원일보 주최. 초등 2~6학년 우수 클럽팀 대상.",
+      "history": [
+        {"year": 2025, "winner": "미확인", "runnerUp": "", "third": "", "fourth": "", "note": "2025 태백산배 대회 개최 확인."}
+      ]
+    },
+    {
+      "id": "daegu_mayor_cup",
+      "name": "대구광역시장기 전국초등학교축구대회",
+      "alias": "대구시장기",
+      "organizer": "대한축구협회, 대구광역시축구협회",
+      "period": "미확인",
+      "location": "대구",
+      "participants": "전국 초등학교 축구부 (U-12)",
+      "format": "토너먼트",
+      "notes": "2000년 설립. 전국 규모.",
+      "history": [
+        {"year": 2000, "winner": "안산광덕초", "runnerUp": "시흥신일초", "third": "", "fourth": "", "note": "페어플레이팀: 대구달성초"}
+      ]
+    },
+    {
+      "id": "jeongseon_arirang_cup",
+      "name": "정선아리랑배 전국유소년축구대회",
+      "alias": "정선 아리랑배",
+      "organizer": "정선군",
+      "period": "매년 9월경",
+      "location": "강원 정선군",
+      "participants": "전국 유소년 클럽팀 (U-8~U-12 연령별)",
+      "format": "조별리그 → 순위결정전. 챌린지부 별도 운영.",
+      "notes": "2022년 제1회 시작 추정 (2025년이 제4회). 전국 59개 팀 참가.",
+      "history": [
+        {"year": 2025, "winner_u12": "충주 아주FC", "winner_u11": "낫소FC", "winner_u10": "서울 중랑축구단", "winner_u9": "구성PEC-RED", "winner_u8": "GS경수", "runnerUp": "", "third": "", "fourth": "", "note": "제4회. 59팀 2,200명 참가. U12 챌린지부: 평창MCS, U10 챌린지부: 정선축구SC."}
+      ]
+    },
+    {
+      "id": "ttaogi_cup",
+      "name": "따오기배 전국유소년축구대회",
+      "alias": "따오기배",
+      "organizer": "창녕군 추정",
+      "period": "매년 2월경 (동계)",
+      "location": "경남 창녕군",
+      "participants": "전국 유소년 클럽팀",
+      "format": "미확인",
+      "notes": "2019년 대회 확인 (2월 22일~28일 창녕군). FC 서울 U-12가 2019년 B그룹 우승.",
+      "history": [
+        {"year": 2019, "winner": "FC 서울 U-12 (B그룹)", "runnerUp": "", "third": "", "fourth": ""}
+      ]
+    },
+    {
+      "id": "seoul_fa_president_cup",
+      "name": "서울특별시축구협회장배 축구대회 초등부",
+      "alias": "서울시축구협회장배",
+      "organizer": "서울특별시축구협회",
+      "period": "미확인 (하반기 추정)",
+      "location": "서울",
+      "participants": "서울 소속 초등 축구팀",
+      "format": "토너먼트 추정",
+      "notes": "서울 지역 대회. 중등부, 고등부도 별도 개최.",
+      "history": [
+        {"year": 2022, "winner": "FC 서울 U-12", "runnerUp": "미확인", "third": "", "fourth": ""}
+      ]
+    },
+    {
+      "id": "maenghogi",
+      "name": "맹호기 서울특별시초등학교 축구대회",
+      "alias": "맹호기",
+      "organizer": "서울특별시축구협회",
+      "period": "미확인",
+      "location": "서울",
+      "participants": "서울 소속 초등학교 축구부",
+      "format": "토너먼트 추정",
+      "notes": "38회 이상 역사를 가진 전통 대회. 서울 지역 초등학교 대항 대회. 역대 우승 데이터는 공개 자료에서 미확인.",
+      "history": []
+    },
+    {
+      "id": "gyeonggi_dream_tree_cup",
+      "name": "경기도 꿈나무 축구대회 초등부",
+      "alias": "경기도 꿈나무",
+      "organizer": "경기도축구협회",
+      "period": "매년 3월~ (연 2~3회 개최)",
+      "location": "경기도 내 구장",
+      "participants": "경기도 소속 초등 축구팀 (선발부/비선발부 구분)",
+      "format": "리그/토너먼트 (선발부/비선발부 구분 운영)",
+      "notes": "경기도 지역 대회. 초/중/고 동시 개최. 2025 제1차 경기도 꿈나무 축구대회 확인.",
+      "history": []
+    },
+    {
+      "id": "school_sports_club_festival",
+      "name": "전국학교스포츠클럽 축전 축구부문",
+      "alias": "학교스포츠클럽 축전",
+      "organizer": "교육부, 학교체육진흥회",
+      "period": "매년 11월경",
+      "location": "매년 변경",
+      "participants": "각 시도 교육감배 대회 우승팀 (학교스포츠클럽 소속, 비선수 학생)",
+      "format": "토너먼트",
+      "notes": "학교 스포츠클럽 소속 일반 학생 대상. 선수 등록 팀이 아닌 학교 내 스포츠클럽 활동 학생 대상. 축구 외에도 16개 이상 종목 운영. 각 시도 교육감배 → 전국 축전 체계.",
+      "history": []
+    },
+    {
+      "id": "haneulnaerin_inje_cup",
+      "name": "하늘내린인제 전국유소년축구대회",
+      "alias": "인제 유소년축구대회",
+      "organizer": "인제군",
+      "period": "미확인",
+      "location": "강원 인제군",
+      "participants": "전국 유소년 클럽팀",
+      "format": "미확인",
+      "notes": "강원도 인제군 주최 전국 규모 유소년 대회. 구체적 역대 결과 미확인.",
+      "history": []
+    },
+    {
+      "id": "yeongdeok_crab_cup",
+      "name": "영덕대게배 전국 유소년축구대회",
+      "alias": "영덕대게배",
+      "organizer": "영덕군",
+      "period": "미확인",
+      "location": "경북 영덕군",
+      "participants": "전국 유소년팀 (클럽+학교)",
+      "format": "토너먼트",
+      "notes": "울산 HD U-12가 통산 4회 우승 (1회, 2회, 4회, 5회). K리그 구단팀 참가.",
+      "history": [
+        {"year": "미확인(5회)", "winner": "울산 HD U-12", "runnerUp": "FC 서울 U-12", "third": "", "fourth": "", "note": "결승 1-0. 통산 4번째 우승."}
+      ]
+    },
+    {
+      "id": "suncheonman_cup",
+      "name": "순천만국가정원배 전국 유소년 축구대회",
+      "alias": "순천만국가정원배",
+      "organizer": "순천시",
+      "period": "매년 2월경",
+      "location": "전남 순천 (팔마유소년축구장 등 6개 구장)",
+      "participants": "전국 유소년 클럽팀 (U-12 저학년/고학년)",
+      "format": "조별리그 → 스플릿리그 (1차+2차 리그)",
+      "notes": "2025년 60개팀, 1,200명 참가. U-12 저학년 28팀, 고학년 32팀.",
+      "history": [
+        {"year": 2025, "winner": "미확인", "runnerUp": "", "third": "", "fourth": "", "note": "2025년 2월 21~27일 개최. 최종 결과 미확인."}
+      ]
+    },
+    {
+      "id": "dongwon_cup",
+      "name": "동원컵 전국 유소년 축구대회",
+      "alias": "동원컵",
+      "organizer": "동원육영재단, 대한축구협회",
+      "period": "연간 권역별 리그 → 10월 왕중왕전",
+      "location": "전국 권역별 → 왕중왕전 장소 변동",
+      "participants": "전국 260여개 초등학교 축구팀",
+      "format": "권역별 리그 → 48팀 왕중왕전 토너먼트",
+      "notes": "2001년 시작. 국내 최대 규모 유소년 축구리그 중 하나였으나 현재 운영 여부 미확인. 전국 초등 축구리그와 통합/대체되었을 가능성.",
+      "history": []
+    },
+    {
+      "id": "dreamfootball_champions_league",
+      "name": "드림풋볼 전국 유소년 챔피언스리그 (왕중왕전)",
+      "alias": "드림풋볼 챔피언스리그",
+      "organizer": "㈜드림풋볼",
+      "period": "연말 (12월경 추정)",
+      "location": "강원 양구군",
+      "participants": "드림풋볼 주최 대회 상위팀",
+      "format": "토너먼트 (드림풋볼 시즌 왕중왕전)",
+      "notes": "드림풋볼이 운영하는 유소년 축구대회 시스템의 최상위 대회. 양구 사과배, 청춘양구 드림풋볼컵 등 시즌 대회를 거쳐 왕중왕전 출전.",
+      "history": [
+        {"year": 2025, "winner": "동두천FC U-12", "runnerUp": "COOLFC U-12", "third": "", "fourth": "", "note": "제3회. 결승 5-1. 동두천FC는 올시즌 6개 전국대회 석권 '세쿼플' 달성."}
+      ]
+    },
+    {
+      "id": "prostar_cup",
+      "name": "PSF 프로스타컵 전국유소년축구대회",
+      "alias": "프로스타컵",
+      "organizer": "미확인",
+      "period": "미확인",
+      "location": "대구 (2025년)",
+      "participants": "전국 유소년 클럽팀 (U-12, 8인제)",
+      "format": "리그/토너먼트",
+      "notes": "우승팀에게 왕중왕전 출전권 부여.",
+      "history": [
+        {"year": 2025, "winner": "안동 아미고FC U-12", "runnerUp": "", "third": "", "fourth": "", "note": "무패 전승 우승. 왕중왕전 출전권 확보."}
+      ]
+    },
+    {
+      "id": "naejangsanbae",
+      "name": "정읍 내장산배 전국 유소년 축구대회",
+      "alias": "내장산배",
+      "organizer": "정읍시, 한국축구클럽연맹",
+      "period": "매년 11월경",
+      "location": "전북 정읍",
+      "participants": "전국 유소년 클럽팀",
+      "format": "미확인",
+      "notes": "2023년 대회 개최 확인.",
+      "history": [
+        {"year": 2025, "winner": "무안FC U-12", "runnerUp": "", "third": "", "fourth": "", "note": "무안FC U-12 우승 확인."}
+      ]
+    },
+    {
+      "id": "gangjin_celadon_cup",
+      "name": "강진청자배 전국 초등축구 페스티벌",
+      "alias": "강진청자배",
+      "organizer": "강진군 추정",
+      "period": "미확인",
+      "location": "전남 강진",
+      "participants": "전국 유소년 클럽팀",
+      "format": "페스티벌/리그",
+      "notes": "PEC유나이티드가 2022년 무패 우승한 기록 확인.",
+      "history": [
+        {"year": 2022, "winner": "PEC유나이티드", "runnerUp": "", "third": "", "fourth": "", "note": "무패 우승"}
+      ]
+    },
+    {
+      "id": "yanggu_apple_cup",
+      "name": "국토정중앙 양구사과배 전국 유소년 드림풋볼 유스컵",
+      "alias": "양구사과배",
+      "organizer": "㈜드림풋볼, 양구군",
+      "period": "미확인",
+      "location": "강원 양구군",
+      "participants": "전국 유소년 축구팀 (70여 팀)",
+      "format": "리그/토너먼트",
+      "notes": "드림풋볼 시스템 소속 대회. 2025년 제9회까지 확인.",
+      "history": []
+    },
+    {
+      "id": "president_cup_youth",
+      "name": "대통령배 전국 유소년 축구대회",
+      "alias": "대통령배 유소년",
+      "organizer": "미확인",
+      "period": "미확인",
+      "location": "미확인",
+      "participants": "전국 유소년팀",
+      "format": "미확인",
+      "notes": "인스타그램 공식 계정(@president.s_youth_cup) 존재 확인. 대통령금배(고등부)와 별개의 유소년 대회. 상세 정보 미확인.",
+      "history": []
+    },
+    {
+      "id": "nexon_champions_cup",
+      "name": "넥슨 챔피언스 컵 (NCC)",
+      "alias": "넥슨 챔피언스컵",
+      "organizer": "넥슨 (FC 온라인)",
+      "period": "매년 여름~가을",
+      "location": "제주 등 (매년 변경)",
+      "participants": "전국 고교 반 대항 (초등부 아님)",
+      "format": "고등학교 반 대항 축구대회",
+      "notes": "주의: 이 대회는 초등부(U-12) 대회가 아님. 고등학교 반 대항 비선수 축구대회. '그라운드.N' 프로젝트 일환. 초등부 관련 없음.",
+      "history": []
+    },
+    {
+      "id": "incheon_championship",
+      "name": "인천시 챔피언십 축구대회",
+      "alias": "인천시 챔피언십",
+      "organizer": "인천시축구협회 추정",
+      "period": "미확인",
+      "location": "인천",
+      "participants": "인천 소속 유소년팀",
+      "format": "미확인",
+      "notes": "지역 대회. 연수구청 유소년축구단 2025년 우승 확인.",
+      "history": [
+        {"year": 2025, "winner": "연수구청 유소년축구단", "runnerUp": "", "third": "", "fourth": ""}
+      ]
+    },
+    {
+      "id": "geumgang_daegi_festival",
+      "name": "금강대기 유소년 축구 페스티벌",
+      "alias": "금강대기",
+      "organizer": "미확인",
+      "period": "매년 8월초",
+      "location": "미확인",
+      "participants": "전국 유소년 클럽팀 (U-12)",
+      "format": "페스티벌",
+      "notes": "2025년 8월 2~8일 개최 확인. 마포스포츠클럽 참가 기록 있음.",
+      "history": []
+    },
+    {
+      "id": "yecheon_conipedi_cup",
+      "name": "예천 코니페디컵 전국유소년축구대회",
+      "alias": "코니페디컵",
+      "organizer": "한국유소년축구연합회",
+      "period": "미확인",
+      "location": "경북 예천",
+      "participants": "전국 유소년 클럽팀",
+      "format": "미확인",
+      "notes": "안동 아미고FC U-12가 2024년 전승 우승.",
+      "history": [
+        {"year": 2024, "winner": "안동 아미고FC U-12", "runnerUp": "", "third": "", "fourth": "", "note": "전승 우승"}
+      ]
+    },
+    {
+      "id": "sanccheong_cup",
+      "name": "산청군수배 전국 유소년 축구대회",
+      "alias": "산청군수배",
+      "organizer": "산청군",
+      "period": "미확인",
+      "location": "경남 산청",
+      "participants": "전국 유소년 클럽팀",
+      "format": "미확인",
+      "notes": "2025년 대회 개최 확인 (기사에서 '14~16일 개최' 확인).",
+      "history": []
+    }
+  ],
+  "summary": {
+    "totalTournamentsIdentified": 27,
+    "tier1_major": [
+      "전국 초등 축구리그 (연간 리그, KFA 주관)",
+      "전국소년체육대회 축구 초등부 (대한체육회, 시도 대표)",
+      "화랑대기 전국 유소년 축구대회 (국내 최대 규모)",
+      "K리그 유스 챔피언십 U-12/U-11 (프로구단 유스 전용)",
+      "금석배 전국초등학생축구대회 (전북 군산, 1992년~)"
+    ],
+    "tier2_regional_national": [
+      "대구광역시장기 전국초등학교축구대회",
+      "태백산배 전국유소년축구대회",
+      "정선아리랑배 전국유소년축구대회",
+      "하늘내린인제 전국유소년축구대회",
+      "따오기배 전국유소년축구대회",
+      "영덕대게배 전국 유소년축구대회",
+      "순천만국가정원배 전국 유소년 축구대회",
+      "정읍 내장산배 전국 유소년 축구대회",
+      "강진청자배 전국 초등축구 페스티벌",
+      "드림풋볼 전국 유소년 챔피언스리그",
+      "PSF 프로스타컵 전국유소년축구대회",
+      "예천 코니페디컵 전국유소년축구대회",
+      "금강대기 유소년 축구 페스티벌",
+      "양구사과배 전국 유소년 드림풋볼 유스컵",
+      "산청군수배 전국 유소년 축구대회"
+    ],
+    "tier3_regional_only": [
+      "서울특별시축구협회장배 초등부",
+      "맹호기 서울특별시초등학교 축구대회",
+      "경기도 꿈나무 축구대회 초등부",
+      "인천시 챔피언십 축구대회"
+    ],
+    "tier4_school_sports_club": [
+      "전국학교스포츠클럽 축전 축구부문 (비선수 일반학생 대상)"
+    ],
+    "not_u12": [
+      "넥슨 챔피언스 컵 - 고등학교 반 대항 비선수 대회. U-12 아님."
+    ],
+    "newTournamentsFound": [
+      "영덕대게배 전국 유소년축구대회",
+      "순천만국가정원배 전국 유소년 축구대회",
+      "동원컵 전국 유소년 축구대회",
+      "드림풋볼 전국 유소년 챔피언스리그",
+      "PSF 프로스타컵 전국유소년축구대회",
+      "정읍 내장산배 전국 유소년 축구대회",
+      "강진청자배 전국 초등축구 페스티벌",
+      "양구사과배 전국 유소년 드림풋볼 유스컵",
+      "대통령배 전국 유소년 축구대회",
+      "금강대기 유소년 축구 페스티벌",
+      "예천 코니페디컵 전국유소년축구대회",
+      "산청군수배 전국 유소년 축구대회",
+      "인천시 챔피언십 축구대회"
+    ],
+    "keyFindings": [
+      "전국 초등 축구리그는 2018년부터 왕중왕전을 폐지. 중고등부만 왕중왕전 운영. 초등부는 권역별 리그 최종 순위가 곧 성적.",
+      "화랑대기 U-12는 PEC유나이티드가 2022~2025 4년 연속 우승 (독보적 강세).",
+      "전국소년체전은 포항제철초(포항 스틸러스 U-12)가 2024~2025 2년 연속 우승.",
+      "K리그 U-12 챔피언십은 2019년 신설 후 페스티벌 형태였으나 최근 사실상 순위를 매기는 방식으로 변화.",
+      "지자체 주최 전국 유소년 축구대회가 매우 많음 (태백, 정선, 인제, 영덕, 순천, 강진, 정읍, 산청, 양구, 예천 등). 이는 지방 관광 활성화 목적과 결합.",
+      "드림풋볼(㈜)이 민간 유소년 축구대회 플랫폼으로 다수 대회 운영 (양구, 챔피언스리그 등).",
+      "넥슨 챔피언스컵은 U-12가 아닌 고등학생 반 대항전으로 확인. 보고서 대회 목록에서 제외 필요.",
+      "역대 우승 데이터는 대한축구협회(KFA)와 대한체육회의 공식 DB가 비공개이거나 검색 불가 상태로, 많은 대회의 2018~2023 기간 데이터가 미확인 상태."
+    ]
+  }
+}

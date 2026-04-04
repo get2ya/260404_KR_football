@@ -228,24 +228,11 @@
 <div class="section" id="sec1">
   <div class="section-header"><span class="section-num">1</span><h2>초등 축구 주요 대회 체계</h2></div>
   <div class="section-body">
-    <div class="alert alert-info"><div class="alert-icon">&#9917;</div><div>초등(U-12) 축구는 KFA 주관 공식 대회와 각종 초청 대회로 구성됩니다. 왕중왕전(화랑대기)이 최고 권위의 대회이며, 전국소년체전은 시도 대표 선발전 성격을 가집니다.</div></div>
+    <div class="alert alert-info"><div class="alert-icon">&#9917;</div><div>초등(U-12) 축구는 KFA 주관 공식 리그, 전국 단위 대회, K리그 유스 챔피언십, 지역/민간 대회 등 총 <strong>27개 대회</strong>로 구성됩니다. 대회 행을 클릭하면 역대 우승팀 등 상세 정보를 확인할 수 있습니다.</div></div>
 
-    <div class="table-wrap">
-    <table>
-      <thead><tr><th>대회명</th><th>주관</th><th>시기</th><th>특징</th><th>권위</th></tr></thead>
-      <tbody>
-        <tr class="highlight"><td><strong>화랑대기 전국 초등축구대회<br>(왕중왕전)</strong></td><td>대한축구협회(KFA)</td><td>매년 12월</td><td>연간 최종 대회, 전국 최강팀 결정. 학교팀/클럽팀/유스 모두 참가. 우승팀에 대통령배 수여.</td><td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td></tr>
-        <tr class="highlight"><td><strong>전국소년체육대회</strong></td><td>대한체육회</td><td>매년 5~6월</td><td>시도 대표 선발전. 지역별 최강 선수 집결. 개인 기량 평가에 중요한 대회.</td><td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td></tr>
-        <tr><td><strong>K리그 유스 챔피언십 U-12</strong></td><td>한국프로축구연맹</td><td>연중 리그</td><td>K리그 소속 유스팀 간 리그. 체계적 경쟁 환경 제공.</td><td><span class="stars">&#9733;&#9733;&#9733;&#9733;</span><span class="stars-empty">&#9733;</span></td></tr>
-        <tr><td><strong>전국초등축구리그</strong></td><td>KFA</td><td>연중 (지역별)</td><td>지역 리그 &rarr; 전국 본선 구조. 꾸준한 실전 경험 제공.</td><td><span class="stars">&#9733;&#9733;&#9733;&#9733;</span><span class="stars-empty">&#9733;</span></td></tr>
-        <tr><td><strong>금석배 전국초등축구대회</strong></td><td>KFA / 후원사</td><td>매년 7~8월</td><td>여름 대표 대회. 다수 팀 참가, 신예 발굴의 장.</td><td><span class="stars">&#9733;&#9733;&#9733;</span><span class="stars-empty">&#9733;&#9733;</span></td></tr>
-        <tr><td><strong>태백시장배 전국초등축구대회</strong></td><td>태백시</td><td>매년 여름</td><td>강원 태백 개최. 클럽/학교팀 다수 참가.</td><td><span class="stars">&#9733;&#9733;&#9733;</span><span class="stars-empty">&#9733;&#9733;</span></td></tr>
-        <tr><td><strong>각종 시장배/교육감배</strong></td><td>지자체/교육청</td><td>연중 수시</td><td>지역 단위 대회. 경험 축적용.</td><td><span class="stars">&#9733;&#9733;</span><span class="stars-empty">&#9733;&#9733;&#9733;</span></td></tr>
-      </tbody>
-    </table>
-    </div>
+    <div id="tournamentTables"></div>
 
-    <div class="alert alert-warning"><div class="alert-icon">&#128161;</div><div><strong>핵심 포인트:</strong> 프로 유스 스카우트는 화랑대기(왕중왕전)와 전국소년체전을 가장 집중적으로 관찰합니다. 이 두 대회에서의 활약이 U-15 유스 입단에 결정적 영향을 미칩니다.</div></div>
+    <div class="alert alert-warning"><div class="alert-icon">&#128161;</div><div><strong>핵심 포인트:</strong> 프로 유스 스카우트는 화랑대기와 전국소년체전을 가장 집중적으로 관찰합니다. 이 두 대회에서의 활약이 U-15 유스 입단에 결정적 영향을 미칩니다. 지자체 주최 대회(태백, 정선, 인제, 영덕 등)는 지역 관광 활성화와 결합되어 운영됩니다.</div></div>
   </div>
 </div>
 
@@ -450,12 +437,21 @@
 
 </div>
 
-<!-- Modal -->
+<!-- Team Modal -->
 <div class="modal-overlay" id="teamModal">
   <div class="modal-card">
-    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <button class="modal-close" onclick="closeTeamModal()">&times;</button>
     <div class="modal-header" id="modalHeader"></div>
     <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- Tournament Modal -->
+<div class="modal-overlay" id="tournamentModal">
+  <div class="modal-card" style="max-width:700px">
+    <button class="modal-close" onclick="closeTournamentModal()">&times;</button>
+    <div class="modal-header" id="tournamentModalHeader"></div>
+    <div class="modal-body" id="tournamentModalBody"></div>
   </div>
 </div>
 
@@ -665,15 +661,160 @@ function scoreBar(label, value, max, color) {
     '<span class="score-bar-val">' + value + '/' + max + '</span></div>';
 }
 
-function closeModal() {
+function closeTeamModal() {
   document.getElementById('teamModal').classList.remove('active');
   document.body.style.overflow = '';
 }
+// 하위호환
+function closeModal() { closeTeamModal(); }
 
-// ESC 키로 닫기
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+// =============================================
+// 대회 체계 - 데이터 & 렌더링
+// =============================================
+const tournamentsData = {"metadata":{"title":"대한민국 초등학교(U-12) 축구 주요 대회 체계 조사","updated":"2026-04-04","note":"웹 검색 기반 조사. 일부 연도의 역대 결과는 공식 기록 미공개로 미확인 상태."},"tournaments":[{"id":"elementary_football_league","name":"전국 초등 축구리그","alias":"전국 초중고 축구리그 초등부","organizer":"대한축구협회(KFA), 교육부","period":"3월~10월 (연간 리그)","location":"전국 권역별 홈/어웨이","participants":"KFA 등록 초등학교 축구부 + 클럽팀","format":"시도별 권역 리그 (8인제). 초등부는 왕중왕전 미개최","notes":"2009년 시작. 2018년 왕중왕전 폐지 후 '꿈자람 페스티벌'로 대체.","category":"공식 리그","history":[{"year":2025,"winner":"GS경수클럽 U-12 (경기12 권역 우승)","runnerUp":"수원삼성 U-12","third":"","fourth":"","note":"권역별 우승. 9승1무1패 승점28"},{"year":2025,"winner":"화북초 (제주A 스플릿리그)","runnerUp":"","third":"","fourth":"","note":"제주A 권역 무패 우승"},{"year":2025,"winner":"연수구청 유소년축구단 (인천 권역)","runnerUp":"","third":"","fourth":"","note":"인천 권역 우승"},{"year":2021,"winner":"포항제철초 (경북 권역)","runnerUp":"","third":"","fourth":"","note":"경북 권역 우승"},{"year":2018,"winner":"미확인","runnerUp":"","third":"","fourth":"","note":"이 해부터 초등부 왕중왕전 폐지"}]},{"id":"national_youth_sports_festival","name":"전국소년체육대회 축구 초등부","alias":"소년체전 축구 초등부","organizer":"대한체육회","period":"매년 5월 (4일간)","location":"매년 변경 (시도 순환 개최)","participants":"16개 시도 대표팀","format":"토너먼트 (11인제)","notes":"1972년 제1회 시작. 가장 권위 있는 초등 축구 대회 중 하나.","category":"전국 대회","history":[{"year":2025,"winner":"경북 포항제철초 (포항스틸러스 U-12)","runnerUp":"강원 원주태장초","third":"","fourth":"","note":"제54회. 결승 7-2. 2년 연속 우승."},{"year":2024,"winner":"경북 포항제철초 (포항스틸러스 U-12)","runnerUp":"부산 해운대FC U-12","third":"","fourth":"","note":"제53회. 결승 3-2."},{"year":2023,"winner":"미확인","runnerUp":"미확인","third":"","fourth":"","note":"제52회. 울산 개최."},{"year":2022,"winner":"미확인","runnerUp":"미확인","third":"","fourth":"","note":"제51회."},{"year":2021,"winner":"미확인","runnerUp":"","third":"","fourth":"","note":"제50회. 코로나로 축소."},{"year":2020,"winner":"미확인","runnerUp":"","third":"","fourth":"","note":"제49회. 코로나로 축소."},{"year":2019,"winner":"미확인","runnerUp":"미확인","third":"","fourth":"","note":"제48회."},{"year":2018,"winner":"미확인","runnerUp":"미확인","third":"","fourth":"","note":"제47회."},{"year":2015,"winner":"경북 포항제철초","runnerUp":"미확인","third":"","fourth":"","note":"포항제철초 2024년 우승이 9년만이라는 기사에서 역산"}]},{"id":"hwarangdaegi","name":"화랑대기 전국 유소년 축구대회","alias":"화랑대기","organizer":"한국유소년축구연맹, 경주시","period":"매년 8월 (약 14일간)","location":"경북 경주","participants":"전국 학교팀 + 클럽팀 (U-12~U-9)","format":"조별 풀리그 → 스플릿리그 (8인제)","notes":"2003년 시작. 국내 최대 규모 유소년 축구대회 (2024년: 610팀 12,000명).","category":"전국 대회","history":[{"year":2025,"winner":"PEC유나이티드 (U-12)","runnerUp":"여주SD","third":"","fourth":"","note":"4년 연속 U-12 우승."},{"year":2025,"winner":"연수구청 유소년축구단 (U-11)","runnerUp":"","third":"","fourth":"","note":"U-11 부문. 6전 전승."},{"year":2024,"winner":"PEC유나이티드 (U-12)","runnerUp":"미확인","third":"","fourth":"","note":"3년 연속 U-12 우승. 610팀 참가."},{"year":2023,"winner":"PEC유나이티드 (U-12)","runnerUp":"용인 블루윙즈","third":"","fourth":"","note":"2년 연속 U-12 우승."},{"year":2022,"winner":"PEC유나이티드 (U-12)","runnerUp":"미확인","third":"","fourth":"","note":"4연패의 시작."},{"year":2019,"winner":"미확인","runnerUp":"미확인","third":"성덕초(강원)","fourth":"","note":"성덕초 3위 입상"},{"year":2018,"winner":"FC 서울 U-12 (E그룹)","runnerUp":"미확인","third":"","fourth":"","note":"그룹별 운영"},{"year":2008,"winner":"이문초(서울)","runnerUp":"성거초(충남)","third":"","fourth":"","note":"제6회"},{"year":2007,"winner":"신일초(경기)","runnerUp":"합성초(경남)","third":"","fourth":"","note":"제5회"}]},{"id":"geumseok_cup","name":"금석배 전국초등학생축구대회","alias":"금석배","organizer":"대한축구협회, 전북축구협회","period":"매년 7월경","location":"전북 군산","participants":"전국 초등 축구부 + 클럽팀","format":"조별리그 → 순위결정전","notes":"1992년 창설. 축구인 채금석 선생 기념 대회.","category":"전국 대회","history":[{"year":2025,"winner":"연수구청 유소년축구단 (U-12 공동우승)","runnerUp":"","third":"","fourth":"","note":"U-12 6경기 전승."},{"year":2024,"winner":"미확인","runnerUp":"","third":"","fourth":""},{"year":2016,"winner":"FC 서울 U-12","runnerUp":"","third":"","fourth":""},{"year":2000,"winner":"안산광덕초","runnerUp":"포항제철동초","third":"","fourth":""},{"year":1999,"winner":"이리동초","runnerUp":"","third":"","fourth":""},{"year":1998,"winner":"이리동초","runnerUp":"","third":"","fourth":""},{"year":1997,"winner":"서정리초","runnerUp":"","third":"","fourth":""},{"year":1996,"winner":"고창남초","runnerUp":"","third":"","fourth":""},{"year":1995,"winner":"해남동초","runnerUp":"","third":"","fourth":""},{"year":1994,"winner":"인천부평초","runnerUp":"","third":"","fourth":""},{"year":1993,"winner":"봉동초","runnerUp":"","third":"","fourth":""},{"year":1992,"winner":"인천부평동초","runnerUp":"","third":"","fourth":"","note":"제1회"}]},{"id":"kleague_youth_championship_u12","name":"K리그 유스 챔피언십 U-12","alias":"GROUND.N K리그 U12 챔피언십","organizer":"한국프로축구연맹","period":"매년 7월 (약 7일간)","location":"경북 영덕군","participants":"K리그 전 구단 U-12팀 (약 25팀)","format":"조별리그","notes":"2019년 신설. 페스티벌 취지였으나 최근 사실상 우승팀 인정.","category":"K리그 유스","history":[{"year":2025,"winner":"경남FC U-12","runnerUp":"","third":"","fourth":"","note":"7전 전승."},{"year":2024,"winner":"포항제철초 (포항 스틸러스 U-12)","runnerUp":"미확인","third":"","fourth":""},{"year":2023,"winner":"울산 HD U-12","runnerUp":"김포FC U-12","third":"","fourth":"","note":"최종전 6-3 승리."},{"year":2022,"winner":"포항 스틸러스 U-12","runnerUp":"인천 유나이티드 U-12","third":"","fourth":"","note":"6전 전승 47득점 무실점."},{"year":2019,"winner":"미확인","runnerUp":"","third":"","fourth":"","note":"U-12 신설 첫 해."}]},{"id":"kleague_youth_championship_u11","name":"K리그 유스 챔피언십 U-11","alias":"GROUND.N K리그 U11 챔피언십","organizer":"한국프로축구연맹","period":"매년 7월","location":"경북 영덕군","participants":"K리그 전 구단 U-11팀","format":"조별리그","notes":"2019년 신설. U-12와 함께 운영.","category":"K리그 유스","history":[{"year":2025,"winner":"경남FC U-11","runnerUp":"","third":"","fourth":"","note":"5승 1무 무패 우승."},{"year":2024,"winner":"미확인","runnerUp":"","third":"","fourth":""},{"year":2023,"winner":"미확인","runnerUp":"","third":"","fourth":""},{"year":2022,"winner":"미확인","runnerUp":"","third":"","fourth":"","note":"포항 U-11은 3승 2패로 마감."}]},{"id":"taebaek_cup","name":"태백산배 전국유소년축구대회","alias":"태백시장배","organizer":"태백시, 강원일보","period":"매년 5~6월경","location":"강원 태백시","participants":"전국 유소년 클럽팀 (U-7~U-12)","format":"학년별 조별리그 → 결승","notes":"강원일보 주최. 초등 2~6학년 우수 클럽팀 대상.","category":"지역/민간 대회","history":[{"year":2025,"winner":"미확인","runnerUp":"","third":"","fourth":"","note":"2025 대회 개최 확인."}]},{"id":"daegu_mayor_cup","name":"대구광역시장기 전국초등축구대회","alias":"대구시장기","organizer":"대한축구협회, 대구축구협회","period":"미확인","location":"대구","participants":"전국 초등학교 축구부 (U-12)","format":"토너먼트","notes":"2000년 설립. 전국 규모.","category":"전국 대회","history":[{"year":2000,"winner":"안산광덕초","runnerUp":"시흥신일초","third":"","fourth":"","note":"페어플레이팀: 대구달성초"}]},{"id":"jeongseon_arirang_cup","name":"정선아리랑배 전국유소년축구대회","alias":"정선 아리랑배","organizer":"정선군","period":"매년 9월경","location":"강원 정선군","participants":"전국 유소년 클럽팀 (U-8~U-12)","format":"조별리그 → 순위결정전","notes":"2022년 제1회 시작 추정. 전국 59개 팀 참가.","category":"지역/민간 대회","history":[{"year":2025,"winner":"충주 아주FC (U-12)","runnerUp":"","third":"","fourth":"","note":"제4회. 59팀 2,200명 참가."}]},{"id":"ttaogi_cup","name":"따오기배 전국유소년축구대회","alias":"따오기배","organizer":"창녕군 추정","period":"매년 2월경 (동계)","location":"경남 창녕군","participants":"전국 유소년 클럽팀","format":"미확인","notes":"FC 서울 U-12가 2019년 B그룹 우승.","category":"지역/민간 대회","history":[{"year":2019,"winner":"FC 서울 U-12 (B그룹)","runnerUp":"","third":"","fourth":""}]},{"id":"seoul_fa_president_cup","name":"서울시축구협회장배 축구대회 초등부","alias":"서울시축구협회장배","organizer":"서울특별시축구협회","period":"미확인 (하반기 추정)","location":"서울","participants":"서울 소속 초등 축구팀","format":"토너먼트 추정","notes":"서울 지역 대회.","category":"지역/민간 대회","history":[{"year":2022,"winner":"FC 서울 U-12","runnerUp":"미확인","third":"","fourth":""}]},{"id":"maenghogi","name":"맹호기 서울특별시초등학교 축구대회","alias":"맹호기","organizer":"서울특별시축구협회","period":"미확인","location":"서울","participants":"서울 소속 초등학교 축구부","format":"토너먼트 추정","notes":"38회 이상 역사를 가진 전통 대회.","category":"지역/민간 대회","history":[]},{"id":"gyeonggi_dream_tree_cup","name":"경기도 꿈나무 축구대회 초등부","alias":"경기도 꿈나무","organizer":"경기도축구협회","period":"매년 3월~ (연 2~3회)","location":"경기도 내 구장","participants":"경기도 소속 초등 축구팀","format":"리그/토너먼트 (선발부/비선발부)","notes":"경기도 지역 대회. 초/중/고 동시 개최.","category":"지역/민간 대회","history":[]},{"id":"school_sports_club_festival","name":"전국학교스포츠클럽 축전 축구부문","alias":"학교스포츠클럽 축전","organizer":"교육부, 학교체육진흥회","period":"매년 11월경","location":"매년 변경","participants":"각 시도 교육감배 우승팀 (비선수 학생)","format":"토너먼트","notes":"학교 스포츠클럽 소속 일반 학생 대상. 선수 등록 팀 아님.","category":"전국 대회","history":[]},{"id":"haneulnaerin_inje_cup","name":"하늘내린인제 전국유소년축구대회","alias":"인제 유소년축구대회","organizer":"인제군","period":"미확인","location":"강원 인제군","participants":"전국 유소년 클럽팀","format":"미확인","notes":"강원도 인제군 주최 전국 규모 유소년 대회.","category":"지역/민간 대회","history":[]},{"id":"yeongdeok_crab_cup","name":"영덕대게배 전국 유소년축구대회","alias":"영덕대게배","organizer":"영덕군","period":"미확인","location":"경북 영덕군","participants":"전국 유소년팀","format":"토너먼트","notes":"울산 HD U-12가 통산 4회 우승.","category":"지역/민간 대회","history":[{"year":"미확인(5회)","winner":"울산 HD U-12","runnerUp":"FC 서울 U-12","third":"","fourth":"","note":"결승 1-0. 통산 4번째 우승."}]},{"id":"suncheonman_cup","name":"순천만국가정원배 전국 유소년 축구대회","alias":"순천만국가정원배","organizer":"순천시","period":"매년 2월경","location":"전남 순천","participants":"전국 유소년 클럽팀 (60팀)","format":"조별리그 → 스플릿리그","notes":"2025년 60개팀, 1,200명 참가.","category":"지역/민간 대회","history":[{"year":2025,"winner":"미확인","runnerUp":"","third":"","fourth":"","note":"2025년 2월 개최."}]},{"id":"dongwon_cup","name":"동원컵 전국 유소년 축구대회","alias":"동원컵","organizer":"동원육영재단, 대한축구협회","period":"연간 권역별 리그 → 10월 왕중왕전","location":"전국 권역별","participants":"전국 260여개 초등학교 축구팀","format":"권역별 리그 → 왕중왕전 토너먼트","notes":"2001년 시작. 현재 운영 여부 미확인.","category":"전국 대회","history":[]},{"id":"dreamfootball_champions_league","name":"드림풋볼 전국 유소년 챔피언스리그","alias":"드림풋볼 챔피언스리그","organizer":"(주)드림풋볼","period":"연말 (12월경)","location":"강원 양구군","participants":"드림풋볼 주최 대회 상위팀","format":"토너먼트 (왕중왕전)","notes":"드림풋볼 유소년 축구대회 시스템의 최상위 대회.","category":"지역/민간 대회","history":[{"year":2025,"winner":"동두천FC U-12","runnerUp":"COOLFC U-12","third":"","fourth":"","note":"제3회. 결승 5-1."}]},{"id":"prostar_cup","name":"PSF 프로스타컵 전국유소년축구대회","alias":"프로스타컵","organizer":"미확인","period":"미확인","location":"대구 (2025년)","participants":"전국 유소년 클럽팀 (U-12)","format":"리그/토너먼트","notes":"우승팀에게 왕중왕전 출전권 부여.","category":"지역/민간 대회","history":[{"year":2025,"winner":"안동 아미고FC U-12","runnerUp":"","third":"","fourth":"","note":"무패 전승 우승."}]},{"id":"naejangsanbae","name":"정읍 내장산배 전국 유소년 축구대회","alias":"내장산배","organizer":"정읍시, 한국축구클럽연맹","period":"매년 11월경","location":"전북 정읍","participants":"전국 유소년 클럽팀","format":"미확인","notes":"2023년 대회 개최 확인.","category":"지역/민간 대회","history":[{"year":2025,"winner":"무안FC U-12","runnerUp":"","third":"","fourth":"","note":"무안FC U-12 우승 확인."}]},{"id":"gangjin_celadon_cup","name":"강진청자배 전국 초등축구 페스티벌","alias":"강진청자배","organizer":"강진군 추정","period":"미확인","location":"전남 강진","participants":"전국 유소년 클럽팀","format":"페스티벌/리그","notes":"PEC유나이티드가 2022년 무패 우승.","category":"지역/민간 대회","history":[{"year":2022,"winner":"PEC유나이티드","runnerUp":"","third":"","fourth":"","note":"무패 우승"}]},{"id":"yanggu_apple_cup","name":"양구사과배 전국 유소년 드림풋볼 유스컵","alias":"양구사과배","organizer":"(주)드림풋볼, 양구군","period":"미확인","location":"강원 양구군","participants":"전국 유소년 축구팀 (70여 팀)","format":"리그/토너먼트","notes":"드림풋볼 시스템 소속 대회. 제9회까지 확인.","category":"지역/민간 대회","history":[]},{"id":"president_cup_youth","name":"대통령배 전국 유소년 축구대회","alias":"대통령배 유소년","organizer":"미확인","period":"미확인","location":"미확인","participants":"전국 유소년팀","format":"미확인","notes":"인스타그램 공식 계정 존재 확인. 상세 정보 미확인.","category":"지역/민간 대회","history":[]},{"id":"incheon_championship","name":"인천시 챔피언십 축구대회","alias":"인천시 챔피언십","organizer":"인천시축구협회 추정","period":"미확인","location":"인천","participants":"인천 소속 유소년팀","format":"미확인","notes":"지역 대회.","category":"지역/민간 대회","history":[{"year":2025,"winner":"연수구청 유소년축구단","runnerUp":"","third":"","fourth":""}]},{"id":"geumgang_daegi_festival","name":"금강대기 유소년 축구 페스티벌","alias":"금강대기","organizer":"미확인","period":"매년 8월초","location":"미확인","participants":"전국 유소년 클럽팀 (U-12)","format":"페스티벌","notes":"2025년 8월 개최 확인.","category":"지역/민간 대회","history":[]},{"id":"yecheon_conipedi_cup","name":"예천 코니페디컵 전국유소년축구대회","alias":"코니페디컵","organizer":"한국유소년축구연합회","period":"미확인","location":"경북 예천","participants":"전국 유소년 클럽팀","format":"미확인","notes":"안동 아미고FC U-12가 2024년 전승 우승.","category":"지역/민간 대회","history":[{"year":2024,"winner":"안동 아미고FC U-12","runnerUp":"","third":"","fourth":"","note":"전승 우승"}]},{"id":"sanccheong_cup","name":"산청군수배 전국 유소년 축구대회","alias":"산청군수배","organizer":"산청군","period":"미확인","location":"경남 산청","participants":"전국 유소년 클럽팀","format":"미확인","notes":"2025년 대회 개최 확인.","category":"지역/민간 대회","history":[]}]};
+
+// 대회 카테고리 정의
+const tournamentCategories = [
+  { key: '공식 리그', label: '공식 리그', color: 'var(--primary)', desc: 'KFA 주관 연간 리그' },
+  { key: '전국 대회', label: '전국 대회', color: 'var(--info)', desc: '소년체전, 금석배 등 전국 규모 토너먼트' },
+  { key: 'K리그 유스', label: 'K리그 유스', color: '#7b1fa2', desc: 'K리그 구단 유스팀 전용' },
+  { key: '지역/민간 대회', label: '지역/민간 대회', color: 'var(--accent)', desc: '지자체, 민간 주최 전국/지역 대회' }
+];
+
+function renderTournamentTables() {
+  const container = document.getElementById('tournamentTables');
+  if (!container) return;
+  const tournaments = tournamentsData.tournaments;
+  let html = '';
+
+  tournamentCategories.forEach(cat => {
+    const items = tournaments.filter(t => t.category === cat.key);
+    if (items.length === 0) return;
+
+    html += '<h3 style="border-bottom-color:' + cat.color + '">' + esc(cat.label) + ' <span style="font-size:12px;font-weight:400;color:var(--gray)">(' + items.length + '개 / ' + esc(cat.desc) + ')</span></h3>';
+    html += '<div class="table-wrap"><table class="tournament-cat-table"><thead><tr>';
+    html += '<th style="background:' + cat.color + '">대회명</th>';
+    html += '<th style="background:' + cat.color + '">주최</th>';
+    html += '<th style="background:' + cat.color + '">시기</th>';
+    html += '<th style="background:' + cat.color + '">참가</th>';
+    html += '<th style="background:' + cat.color + '">비고</th>';
+    html += '</tr></thead><tbody>';
+
+    items.forEach(t => {
+      const hasHistory = t.history && t.history.length > 0;
+      const historyNote = hasHistory ? ' (역대 ' + t.history.length + '건)' : '';
+      const cursorStyle = 'cursor:pointer';
+      html += '<tr class="clickable-row" onclick="showTournamentDetail(\'' + t.id + '\')" style="' + cursorStyle + '">';
+      html += '<td><strong>' + esc(t.name) + '</strong>';
+      if (t.alias && t.alias !== t.name) html += '<br><span style="font-size:12px;color:var(--gray)">' + esc(t.alias) + '</span>';
+      html += '</td>';
+      html += '<td>' + esc(t.organizer) + '</td>';
+      html += '<td style="white-space:nowrap">' + esc(t.period) + '</td>';
+      html += '<td style="font-size:13px">' + esc(t.participants) + '</td>';
+      html += '<td style="font-size:13px">';
+      if (t.notes) html += esc(t.notes.substring(0, 60)) + (t.notes.length > 60 ? '...' : '');
+      if (hasHistory) html += '<br><span style="color:var(--primary);font-weight:500;font-size:12px">&#128200; 역대 결과 보기' + historyNote + '</span>';
+      html += '</td></tr>';
+    });
+
+    html += '</tbody></table></div>';
+  });
+
+  container.innerHTML = html;
+}
+
+function showTournamentDetail(id) {
+  const t = tournamentsData.tournaments.find(x => x.id === id);
+  if (!t) return;
+
+  // Header
+  let catColor = 'var(--gray)';
+  const catDef = tournamentCategories.find(c => c.key === t.category);
+  if (catDef) catColor = catDef.color;
+
+  document.getElementById('tournamentModalHeader').innerHTML =
+    '<h2>' + esc(t.name) + ' <span class="badge" style="background:' + catColor + ';font-size:11px">' + esc(t.category || '') + '</span></h2>' +
+    '<div class="modal-meta">' +
+    '<span>' + esc(t.organizer) + '</span>' +
+    '<span>' + esc(t.period) + '</span>' +
+    (t.location ? '<span>' + esc(t.location) + '</span>' : '') +
+    '</div>';
+
+  // Body
+  let body = '';
+
+  // 기본 정보
+  body += '<div class="modal-section"><div class="modal-section-title">대회 정보</div>';
+  body += '<div class="modal-info-grid">';
+  body += tInfoItem('참가자격', t.participants);
+  body += tInfoItem('형식', t.format);
+  body += tInfoItem('개최지', t.location);
+  body += tInfoItem('시기', t.period);
+  body += '</div></div>';
+
+  // 역대 우승팀
+  if (t.history && t.history.length > 0) {
+    body += '<div class="modal-section"><div class="modal-section-title">역대 우승팀</div>';
+    body += '<div class="table-wrap"><table><thead><tr>';
+    body += '<th style="background:' + catColor + '">연도</th>';
+    body += '<th style="background:' + catColor + '">우승</th>';
+    body += '<th style="background:' + catColor + '">준우승</th>';
+    body += '<th style="background:' + catColor + '">3위</th>';
+    body += '<th style="background:' + catColor + '">비고</th>';
+    body += '</tr></thead><tbody>';
+
+    t.history.forEach(h => {
+      const isUnknown = (v) => !v || v === '미확인';
+      const grayStyle = 'color:#aaa;font-style:italic';
+      body += '<tr>';
+      body += '<td style="white-space:nowrap;font-weight:700">' + esc(String(h.year)) + '</td>';
+      body += '<td' + (isUnknown(h.winner) ? ' style="' + grayStyle + '"' : '') + '>' + esc(h.winner || '-') + '</td>';
+      body += '<td' + (isUnknown(h.runnerUp) ? ' style="' + grayStyle + '"' : '') + '>' + esc(h.runnerUp || '-') + '</td>';
+      body += '<td' + (isUnknown(h.third) ? ' style="' + grayStyle + '"' : '') + '>' + esc(h.third || '-') + '</td>';
+      body += '<td style="font-size:12px;color:#666">' + esc(h.note || '') + '</td>';
+      body += '</tr>';
+    });
+
+    body += '</tbody></table></div></div>';
+  } else {
+    body += '<div class="modal-section"><div class="modal-section-title">역대 우승팀</div>';
+    body += '<div class="alert alert-info" style="margin:0"><div class="alert-icon">&#128203;</div><div>이 대회의 역대 결과 데이터가 아직 확인되지 않았습니다.</div></div></div>';
+  }
+
+  // 참고사항
+  if (t.notes) {
+    body += '<div class="modal-section"><div class="modal-section-title">참고사항</div>';
+    body += '<p style="font-size:14px;color:#555;line-height:1.7">' + esc(t.notes) + '</p></div>';
+  }
+
+  document.getElementById('tournamentModalBody').innerHTML = body;
+  document.getElementById('tournamentModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function tInfoItem(label, value) {
+  const v = value || '-';
+  return '<div class="modal-info-item"><div class="label">' + esc(label) + '</div><div class="value">' + esc(v) + '</div></div>';
+}
+
+function closeTournamentModal() {
+  document.getElementById('tournamentModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// 대회 테이블 렌더링
+renderTournamentTables();
+
+// ESC 키로 모달 닫기 (팀 + 대회)
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeTeamModal();
+    closeTournamentModal();
+  }
+});
 // 오버레이 클릭으로 닫기
-document.getElementById('teamModal').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal(); });
+document.getElementById('teamModal').addEventListener('click', e => { if (e.target === e.currentTarget) closeTeamModal(); });
+document.getElementById('tournamentModal').addEventListener('click', e => { if (e.target === e.currentTarget) closeTournamentModal(); });
 </script>
 
 </body>
