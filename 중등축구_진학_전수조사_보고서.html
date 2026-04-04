@@ -140,6 +140,38 @@
 
   .hidden { display:none!important; }
 
+  /* Modal */
+  .modal-overlay { display:none; position:fixed; top:0;left:0;right:0;bottom:0; background:rgba(0,0,0,.55); z-index:1000; justify-content:center; align-items:center; padding:20px; }
+  .modal-overlay.active { display:flex; }
+  .modal-card { background:#fff; border-radius:16px; max-width:640px; width:100%; max-height:85vh; overflow-y:auto; position:relative; box-shadow:0 8px 40px rgba(0,0,0,.25); animation:modalIn .25s ease; }
+  @keyframes modalIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+  .modal-close { position:absolute; top:14px; right:16px; width:32px;height:32px; border-radius:50%; border:none; background:rgba(0,0,0,.08); font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:2; transition:background .2s; }
+  .modal-close:hover { background:rgba(0,0,0,.15); }
+  .modal-header { padding:28px 28px 16px; border-bottom:1px solid #eee; }
+  .modal-header h2 { font-size:1.4em; font-weight:900; color:var(--dark); margin-bottom:6px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  .modal-meta { font-size:13px; color:var(--gray); display:flex; gap:12px; flex-wrap:wrap; }
+  .modal-body { padding:20px 28px 28px; }
+  .modal-section { margin-bottom:20px; }
+  .modal-section-title { font-size:12px; text-transform:uppercase; letter-spacing:1.5px; color:var(--gray); font-weight:700; margin-bottom:8px; padding-bottom:4px; border-bottom:1px solid #f0f0f0; }
+  .modal-list { list-style:none; padding:0; margin:0; }
+  .modal-list li { padding:5px 0; font-size:14px; color:#444; line-height:1.5; display:flex; align-items:flex-start; gap:8px; }
+  .modal-list li::before { content:'\2022'; color:var(--primary); font-weight:700; flex-shrink:0; }
+  .modal-info-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .modal-info-item { background:var(--gray-light); border-radius:8px; padding:10px 14px; font-size:13px; }
+  .modal-info-item .label { font-size:11px; color:var(--gray); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:2px; }
+  .modal-info-item .value { font-weight:500; color:var(--dark); }
+  .score-bars { margin-top:8px; }
+  .score-bar-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; font-size:13px; }
+  .score-bar-label { width:60px; text-align:right; color:var(--gray); font-weight:500; flex-shrink:0; }
+  .score-bar-track { flex:1; height:10px; background:#eee; border-radius:5px; overflow:hidden; }
+  .score-bar-fill { height:100%; border-radius:5px; transition:width .4s ease; }
+  .score-bar-val { width:30px; font-weight:700; color:var(--dark); text-align:right; flex-shrink:0; }
+  .coach-detail { background:var(--gray-light); border-radius:10px; padding:14px 16px; margin-bottom:8px; }
+  .coach-detail .coach-name { font-weight:700; font-size:15px; color:var(--dark); margin-bottom:4px; }
+  .coach-detail .coach-career { font-size:13px; color:#555; line-height:1.5; }
+  .clickable-row { cursor:pointer; transition:background .15s; }
+  .clickable-row:hover { background:#eef6f0!important; }
+
   .footer { text-align:center; padding:40px 20px; color:var(--gray); font-size:13px; line-height:1.8; }
 
   @media(max-width:768px) {
@@ -151,6 +183,11 @@
     .filter-bar { flex-direction:column; align-items:stretch; }
     .search-box { width:100%; }
     .team-count { margin-left:0; margin-top:4px; }
+    .modal-card { max-height:90vh; border-radius:12px; }
+    .modal-header { padding:20px 18px 12px; }
+    .modal-body { padding:14px 18px 20px; }
+    .modal-info-grid { grid-template-columns:1fr; }
+    .modal-overlay { padding:10px; }
   }
 </style>
 </head>
@@ -196,8 +233,7 @@
     <a href="#sec7" class="toc-item"><span class="toc-num">07</span> 종합 평가 매트릭스</a>
     <a href="#sec8" class="toc-item"><span class="toc-num">08</span> 3대 경로 전략 비교</a>
     <a href="#sec9" class="toc-item"><span class="toc-num">09</span> 선수 유형별 추천 경로</a>
-    <a href="#sec10" class="toc-item"><span class="toc-num">10</span> 월드컵FC 시나리오 분석</a>
-    <a href="#sec11" class="toc-item"><span class="toc-num">11</span> 압박 질문 리스트 10가지</a>
+    <a href="#sec10" class="toc-item"><span class="toc-num">10</span> 압박 질문 리스트 10가지</a>
   </div>
 </div>
 
@@ -242,6 +278,7 @@
         <option value="경기">경기</option>
         <option value="인천">인천</option>
         <option value="충청">충청</option>
+        <option value="대전">대전</option>
         <option value="경북">경북</option>
         <option value="경남">경남</option>
         <option value="대구">대구</option>
@@ -249,6 +286,7 @@
         <option value="울산">울산</option>
         <option value="전북">전북</option>
         <option value="전남">전남</option>
+        <option value="광주">광주</option>
         <option value="강원">강원</option>
         <option value="제주">제주</option>
       </select>
@@ -268,58 +306,7 @@
         <th>주요 성적 / 특이사항</th>
       </tr></thead>
       <tbody id="teamBody">
-        <!-- ===== K리그 유스 ===== -->
-        <tr data-type="유스" data-region="서울"><td><strong>FC서울 U-15</strong></td><td><span class="grade grade-a">유스</span></td><td>서울</td><td>FC서울</td><td>윤시호 <span class="coach-tag tag-happy">행복축구</span></td><td>차두리 유스 강화실장. "행복 축구" 기본기 중시</td></tr>
-        <tr data-type="유스" data-region="서울"><td><strong>서울이랜드 U-15</strong></td><td><span class="grade grade-a">유스</span></td><td>서울</td><td>서울이랜드</td><td>-</td><td>자체 운영</td></tr>
-        <tr data-type="유스" data-region="경기"><td><strong>수원삼성 U-15</strong></td><td><span class="grade grade-a">유스</span></td><td>경기 수원</td><td>수원삼성</td><td>백승주 <span class="coach-tag tag-tact">기술+전술</span></td><td><strong>K리그 주니어 2년 연속 1위</strong>. 화도중 협약</td></tr>
-        <tr data-type="유스" data-region="경기"><td><strong>수원FC U-15</strong></td><td><span class="grade grade-a">유스</span></td><td>경기 수원</td><td>수원FC</td><td>-</td><td>자체 운영</td></tr>
-        <tr data-type="유스" data-region="경기"><td><strong>성남FC U-15 (풍생중)</strong></td><td><span class="grade grade-a">유스</span></td><td>경기 성남</td><td>성남FC</td><td>권순형 <span class="coach-tag tag-tact">전술지향</span></td><td>K리그 373경기 미드필더 출신. 배출: 김치우, 홍철</td></tr>
-        <tr data-type="유스" data-region="경기"><td><strong>부천FC U-15</strong></td><td><span class="grade grade-a">유스</span></td><td>경기 부천</td><td>부천FC</td><td>-</td><td>자체 운영</td></tr>
-        <tr data-type="유스" data-region="경기"><td><strong>안산그리너스 U-15</strong></td><td><span class="grade grade-a">유스</span></td><td>경기 안산</td><td>안산그리너스</td><td>-</td><td>자체 운영</td></tr>
-        <tr data-type="유스" data-region="경기"><td><strong>김포FC U-15</strong></td><td><span class="grade grade-a">유스</span></td><td>경기 김포</td><td>김포FC</td><td>-</td><td>자체 운영</td></tr>
-        <tr data-type="유스" data-region="경기"><td><strong>FC안양 U-15</strong></td><td><span class="grade grade-a">유스</span></td><td>경기 안양</td><td>FC안양</td><td>-</td><td>자체 운영</td></tr>
-        <tr data-type="유스" data-region="인천"><td><strong>인천유나이티드 U-15 (광성중)</strong></td><td><span class="grade grade-a">유스</span></td><td>인천</td><td>인천유나이티드</td><td>-</td><td>2025 금강송 춘계 우승</td></tr>
-        <tr data-type="유스" data-region="충청"><td><strong>대전시티즌 U-15</strong></td><td><span class="grade grade-a">유스</span></td><td>대전</td><td>대전시티즌</td><td>-</td><td>K리그 주니어 중등리그 우승. 배출: 황인범</td></tr>
-        <tr data-type="유스" data-region="충청"><td><strong>충남아산 U-15</strong></td><td><span class="grade grade-a">유스</span></td><td>충남 아산</td><td>충남아산FC</td><td>-</td><td>자체 운영</td></tr>
-        <tr data-type="유스" data-region="충청"><td><strong>천안시티 U-15</strong></td><td><span class="grade grade-a">유스</span></td><td>충남 천안</td><td>천안시티FC</td><td>-</td><td>자체 운영</td></tr>
-        <tr data-type="유스" data-region="충청"><td><strong>충북청주 U-15</strong></td><td><span class="grade grade-a">유스</span></td><td>충북 청주</td><td>충북청주FC</td><td>-</td><td>자체 운영</td></tr>
-        <tr data-type="유스" data-region="전북"><td><strong>전북현대 U-15 (금산중)</strong></td><td><span class="grade grade-a">유스</span></td><td>충남 금산</td><td>전북현대</td><td>신용주 <span class="coach-tag tag-tech">기술+국제교류</span></td><td><strong>2025 소년체전 우승</strong>. PSV 연수. 보급반 1,300명</td></tr>
-        <tr data-type="유스" data-region="전남"><td><strong>전남드래곤즈 U-15 (광철중)</strong></td><td><span class="grade grade-a">유스</span></td><td>전남 광양</td><td>전남드래곤즈</td><td>손형선 <span class="coach-tag tag-tech">기술지향</span></td><td>지도자상 수상. 배출: 지동원, 김영욱, 이종호</td></tr>
-        <tr data-type="유스" data-region="경북"><td><strong>포항스틸러스 U-15 (포철중)</strong></td><td><span class="grade grade-a">유스</span></td><td>경북 포항</td><td>포항스틸러스</td><td>-</td><td>소년체전 U12 2년 연속 우승. 국내 최장 유소년 역사</td></tr>
-        <tr data-type="유스" data-region="경북"><td><strong>김천상무 U-15</strong></td><td><span class="grade grade-a">유스</span></td><td>경북 김천</td><td>김천상무</td><td>-</td><td>자체 운영</td></tr>
-        <tr data-type="유스" data-region="대구"><td><strong>대구FC U-15 (율원중)</strong></td><td><span class="grade grade-a">유스</span></td><td>대구</td><td>대구FC</td><td>-</td><td><strong>2026 춘계 우승</strong></td></tr>
-        <tr data-type="유스" data-region="울산"><td><strong>울산HD U-15 (현대중)</strong></td><td><span class="grade grade-a">유스</span></td><td>울산</td><td>울산HD</td><td>- <span class="coach-tag tag-tech">기술중심</span></td><td><strong>2024 K리그 U14+U15 동반우승</strong>. 유소년 7명 유럽 이적</td></tr>
-        <tr data-type="유스" data-region="부산"><td><strong>부산아이파크 U-15 (낙동중)</strong></td><td><span class="grade grade-a">유스</span></td><td>부산</td><td>부산아이파크</td><td>-</td><td><strong>2024 소년체전 1위</strong></td></tr>
-        <tr data-type="유스" data-region="경남"><td><strong>경남FC U-15</strong></td><td><span class="grade grade-a">유스</span></td><td>경남</td><td>경남FC</td><td>-</td><td>자체 운영</td></tr>
-        <tr data-type="유스" data-region="전남"><td><strong>광주FC U-15</strong></td><td><span class="grade grade-a">유스</span></td><td>광주</td><td>광주FC</td><td>-</td><td>자체 운영</td></tr>
-        <tr data-type="유스" data-region="강원"><td><strong>강원FC U-15 (주문진중)</strong></td><td><span class="grade grade-a">유스</span></td><td>강원 강릉</td><td>강원FC</td><td>-</td><td>춘계 연맹전 준우승. 1958 창단. 배출: 설기현</td></tr>
-        <tr data-type="유스" data-region="제주"><td><strong>제주유나이티드 U-15 (제주중)</strong></td><td><span class="grade grade-a">유스</span></td><td>제주</td><td>제주유나이티드</td><td>윤대성</td><td>2025 울진 금강송 춘계 진출</td></tr>
-        <!-- ===== 학원축구 ===== -->
-        <tr data-type="학원" data-region="서울"><td><strong>문래중</strong></td><td><span class="grade grade-c">학원</span></td><td>서울 영등포</td><td>-</td><td>(후임 확인 필요) <span class="coach-tag tag-creative">창의성</span></td><td>2023 춘계 우승, 2026 U14+U15 동반 우승. 배출: 문선민(월드컵)</td></tr>
-        <tr data-type="학원" data-region="서울"><td><strong>목동중</strong></td><td><span class="grade grade-c">학원</span></td><td>서울 양천</td><td>-</td><td>-</td><td><strong>2025 왕중왕전 준우승</strong>. 서울 대표급</td></tr>
-        <tr data-type="학원" data-region="서울"><td><strong>보인중</strong></td><td><span class="grade grade-c">학원</span></td><td>서울 송파</td><td>-</td><td>-</td><td>1970 창단. 보인고 연계 체계적 프로그램</td></tr>
-        <tr data-type="학원" data-region="서울"><td><strong>대신중</strong></td><td><span class="grade grade-c">학원</span></td><td>서울</td><td>-</td><td>-</td><td>전통 강호</td></tr>
-        <tr data-type="학원" data-region="서울"><td><strong>경희중</strong></td><td><span class="grade grade-c">학원</span></td><td>서울</td><td>-</td><td>-</td><td>역사 있는 축구부</td></tr>
-        <tr data-type="학원" data-region="경기"><td><strong>신갈중</strong></td><td><span class="grade grade-c">학원</span></td><td>경기 용인</td><td>-</td><td>-</td><td>용인축구센터 연계. 경기도 상위</td></tr>
-        <tr data-type="학원" data-region="경기"><td><strong>오산중</strong></td><td><span class="grade grade-c">학원</span></td><td>경기 오산</td><td>-</td><td>-</td><td>경기 중부 강호</td></tr>
-        <tr data-type="학원" data-region="경기"><td><strong>백마중</strong></td><td><span class="grade grade-c">학원</span></td><td>경기 고양</td><td>-</td><td>-</td><td><strong>2025 왕중왕전 4강</strong></td></tr>
-        <tr data-type="학원" data-region="경기"><td><strong>과천문원중</strong></td><td><span class="grade grade-c">학원</span></td><td>경기 과천</td><td>-</td><td>-</td><td><strong>2024 추계 U15 준우승</strong>. 기숙사 보유</td></tr>
-        <tr data-type="학원" data-region="경기"><td><strong>진성중</strong></td><td><span class="grade grade-c">학원</span></td><td>경기 광명</td><td>-</td><td>-</td><td>2025 중등리그 9경기 6승 상위권</td></tr>
-        <tr data-type="학원" data-region="충청"><td><strong>대전신일중</strong></td><td><span class="grade grade-c">학원</span></td><td>대전</td><td>-</td><td>-</td><td>대전 지역 대표 명문</td></tr>
-        <tr data-type="학원" data-region="대구"><td><strong>세성중</strong></td><td><span class="grade grade-c">학원</span></td><td>대구</td><td>-</td><td>-</td><td>대구 전통 강호</td></tr>
-        <tr data-type="학원" data-region="경북"><td><strong>봉화중</strong></td><td><span class="grade grade-c">학원</span></td><td>경북 봉화</td><td>-</td><td>-</td><td>포항제철고 피더</td></tr>
-        <tr data-type="학원" data-region="경북"><td><strong>안동중</strong></td><td><span class="grade grade-c">학원</span></td><td>경북 안동</td><td>-</td><td>- <span class="coach-tag tag-phys">강팀</span></td><td><strong>2022 춘추계 동시 우승, U-14 5연패, 2024 춘계 U15 우승</strong></td></tr>
-        <tr data-type="학원" data-region="경북"><td><strong>풍기중</strong></td><td><span class="grade grade-c">학원</span></td><td>경북 영주</td><td>-</td><td>-</td><td><strong>2024 추계 U15 우승</strong> (창단 42년만 첫 전국대회 우승)</td></tr>
-        <!-- ===== 클럽팀 ===== -->
-        <tr data-type="클럽" data-region="충청"><td><strong>충남천안축구센터</strong></td><td><span class="grade grade-b">클럽</span></td><td>충남 천안</td><td>-</td><td>김경일</td><td><strong>2025 중등축구 5관왕 (왕중왕전 우승)</strong>. 현재 최강팀</td></tr>
-        <tr data-type="클럽" data-region="경기"><td><strong>염기훈주니어</strong></td><td><span class="grade grade-b">클럽</span></td><td>경기 오산</td><td>-</td><td>염기훈 <span class="coach-tag tag-tech">기술지향</span></td><td><strong>2025 왕중왕전 4강</strong>. K리그 최다어시스트(92). A매치 57경기</td></tr>
-        <tr data-type="클럽" data-region="경기"><td><strong>용인시축구센터</strong></td><td><span class="grade grade-b">클럽</span></td><td>경기 용인</td><td>-</td><td>(전 이을용 감독)</td><td>덕영고 연계. 지자체 지원</td></tr>
-        <tr data-type="클럽" data-region="전남"><td><strong>장흥FC</strong></td><td><span class="grade grade-b">클럽</span></td><td>전남 장흥</td><td>-</td><td>-</td><td>전남권역 중등 최강 (고학년/저학년 1위)</td></tr>
-        <tr data-type="클럽" data-region="경남"><td><strong>산청축구스포츠클럽</strong></td><td><span class="grade grade-b">클럽</span></td><td>경남 산청</td><td>-</td><td>-</td><td>2023 경남 중등리그 3위, 왕중왕전 진출</td></tr>
-        <tr data-type="클럽" data-region="전남"><td><strong>여수해양FC</strong></td><td><span class="grade grade-b">클럽</span></td><td>전남 여수</td><td>-</td><td>-</td><td>U-15 운영</td></tr>
-        <tr data-type="클럽" data-region="경기"><td><strong>에스파뇰코리아</strong></td><td><span class="grade grade-b">클럽</span></td><td>-</td><td>RCD 에스파뇰(스페인)</td><td>-</td><td>스페인 연계 아카데미. 해외 연수 프로그램</td></tr>
-        <tr data-type="클럽" data-region="서울"><td><strong>서울중랑축구단</strong></td><td><span class="grade grade-b">클럽</span></td><td>서울 중랑</td><td>-</td><td>-</td><td>U-15 운영</td></tr>
-        <tr data-type="클럽" data-region="경기" style="background:var(--accent-light)"><td><strong>수원월드컵FC</strong></td><td><span class="grade grade-b">클럽</span></td><td>경기 수원</td><td>-</td><td>허남철 <span class="coach-tag tag-tech">FW출신</span></td><td><strong>2024 추계 U15 전국대회 준우승</strong> (창단 9년만). 수원 월드컵경기장 훈련. 후원: TIAM/어반앤</td></tr>
+        <!-- 동적 생성 -->
       </tbody>
     </table>
     </div>
@@ -327,7 +314,7 @@
     <div class="alert alert-info">
       <div class="alert-icon">&#128218;</div>
       <div>K리그 유스 "자체 운영" = 특정 중학교 협약 없이 클럽 시설에서 훈련. 선수는 인근 일반 중학교 재학, 방과 후 참가.<br>
-      <strong>총 조사 팀 수: K리그 유스 25개 + 학원축구 16개 + 클럽팀 9개 = 50개팀</strong></div>
+      <strong>총 조사 팀 수: K리그 유스 25개 + 학원축구 60개+ + 클럽팀 20개+ = 100개+ 팀</strong></div>
     </div>
   </div>
 </div>
@@ -619,44 +606,10 @@
   </div>
 </div>
 
-<!-- ===== 10. 시나리오 ===== -->
-<div class="section" id="sec10">
-  <div class="section-header"><span class="section-num">10</span><h2>월드컵FC 시나리오 분석 및 최종 권고</h2></div>
-  <div class="section-body">
-    <div class="card-grid">
-      <div class="card" style="border-top:4px solid var(--primary)"><div class="card-title">A. 월드컵FC 수락</div><div class="card-body"><strong>기대:</strong> 학업 병행, 해외 자유<br><strong>리스크:</strong> 코칭 미검증, 해체 가능<br><strong>조건:</strong> 체크리스트 10항목 통과</div></div>
-      <div class="card" style="border-top:4px solid var(--info)"><div class="card-title">B. K리그 유스 도전</div><div class="card-body"><strong>기대:</strong> 최고 육성, 비용 제로<br><strong>리스크:</strong> 셀렉션 탈락, 방출 평가<br><strong>시기:</strong> 11~1월 셀렉션</div></div>
-      <div class="card" style="border-top:4px solid var(--accent)"><div class="card-title">C. 학원축구 명문</div><div class="card-body"><strong>기대:</strong> 안정적, 검증된 네트워크<br><strong>리스크:</strong> 연 2,000~4,000만원+<br><strong>추천:</strong> 안동중, 문래중, 목동중</div></div>
-    </div>
-
-    <h3>최종 권고: 병행 전략</h3>
-    <div class="alert alert-success"><div class="alert-icon">&#127942;</div><div><strong>하나의 옵션에 올인하지 말고, 동시에 여러 경로를 탐색하십시오.</strong></div></div>
-    <div class="timeline">
-      <div class="timeline-item"><div class="timeline-step">1단계 - 즉시</div><div class="timeline-title">월드컵FC 직접 방문</div><div class="timeline-desc">훈련 참관 2~3회, 감독 면담, 체크리스트 기반 검증</div></div>
-      <div class="timeline-item"><div class="timeline-step">2단계 - 2026년 11~12월</div><div class="timeline-title">K리그 유스 셀렉션 지원</div><div class="timeline-desc">FC서울, 수원삼성, 인천유나이티드 등 수도권 집중</div></div>
-      <div class="timeline-item"><div class="timeline-step">3단계 - 11월~2027년 1월</div><div class="timeline-title">학원축구 입단 테스트 병행</div><div class="timeline-desc">안동중, 문래중, 목동중 등 셀렉션 참가</div></div>
-      <div class="timeline-item"><div class="timeline-step">4단계 - 2027년 1~2월</div><div class="timeline-title">최종 결정</div><div class="timeline-desc">모든 결과 종합, 최적의 선택</div></div>
-    </div>
-
-    <h3>체크리스트</h3>
-    <ul class="checklist">
-      <li><div class="check-box"></div><div><strong>1. 법인 등록 여부</strong></div></li>
-      <li><div class="check-box"></div><div><strong>2. KFA 정식 등록</strong></div></li>
-      <li><div class="check-box"></div><div><strong>3. 전국 중등 축구리그 참가 이력</strong></div></li>
-      <li><div class="check-box"></div><div><strong>4. 감독/코치 AFC 지도자 자격증</strong></div></li>
-      <li><div class="check-box"></div><div><strong>5. 비용 명세서 (서면)</strong></div></li>
-      <li><div class="check-box"></div><div><strong>6. 입단 계약서 (환불/탈퇴 조건)</strong></div></li>
-      <li><div class="check-box"></div><div><strong>7. 스포츠안전공제 가입</strong></div></li>
-      <li><div class="check-box"></div><div><strong>8. 졸업생 진학 실적 (학교명+인원)</strong></div></li>
-      <li><div class="check-box"></div><div><strong>9. 훈련 시설 방문 (2~3회)</strong></div></li>
-      <li><div class="check-box"></div><div><strong>10. 기존 학부모 면담 (3명 이상)</strong></div></li>
-    </ul>
-  </div>
-</div>
 
 <!-- ===== 11. 압박 질문 ===== -->
-<div class="section" id="sec11">
-  <div class="section-header"><span class="section-num">11</span><h2>부모님 면담 시 압박 질문 리스트 10가지</h2></div>
+<div class="section" id="sec10">
+  <div class="section-header"><span class="section-num">10</span><h2>부모님 면담 시 압박 질문 리스트 10가지</h2></div>
   <div class="section-body">
     <div class="qa-card"><div class="qa-header"><span class="qa-num">1</span> "최근 3년간 졸업생들의 구체적 고교 진학처와 인원을 알려주십시오."</div><div class="qa-body"><div class="qa-row"><span class="qa-label qa-intent">의도</span><span>진학 네트워크 실적 확인</span><span class="qa-label qa-good">좋은</span><span>구체적 학교명+인원 즉시 제시</span><span class="qa-label qa-bad">나쁜</span><span>"다들 좋은 데 갔어요" &mdash; 데이터 없음</span></div></div></div>
     <div class="qa-card"><div class="qa-header"><span class="qa-num">2</span> "감독님 AFC 지도자 라이선스 등급은? 코치진 전원 자격증 확인 가능?"</div><div class="qa-body"><div class="qa-row"><span class="qa-label qa-intent">의도</span><span>공식 자격 검증</span><span class="qa-label qa-good">좋은</span><span>AFC B/A 이상. 자격증 즉시 제공</span><span class="qa-label qa-bad">나쁜</span><span>"경험이 중요하지 자격증이 아니다"</span></div></div></div>
@@ -681,11 +634,2071 @@
 
 </div>
 
-<!-- ===== JAVASCRIPT: 필터/정렬 ===== -->
+<!-- Modal -->
+<div class="modal-overlay" id="teamModal">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div class="modal-header" id="modalHeader"></div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- ===== JAVASCRIPT: 데이터 + 필터/정렬 + 모달 ===== -->
 <script>
+/* ====== 인라인 팀 데이터 (CORS 대비 폴백) ====== */
+const teamsDataInline = [
+  {
+    "id": "fc-seoul-u15",
+    "name": "FC서울 U-15",
+    "type": "유스",
+    "region": "서울",
+    "city": "서울",
+    "linked_club": "FC서울",
+    "founded": "",
+    "coach": {
+      "name": "윤시호",
+      "career": "차두리 유스강화실장, 허재원 코치, 방형곤 GK코치, 소기동 피지컬코치",
+      "style": "행복축구"
+    },
+    "achievements": [],
+    "features": ["\"행복 축구\" 기본기 중시", "차두리 유스 강화실장 체계"],
+    "alumni": [],
+    "cost": "무료 (K리그 유스)",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 17, "advancement": 22, "coaching": 22, "infra": 13, "cost": 15 }
+  },
+  {
+    "id": "seoul-eland-u15",
+    "name": "서울이랜드 U-15",
+    "type": "유스",
+    "region": "서울",
+    "city": "서울",
+    "linked_club": "서울이랜드",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": ["자체 운영"],
+    "alumni": [],
+    "cost": "무료 (K리그 유스)",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 15, "coaching": 13, "infra": 10, "cost": 15 }
+  },
+  {
+    "id": "suwon-samsung-u15",
+    "name": "수원삼성 U-15",
+    "type": "유스",
+    "region": "경기",
+    "city": "수원",
+    "linked_club": "수원삼성",
+    "founded": "",
+    "coach": {
+      "name": "백승주",
+      "career": "K리그 주니어 2년 연속 1위, 2023 왕중왕전 우승 5관왕",
+      "style": "기술+전술 균형"
+    },
+    "achievements": ["K리그 주니어 2년 연속 1위", "K리그 주니어 4연패 (2021~24)", "2023 왕중왕전 우승"],
+    "features": ["화도중 협약", "기술+전술 균형 코칭"],
+    "alumni": ["권창훈(유럽)", "정상빈", "오현규"],
+    "cost": "무료 (K리그 유스)",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 19, "advancement": 23, "coaching": 23, "infra": 14, "cost": 15 }
+  },
+  {
+    "id": "suwon-fc-u15",
+    "name": "수원FC U-15",
+    "type": "유스",
+    "region": "경기",
+    "city": "수원",
+    "linked_club": "수원FC",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": ["자체 운영"],
+    "alumni": [],
+    "cost": "무료 (K리그 유스)",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 15, "coaching": 13, "infra": 10, "cost": 15 }
+  },
+  {
+    "id": "seongnam-fc-u15",
+    "name": "성남FC U-15 (풍생중)",
+    "type": "유스",
+    "region": "경기",
+    "city": "성남",
+    "linked_club": "성남FC",
+    "founded": "",
+    "coach": {
+      "name": "권순형",
+      "career": "K리그 373경기 미드필더 (강원/제주/상주/성남), 2026 전북 N팀 감독 승격",
+      "style": "전술지향"
+    },
+    "achievements": [],
+    "features": ["경기 운영+리더십 코칭", "세트피스 전담"],
+    "alumni": ["김치우(국가대표)", "홍철(올림픽)"],
+    "cost": "무료 (K리그 유스)",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 14, "advancement": 20, "coaching": 20, "infra": 12, "cost": 15 }
+  },
+  {
+    "id": "bucheon-fc-u15",
+    "name": "부천FC U-15",
+    "type": "유스",
+    "region": "경기",
+    "city": "부천",
+    "linked_club": "부천FC",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": ["자체 운영"],
+    "alumni": [],
+    "cost": "무료 (K리그 유스)",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 15, "coaching": 13, "infra": 10, "cost": 15 }
+  },
+  {
+    "id": "ansan-u15",
+    "name": "안산그리너스 U-15",
+    "type": "유스",
+    "region": "경기",
+    "city": "안산",
+    "linked_club": "안산그리너스",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": ["자체 운영"],
+    "alumni": [],
+    "cost": "무료 (K리그 유스)",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 15, "coaching": 13, "infra": 10, "cost": 15 }
+  },
+  {
+    "id": "gimpo-fc-u15",
+    "name": "김포FC U-15",
+    "type": "유스",
+    "region": "경기",
+    "city": "김포",
+    "linked_club": "김포FC",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": ["자체 운영"],
+    "alumni": [],
+    "cost": "무료 (K리그 유스)",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 15, "coaching": 13, "infra": 10, "cost": 15 }
+  },
+  {
+    "id": "fc-anyang-u15",
+    "name": "FC안양 U-15",
+    "type": "유스",
+    "region": "경기",
+    "city": "안양",
+    "linked_club": "FC안양",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": ["자체 운영"],
+    "alumni": [],
+    "cost": "무료 (K리그 유스)",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 15, "coaching": 13, "infra": 10, "cost": 15 }
+  },
+  {
+    "id": "incheon-utd-u15",
+    "name": "인천유나이티드 U-15 (광성중)",
+    "type": "유스",
+    "region": "인천",
+    "city": "인천",
+    "linked_club": "인천유나이티드",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": ["2025 금강송 춘계 우승"],
+    "features": [],
+    "alumni": [],
+    "cost": "무료 (K리그 유스)",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 16, "advancement": 18, "coaching": 16, "infra": 12, "cost": 15 }
+  },
+  {
+    "id": "daejeon-citizen-u15",
+    "name": "대전시티즌 U-15",
+    "type": "유스",
+    "region": "충청",
+    "city": "대전",
+    "linked_club": "대전시티즌",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": ["K리그 주니어 중등리그 우승"],
+    "features": [],
+    "alumni": ["황인범(올림피아코스)"],
+    "cost": "무료 (K리그 유스)",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 15, "advancement": 19, "coaching": 17, "infra": 12, "cost": 15 }
+  },
+  {
+    "id": "chungnam-asan-u15",
+    "name": "충남아산 U-15",
+    "type": "유스",
+    "region": "충청",
+    "city": "아산",
+    "linked_club": "충남아산FC",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": ["자체 운영"],
+    "alumni": [],
+    "cost": "무료 (K리그 유스)",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 15, "coaching": 13, "infra": 10, "cost": 15 }
+  },
+  {
+    "id": "cheonan-city-u15",
+    "name": "천안시티 U-15",
+    "type": "유스",
+    "region": "충청",
+    "city": "천안",
+    "linked_club": "천안시티FC",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": ["자체 운영"],
+    "alumni": [],
+    "cost": "무료 (K리그 유스)",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 15, "coaching": 13, "infra": 10, "cost": 15 }
+  },
+  {
+    "id": "chungbuk-cheongju-u15",
+    "name": "충북청주 U-15",
+    "type": "유스",
+    "region": "충청",
+    "city": "청주",
+    "linked_club": "충북청주FC",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": ["자체 운영"],
+    "alumni": [],
+    "cost": "무료 (K리그 유스)",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 15, "coaching": 13, "infra": 10, "cost": 15 }
+  },
+  {
+    "id": "jeonbuk-hyundai-u15",
+    "name": "전북현대 U-15 (금산중)",
+    "type": "유스",
+    "region": "충청",
+    "city": "금산",
+    "linked_club": "전북현대",
+    "founded": "",
+    "coach": {
+      "name": "신용주",
+      "career": "부임 첫해 2025 소년체전 우승",
+      "style": "기술+국제교류"
+    },
+    "achievements": ["2025 전국소년체전 우승"],
+    "features": ["PSV 아인트호벤 매년 연수", "보급반 1,300명 운영"],
+    "alumni": [],
+    "cost": "무료 (K리그 유스)",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 18, "advancement": 22, "coaching": 22, "infra": 14, "cost": 15 }
+  },
+  {
+    "id": "jeonnam-dragons-u15",
+    "name": "전남드래곤즈 U-15 (광철중)",
+    "type": "유스",
+    "region": "전남",
+    "city": "광양",
+    "linked_club": "전남드래곤즈",
+    "founded": "",
+    "coach": {
+      "name": "손형선",
+      "career": "다수 전국대회 우승, 지도자상 수상",
+      "style": "기술지향"
+    },
+    "achievements": [],
+    "features": ["광양제철고 연계"],
+    "alumni": ["지동원", "김영욱", "이종호", "허용준", "이슬찬"],
+    "cost": "무료 (K리그 유스)",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 17, "advancement": 22, "coaching": 22, "infra": 13, "cost": 15 }
+  },
+  {
+    "id": "pohang-steelers-u15",
+    "name": "포항스틸러스 U-15 (포철중)",
+    "type": "유스",
+    "region": "경북",
+    "city": "포항",
+    "linked_club": "포항스틸러스",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": ["소년체전 U12 2년 연속 우승"],
+    "features": ["국내 최장 유소년 역사", "포항제철고 연계"],
+    "alumni": [],
+    "cost": "무료 (K리그 유스)",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 17, "advancement": 22, "coaching": 21, "infra": 13, "cost": 15 }
+  },
+  {
+    "id": "gimcheon-sangmu-u15",
+    "name": "김천상무 U-15 (문성중)",
+    "type": "유스",
+    "region": "경북",
+    "city": "김천",
+    "linked_club": "김천상무",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": ["자체 운영"],
+    "alumni": [],
+    "cost": "무료 (K리그 유스)",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 15, "coaching": 13, "infra": 10, "cost": 15 }
+  },
+  {
+    "id": "daegu-fc-u15",
+    "name": "대구FC U-15 (율원중)",
+    "type": "유스",
+    "region": "대구",
+    "city": "대구",
+    "linked_club": "대구FC",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": ["2026 춘계 우승"],
+    "features": ["현풍고 연계"],
+    "alumni": [],
+    "cost": "무료 (K리그 유스)",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 17, "advancement": 19, "coaching": 17, "infra": 12, "cost": 15 }
+  },
+  {
+    "id": "ulsan-hd-u15",
+    "name": "울산HD U-15 (현대중)",
+    "type": "유스",
+    "region": "울산",
+    "city": "울산",
+    "linked_club": "울산HD",
+    "founded": "",
+    "coach": {
+      "name": "",
+      "career": "K리그 최초 외국인 기술코치(페르난도 살레스)",
+      "style": "기술중심"
+    },
+    "achievements": ["2024 K리그 U14+U15 동반우승"],
+    "features": ["기술중심 훈련", "유소년 7명 유럽 이적", "해외진출 적극 지원"],
+    "alumni": [],
+    "cost": "무료 (K리그 유스)",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 18, "advancement": 23, "coaching": 23, "infra": 14, "cost": 15 }
+  },
+  {
+    "id": "busan-ipark-u15",
+    "name": "부산아이파크 U-15 (낙동중)",
+    "type": "유스",
+    "region": "부산",
+    "city": "부산",
+    "linked_club": "부산아이파크",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": ["2024 소년체전 1위", "2025 K리그 유스 챔피언십 우승"],
+    "features": ["개성고 연계"],
+    "alumni": [],
+    "cost": "무료 (K리그 유스)",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 18, "advancement": 20, "coaching": 18, "infra": 13, "cost": 15 }
+  },
+  {
+    "id": "gyeongnam-fc-u15",
+    "name": "경남FC U-15 (군북중)",
+    "type": "유스",
+    "region": "경남",
+    "city": "함안",
+    "linked_club": "경남FC",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": ["자체 운영"],
+    "alumni": [],
+    "cost": "무료 (K리그 유스)",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 15, "coaching": 13, "infra": 10, "cost": 15 }
+  },
+  {
+    "id": "gwangju-fc-u15",
+    "name": "광주FC U-15",
+    "type": "유스",
+    "region": "광주",
+    "city": "광주",
+    "linked_club": "광주FC",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": ["자체 운영"],
+    "alumni": [],
+    "cost": "무료 (K리그 유스)",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 15, "coaching": 13, "infra": 10, "cost": 15 }
+  },
+  {
+    "id": "gangwon-fc-u15",
+    "name": "강원FC U-15 (주문진중)",
+    "type": "유스",
+    "region": "강원",
+    "city": "강릉",
+    "linked_club": "강원FC",
+    "founded": "1958",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": ["춘계 연맹전 준우승"],
+    "features": ["1958 창단 역사"],
+    "alumni": ["설기현(K리그+유럽)"],
+    "cost": "무료 (K리그 유스)",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 13, "advancement": 17, "coaching": 15, "infra": 11, "cost": 15 }
+  },
+  {
+    "id": "jeju-utd-u15",
+    "name": "제주유나이티드 U-15 (제주중)",
+    "type": "유스",
+    "region": "제주",
+    "city": "제주",
+    "linked_club": "제주유나이티드",
+    "founded": "",
+    "coach": {
+      "name": "윤대성",
+      "career": "",
+      "style": ""
+    },
+    "achievements": ["2025 울진 금강송 춘계 진출"],
+    "features": [],
+    "alumni": [],
+    "cost": "무료 (K리그 유스)",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 12, "advancement": 16, "coaching": 14, "infra": 11, "cost": 15 }
+  },
+  {
+    "id": "munrae-ms",
+    "name": "문래중",
+    "type": "학원",
+    "region": "서울",
+    "city": "영등포",
+    "linked_club": "",
+    "founded": "",
+    "coach": {
+      "name": "(후임 확인 필요)",
+      "career": "전 김태인 감독(1999~2023, 24년) - 2024년 부탄 국가대표 감독 부임",
+      "style": "창의성"
+    },
+    "achievements": ["2023 춘계 우승", "2026 U14+U15 동반 우승", "금강대기 우승"],
+    "features": ["창의적 축구 전통", "서울 영등포 소재"],
+    "alumni": ["문선민(2018 월드컵 국가대표)", "박규현(독일 진출)"],
+    "cost": "확인 필요 (학원축구 월 110~195만원 추정)",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 17, "advancement": 20, "coaching": 18, "infra": 10, "cost": 8 }
+  },
+  {
+    "id": "mokdong-ms",
+    "name": "목동중",
+    "type": "학원",
+    "region": "서울",
+    "city": "양천",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": ["2025 왕중왕전 준우승"],
+    "features": ["서울 대표급"],
+    "alumni": [],
+    "cost": "확인 필요 (학원축구 월 110~195만원 추정)",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 18, "advancement": 19, "coaching": 17, "infra": 10, "cost": 9 }
+  },
+  {
+    "id": "boin-ms",
+    "name": "보인중",
+    "type": "학원",
+    "region": "서울",
+    "city": "송파",
+    "linked_club": "",
+    "founded": "1970",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": ["1970 창단", "보인고 연계 체계적 프로그램"],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 13, "advancement": 17, "coaching": 15, "infra": 10, "cost": 8 }
+  },
+  {
+    "id": "daesin-ms",
+    "name": "대신중",
+    "type": "학원",
+    "region": "서울",
+    "city": "서울",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": ["전통 강호"],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 12, "advancement": 15, "coaching": 14, "infra": 10, "cost": 8 }
+  },
+  {
+    "id": "kyunghee-ms",
+    "name": "경희중",
+    "type": "학원",
+    "region": "서울",
+    "city": "서울",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": ["역사 있는 축구부"],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 12, "advancement": 15, "coaching": 14, "infra": 10, "cost": 8 }
+  },
+  {
+    "id": "gaewon-ms",
+    "name": "개원중",
+    "type": "학원",
+    "region": "서울",
+    "city": "서울",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "gyeongsin-ms",
+    "name": "경신중",
+    "type": "학원",
+    "region": "서울",
+    "city": "서울",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "dongbuk-ms",
+    "name": "동북중",
+    "type": "학원",
+    "region": "서울",
+    "city": "서울",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "jungdong-ms",
+    "name": "중동중",
+    "type": "학원",
+    "region": "서울",
+    "city": "서울",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "soongsil-ms",
+    "name": "숭실중",
+    "type": "학원",
+    "region": "서울",
+    "city": "서울",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "baejae-ms",
+    "name": "배재중",
+    "type": "학원",
+    "region": "서울",
+    "city": "서울",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "yonggang-ms",
+    "name": "용강중",
+    "type": "학원",
+    "region": "서울",
+    "city": "서울",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "singal-ms",
+    "name": "신갈중",
+    "type": "학원",
+    "region": "경기",
+    "city": "용인",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": ["용인축구센터 연계", "경기도 상위"],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 13, "advancement": 16, "coaching": 14, "infra": 10, "cost": 8 }
+  },
+  {
+    "id": "osan-ms",
+    "name": "오산중",
+    "type": "학원",
+    "region": "경기",
+    "city": "오산",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": ["경기 중부 강호"],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 12, "advancement": 15, "coaching": 14, "infra": 10, "cost": 8 }
+  },
+  {
+    "id": "baekma-ms",
+    "name": "백마중",
+    "type": "학원",
+    "region": "경기",
+    "city": "고양",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": ["2025 왕중왕전 4강"],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 16, "advancement": 16, "coaching": 15, "infra": 10, "cost": 8 }
+  },
+  {
+    "id": "gwacheon-munwon-ms",
+    "name": "과천문원중",
+    "type": "학원",
+    "region": "경기",
+    "city": "과천",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": ["2024 추계 U15 준우승"],
+    "features": ["기숙사 보유"],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "기숙사 보유",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 16, "advancement": 16, "coaching": 15, "infra": 11, "cost": 8 }
+  },
+  {
+    "id": "jinseong-gwangmyeong-ms",
+    "name": "진성중 (광명)",
+    "type": "학원",
+    "region": "경기",
+    "city": "광명",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": ["2025 중등리그 9경기 6승"],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 14, "advancement": 14, "coaching": 14, "infra": 10, "cost": 8 }
+  },
+  {
+    "id": "gwangseong-ms",
+    "name": "광성중",
+    "type": "학원",
+    "region": "인천",
+    "city": "인천",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": ["인천유나이티드 협약"],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 13, "advancement": 16, "coaching": 14, "infra": 10, "cost": 8 }
+  },
+  {
+    "id": "ganghwa-ms",
+    "name": "강화중",
+    "type": "학원",
+    "region": "인천",
+    "city": "인천",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "gyeyang-ms",
+    "name": "계양중",
+    "type": "학원",
+    "region": "인천",
+    "city": "인천",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "mansu-ms",
+    "name": "만수중",
+    "type": "학원",
+    "region": "인천",
+    "city": "인천",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "bupyeongdong-ms",
+    "name": "부평동중",
+    "type": "학원",
+    "region": "인천",
+    "city": "인천",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "jemulpo-ms",
+    "name": "제물포중",
+    "type": "학원",
+    "region": "인천",
+    "city": "인천",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "cheonghak-ms",
+    "name": "청학중",
+    "type": "학원",
+    "region": "인천",
+    "city": "인천",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "donggwang-ms",
+    "name": "동광중",
+    "type": "학원",
+    "region": "인천",
+    "city": "인천",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "daejeon-sinil-ms",
+    "name": "대전신일중",
+    "type": "학원",
+    "region": "충청",
+    "city": "대전",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": ["대전 지역 대표 명문"],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 13, "advancement": 15, "coaching": 14, "infra": 10, "cost": 8 }
+  },
+  {
+    "id": "sinpyeong-ms",
+    "name": "신평중",
+    "type": "학원",
+    "region": "충청",
+    "city": "당진",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "bonghwa-ms",
+    "name": "봉화중",
+    "type": "학원",
+    "region": "경북",
+    "city": "봉화",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": ["포항제철고 피더"],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 13, "advancement": 16, "coaching": 14, "infra": 10, "cost": 8 }
+  },
+  {
+    "id": "andong-ms",
+    "name": "안동중",
+    "type": "학원",
+    "region": "경북",
+    "city": "안동",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "강팀" },
+    "achievements": ["2022 춘추계 동시 우승", "U-14 5연패", "2024 춘계 U15 우승", "2022-2025 전국대회 최강급"],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 19, "advancement": 18, "coaching": 17, "infra": 10, "cost": 8 }
+  },
+  {
+    "id": "punggi-ms",
+    "name": "풍기중",
+    "type": "학원",
+    "region": "경북",
+    "city": "영주",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": ["2024 추계 U15 우승 (창단 42년만 첫 전국대회 우승)"],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 16, "advancement": 15, "coaching": 15, "infra": 10, "cost": 8 }
+  },
+  {
+    "id": "seseong-ms",
+    "name": "세성중",
+    "type": "학원",
+    "region": "대구",
+    "city": "대구",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": ["대구 전통 강호", "현풍고 피더"],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 13, "advancement": 16, "coaching": 14, "infra": 10, "cost": 8 }
+  },
+  {
+    "id": "hakseong-ulsan-ms",
+    "name": "학성중 (울산)",
+    "type": "학원",
+    "region": "울산",
+    "city": "울산",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 11, "advancement": 14, "coaching": 13, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "namchang-ms",
+    "name": "남창중",
+    "type": "학원",
+    "region": "울산",
+    "city": "울산",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 11, "advancement": 14, "coaching": 13, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "onsan-ms",
+    "name": "온산중",
+    "type": "학원",
+    "region": "울산",
+    "city": "울산",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 11, "advancement": 14, "coaching": 13, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "dongrae-ms",
+    "name": "동래중",
+    "type": "학원",
+    "region": "부산",
+    "city": "부산",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 11, "advancement": 14, "coaching": 13, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "deokcheon-ms",
+    "name": "덕천중",
+    "type": "학원",
+    "region": "부산",
+    "city": "부산",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 11, "advancement": 14, "coaching": 13, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "haedong-ms",
+    "name": "해동중",
+    "type": "학원",
+    "region": "부산",
+    "city": "부산",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 11, "advancement": 14, "coaching": 13, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "geoje-ms",
+    "name": "거제중",
+    "type": "학원",
+    "region": "경남",
+    "city": "거제",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "milseong-ms",
+    "name": "밀성중",
+    "type": "학원",
+    "region": "경남",
+    "city": "밀양",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "jinseong-jinju-ms",
+    "name": "진성중 (진주)",
+    "type": "학원",
+    "region": "경남",
+    "city": "진주",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "jinju-ms",
+    "name": "진주중",
+    "type": "학원",
+    "region": "경남",
+    "city": "진주",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "changnyeong-ms",
+    "name": "창녕중",
+    "type": "학원",
+    "region": "경남",
+    "city": "창녕",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "changsin-ms",
+    "name": "창신중",
+    "type": "학원",
+    "region": "경남",
+    "city": "창원",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "tongyeong-ms",
+    "name": "통영중",
+    "type": "학원",
+    "region": "경남",
+    "city": "통영",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "haman-ms",
+    "name": "함안중",
+    "type": "학원",
+    "region": "경남",
+    "city": "함안",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "gochang-buk-ms",
+    "name": "고창북중",
+    "type": "학원",
+    "region": "전북",
+    "city": "고창",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "gochang-ms",
+    "name": "고창중",
+    "type": "학원",
+    "region": "전북",
+    "city": "고창",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "gunsan-jeil-ms",
+    "name": "군산제일중",
+    "type": "학원",
+    "region": "전북",
+    "city": "군산",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "iri-dong-ms",
+    "name": "이리동중",
+    "type": "학원",
+    "region": "전북",
+    "city": "익산",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "gangjin-ms",
+    "name": "강진중",
+    "type": "학원",
+    "region": "전남",
+    "city": "강진",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "gwangyang-ms",
+    "name": "광양중",
+    "type": "학원",
+    "region": "전남",
+    "city": "광양",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "mokpo-jeil-ms",
+    "name": "목포제일중",
+    "type": "학원",
+    "region": "전남",
+    "city": "목포",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "suncheon-maesan-ms",
+    "name": "순천매산중",
+    "type": "학원",
+    "region": "전남",
+    "city": "순천",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "haenam-ms",
+    "name": "해남중",
+    "type": "학원",
+    "region": "전남",
+    "city": "해남",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "yeosu-gubong-ms",
+    "name": "여수구봉중",
+    "type": "학원",
+    "region": "전남",
+    "city": "여수",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "gwangju-bukseong-ms",
+    "name": "광주북성중",
+    "type": "학원",
+    "region": "광주",
+    "city": "광주",
+    "linked_club": "",
+    "founded": "1953",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": ["1953 창단"],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 12, "advancement": 14, "coaching": 13, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "gwangdeok-ms",
+    "name": "광덕중",
+    "type": "학원",
+    "region": "광주",
+    "city": "광주",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "sangil-ms",
+    "name": "상일중",
+    "type": "학원",
+    "region": "광주",
+    "city": "광주",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "sokcho-ms",
+    "name": "속초중",
+    "type": "학원",
+    "region": "강원",
+    "city": "속초",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "hakseong-gangwon-ms",
+    "name": "학성중 (강원)",
+    "type": "학원",
+    "region": "강원",
+    "city": "강원",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "jeju-jungang-ms",
+    "name": "제주중앙중",
+    "type": "학원",
+    "region": "제주",
+    "city": "제주",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": ["2025 제주권역 1위", "왕중왕전 진출"],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 14, "advancement": 14, "coaching": 13, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "jeju-jeil-ms",
+    "name": "제주제일중",
+    "type": "학원",
+    "region": "제주",
+    "city": "제주",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 12, "infra": 9, "cost": 8 }
+  },
+  {
+    "id": "cheonan-soccer-center",
+    "name": "충남천안축구센터",
+    "type": "클럽",
+    "region": "충청",
+    "city": "천안",
+    "linked_club": "",
+    "founded": "",
+    "coach": {
+      "name": "김경일",
+      "career": "2025 전국 중등축구 5관왕",
+      "style": ""
+    },
+    "achievements": ["2025 왕중왕전 우승", "2025 전국 중등축구 5관왕"],
+    "features": ["천안시 서북구 축구센터로 150", "U-12 감독: 조영탁"],
+    "alumni": [],
+    "cost": "확인 필요 (클럽팀 월 120~215만원 추정)",
+    "facility": "천안시 서북구 축구센터",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 20, "advancement": 16, "coaching": 18, "infra": 12, "cost": 10 }
+  },
+  {
+    "id": "suwon-worldcup-fc",
+    "name": "수원월드컵FC",
+    "type": "클럽",
+    "region": "경기",
+    "city": "수원",
+    "linked_club": "",
+    "founded": "2015",
+    "coach": {
+      "name": "허남철",
+      "career": "울산현대 드래프트 6순위(1997), 한국수력원자력(K2, 15경기), 경주시민(K3), 서울마르티스(K3)",
+      "style": "FW출신"
+    },
+    "achievements": ["2024 추계 전국 U15 준우승", "2025 경기도 꿈나무 준우승"],
+    "features": ["수원 월드컵경기장 보조구장 훈련", "후원: TIAM/어반앤", "페어플레이상 수상"],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "수원 월드컵경기장 보조구장/인조구장",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 17, "advancement": 12, "coaching": 15, "infra": 11, "cost": 9 }
+  },
+  {
+    "id": "yeomgihun-junior",
+    "name": "염기훈주니어",
+    "type": "클럽",
+    "region": "경기",
+    "city": "오산",
+    "linked_club": "",
+    "founded": "",
+    "coach": {
+      "name": "염기훈",
+      "career": "K리그 최다어시스트 92도움, 수원삼성 13년, A매치 57경기 5골",
+      "style": "기술지향"
+    },
+    "achievements": ["2025 왕중왕전 4강"],
+    "features": ["U6~U15 운영", "아들 염선우 U12 주장", "동탄 소재"],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 16, "advancement": 15, "coaching": 18, "infra": 10, "cost": 9 }
+  },
+  {
+    "id": "yongin-soccer-center",
+    "name": "용인시축구센터",
+    "type": "클럽",
+    "region": "경기",
+    "city": "용인",
+    "linked_club": "",
+    "founded": "",
+    "coach": {
+      "name": "(전 이을용 감독)",
+      "career": "이을용 - 전 국가대표, PSV 아인트호벤 등 유럽 활약",
+      "style": ""
+    },
+    "achievements": [],
+    "features": ["덕영고 연계", "지자체 지원"],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 13, "advancement": 16, "coaching": 16, "infra": 11, "cost": 9 }
+  },
+  {
+    "id": "jangheung-fc",
+    "name": "장흥FC",
+    "type": "클럽",
+    "region": "전남",
+    "city": "장흥",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": ["전남권역 중등 최강 (고학년/저학년 1위)"],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 16, "advancement": 13, "coaching": 14, "infra": 10, "cost": 9 }
+  },
+  {
+    "id": "sancheong-sports-club",
+    "name": "산청축구스포츠클럽",
+    "type": "클럽",
+    "region": "경남",
+    "city": "산청",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": ["2023 경남 중등리그 3위", "왕중왕전 진출"],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 13, "advancement": 12, "coaching": 13, "infra": 9, "cost": 9 }
+  },
+  {
+    "id": "yeosu-ocean-fc",
+    "name": "여수해양FC",
+    "type": "클럽",
+    "region": "전남",
+    "city": "여수",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": ["U-15 운영"],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 11, "coaching": 12, "infra": 9, "cost": 9 }
+  },
+  {
+    "id": "espanyol-korea",
+    "name": "에스파뇰코리아",
+    "type": "클럽",
+    "region": "경기",
+    "city": "",
+    "linked_club": "RCD 에스파뇰(스페인)",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": ["스페인 연계 아카데미", "해외 연수 프로그램"],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 13, "coaching": 14, "infra": 10, "cost": 7 }
+  },
+  {
+    "id": "seoul-jungnang-fc",
+    "name": "서울중랑축구단",
+    "type": "클럽",
+    "region": "서울",
+    "city": "중랑",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": ["U-15 운영"],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 12, "coaching": 12, "infra": 9, "cost": 9 }
+  },
+  {
+    "id": "hongcheon-fc",
+    "name": "홍천FC",
+    "type": "클럽",
+    "region": "강원",
+    "city": "홍천",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": ["2025 강원 U15 리그 우승 (10전 전승)"],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 16, "advancement": 13, "coaching": 14, "infra": 10, "cost": 9 }
+  },
+  {
+    "id": "suncheon-fc",
+    "name": "순천FC",
+    "type": "클럽",
+    "region": "전남",
+    "city": "순천",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": ["2025 영덕 추계 U15 우승"],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 16, "advancement": 13, "coaching": 14, "infra": 10, "cost": 9 }
+  },
+  {
+    "id": "bomuljom-namhae-sc",
+    "name": "보물섬남해SC",
+    "type": "클럽",
+    "region": "경남",
+    "city": "남해",
+    "linked_club": "",
+    "founded": "2020",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": ["2024 금석배 우승"],
+    "features": ["이동중 기반", "2020 창단"],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 14, "advancement": 12, "coaching": 13, "infra": 9, "cost": 9 }
+  },
+  {
+    "id": "incheon-football-park-u15",
+    "name": "인천풋볼파크 U15",
+    "type": "클럽",
+    "region": "인천",
+    "city": "인천",
+    "linked_club": "",
+    "founded": "",
+    "coach": {
+      "name": "박재현",
+      "career": "",
+      "style": ""
+    },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 12, "coaching": 12, "infra": 9, "cost": 9 }
+  },
+  {
+    "id": "fc-mohyeon",
+    "name": "FC모현",
+    "type": "클럽",
+    "region": "경기",
+    "city": "용인",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 11, "coaching": 12, "infra": 9, "cost": 9 }
+  },
+  {
+    "id": "siheung-jeongwang-fc",
+    "name": "시흥정왕FC",
+    "type": "클럽",
+    "region": "경기",
+    "city": "시흥",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 11, "coaching": 12, "infra": 9, "cost": 9 }
+  },
+  {
+    "id": "paju-city-u15",
+    "name": "파주시티 U15",
+    "type": "클럽",
+    "region": "경기",
+    "city": "파주",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 11, "coaching": 12, "infra": 9, "cost": 9 }
+  },
+  {
+    "id": "yeoju-fc",
+    "name": "여주FC",
+    "type": "클럽",
+    "region": "경기",
+    "city": "여주",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 11, "coaching": 12, "infra": 9, "cost": 9 }
+  },
+  {
+    "id": "yongin-ravens",
+    "name": "용인레이번스",
+    "type": "클럽",
+    "region": "경기",
+    "city": "용인",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 11, "coaching": 12, "infra": 9, "cost": 9 }
+  },
+  {
+    "id": "cantera-fc",
+    "name": "칸테라FC",
+    "type": "클럽",
+    "region": "경기",
+    "city": "",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 11, "coaching": 12, "infra": 9, "cost": 9 }
+  },
+  {
+    "id": "dongtan-united",
+    "name": "동탄유나이티드",
+    "type": "클럽",
+    "region": "경기",
+    "city": "화성",
+    "linked_club": "",
+    "founded": "",
+    "coach": { "name": "", "career": "", "style": "" },
+    "achievements": [],
+    "features": [],
+    "alumni": [],
+    "cost": "확인 필요",
+    "facility": "",
+    "contact": "",
+    "sns": "",
+    "score": { "performance": 10, "advancement": 11, "coaching": 12, "infra": 9, "cost": 9 }
+  }
+];
+
+let teamsData = [];
 let currentType = 'all';
 let currentRegion = 'all';
 
+/* ====== 초기화 ====== */
+document.addEventListener('DOMContentLoaded', async () => {
+  // JSON fetch 시도, 실패 시 인라인 사용
+  try {
+    const res = await fetch('data/teams_u15.json');
+    if (res.ok) {
+      teamsData = await res.json();
+    } else {
+      teamsData = teamsDataInline;
+    }
+  } catch (e) {
+    teamsData = teamsDataInline;
+  }
+  renderTable();
+});
+
+/* ====== 테이블 렌더링 ====== */
+function renderTable() {
+  const tbody = document.getElementById('teamBody');
+  tbody.innerHTML = '';
+  teamsData.forEach((team, idx) => {
+    const tr = document.createElement('tr');
+    tr.dataset.type = team.type;
+    tr.dataset.region = team.region;
+    tr.dataset.idx = idx;
+    tr.className = 'clickable-row';
+    if (team.id === 'suwon-worldcup-fc') tr.style.background = 'var(--accent-light)';
+
+    const gradeClass = team.type === '유스' ? 'grade-a' : team.type === '클럽' ? 'grade-b' : 'grade-c';
+    const coachName = team.coach && team.coach.name ? team.coach.name : '-';
+    const coachStyle = team.coach && team.coach.style ? getStyleTag(team.coach.style) : '';
+    const linked = team.linked_club || '-';
+
+    // 주요 성적/특이사항 요약
+    let notes = [];
+    if (team.achievements && team.achievements.length) notes.push(team.achievements[0]);
+    if (team.features && team.features.length) notes.push(team.features[0]);
+    if (team.alumni && team.alumni.length) notes.push('배출: ' + team.alumni.slice(0,2).join(', '));
+    const noteText = notes.join('. ') || '자체 운영';
+
+    tr.innerHTML =
+      '<td><strong>' + esc(team.name) + '</strong></td>' +
+      '<td><span class="grade ' + gradeClass + '">' + esc(team.type) + '</span></td>' +
+      '<td>' + esc(team.region + (team.city && team.city !== team.region ? ' ' + team.city : '')) + '</td>' +
+      '<td>' + esc(linked) + '</td>' +
+      '<td>' + esc(coachName) + ' ' + coachStyle + '</td>' +
+      '<td>' + noteText + '</td>';
+
+    tr.addEventListener('click', () => openModal(idx));
+    tbody.appendChild(tr);
+  });
+  filterTeams('init');
+}
+
+function getStyleTag(style) {
+  if (!style) return '';
+  const map = {
+    '행복축구': 'tag-happy', '기술': 'tag-tech', '기술중심': 'tag-tech', '기술지향': 'tag-tech',
+    '기술+전술': 'tag-tact', '기술+전술 균형': 'tag-tact', '전술지향': 'tag-tact',
+    '기술+국제교류': 'tag-tech', '창의성': 'tag-creative', 'FW출신': 'tag-tech', '강팀': 'tag-phys'
+  };
+  const cls = map[style] || 'tag-tech';
+  return '<span class="coach-tag ' + cls + '">' + esc(style) + '</span>';
+}
+
+function esc(s) { if (!s) return ''; const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+/* ====== 필터/정렬 (기존 기능 유지) ====== */
 function filterTeams(trigger, btn) {
   if (trigger === 'type') {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -728,11 +2741,103 @@ function sortTable(col) {
   rows.forEach(r => tbody.appendChild(r));
 }
 
-// 초기 카운트
-document.addEventListener('DOMContentLoaded', () => {
-  const total = document.querySelectorAll('#teamBody tr').length;
-  document.getElementById('teamCount').textContent = total + '개 팀 표시';
-});
+/* ====== 모달 ====== */
+function openModal(idx) {
+  const team = teamsData[idx];
+  if (!team) return;
+  const gradeClass = team.type === '유스' ? 'grade-a' : team.type === '클럽' ? 'grade-b' : 'grade-c';
+  const total = team.score ? (team.score.performance + team.score.advancement + team.score.coaching + team.score.infra + team.score.cost) : 0;
+
+  // Header
+  document.getElementById('modalHeader').innerHTML =
+    '<h2>' + esc(team.name) + ' <span class="grade ' + gradeClass + '">' + esc(team.type) + '</span></h2>' +
+    '<div class="modal-meta">' +
+      '<span>' + esc(team.region + (team.city && team.city !== team.region ? ' ' + team.city : '')) + '</span>' +
+      (team.founded ? '<span>창단 ' + esc(team.founded) + '</span>' : '') +
+      (team.linked_club ? '<span>연계: ' + esc(team.linked_club) + '</span>' : '') +
+    '</div>';
+
+  let body = '';
+
+  // 감독/코치진
+  if (team.coach && (team.coach.name || team.coach.career)) {
+    body += '<div class="modal-section"><div class="modal-section-title">감독 / 코치진</div>';
+    body += '<div class="coach-detail">';
+    if (team.coach.name) body += '<div class="coach-name">' + esc(team.coach.name) + (team.coach.style ? ' ' + getStyleTag(team.coach.style) : '') + '</div>';
+    if (team.coach.career) body += '<div class="coach-career">' + esc(team.coach.career) + '</div>';
+    body += '</div></div>';
+  }
+
+  // 주요 성적
+  if (team.achievements && team.achievements.length) {
+    body += '<div class="modal-section"><div class="modal-section-title">주요 성적</div><ul class="modal-list">';
+    team.achievements.forEach(a => { body += '<li>' + esc(a) + '</li>'; });
+    body += '</ul></div>';
+  }
+
+  // 팀 특징
+  if (team.features && team.features.length) {
+    body += '<div class="modal-section"><div class="modal-section-title">팀 특징</div><ul class="modal-list">';
+    team.features.forEach(f => { body += '<li>' + esc(f) + '</li>'; });
+    body += '</ul></div>';
+  }
+
+  // 배출 선수
+  if (team.alumni && team.alumni.length) {
+    body += '<div class="modal-section"><div class="modal-section-title">배출 선수</div><ul class="modal-list">';
+    team.alumni.forEach(a => { body += '<li>' + esc(a) + '</li>'; });
+    body += '</ul></div>';
+  }
+
+  // 정보 그리드
+  body += '<div class="modal-section"><div class="modal-section-title">상세 정보</div><div class="modal-info-grid">';
+  body += infoItem('시설', team.facility);
+  body += infoItem('비용', team.cost);
+  body += infoItem('연계 구단', team.linked_club);
+  body += infoItem('연락처', team.contact);
+  body += infoItem('SNS', team.sns);
+  body += '</div></div>';
+
+  // 100점 매트릭스
+  if (team.score) {
+    const s = team.score;
+    body += '<div class="modal-section"><div class="modal-section-title">종합 평가 (100점 만점: <strong>' + total + '점</strong>)</div>';
+    body += '<div class="score-bars">';
+    body += scoreBar('성적', s.performance, 20, '#4caf50');
+    body += scoreBar('진학', s.advancement, 25, '#2471a3');
+    body += scoreBar('코칭', s.coaching, 25, '#7b1fa2');
+    body += scoreBar('인프라', s.infra, 15, '#e65100');
+    body += scoreBar('비용', s.cost, 15, '#d4a017');
+    body += '</div></div>';
+  }
+
+  document.getElementById('modalBody').innerHTML = body;
+  document.getElementById('teamModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function infoItem(label, value) {
+  const v = value || '-';
+  return '<div class="modal-info-item"><div class="label">' + esc(label) + '</div><div class="value">' + esc(v) + '</div></div>';
+}
+
+function scoreBar(label, value, max, color) {
+  const pct = Math.round((value / max) * 100);
+  return '<div class="score-bar-row">' +
+    '<span class="score-bar-label">' + label + '</span>' +
+    '<div class="score-bar-track"><div class="score-bar-fill" style="width:' + pct + '%;background:' + color + '"></div></div>' +
+    '<span class="score-bar-val">' + value + '/' + max + '</span></div>';
+}
+
+function closeModal() {
+  document.getElementById('teamModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// ESC 키로 닫기
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+// 오버레이 클릭으로 닫기
+document.getElementById('teamModal').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal(); });
 </script>
 
 </body>
