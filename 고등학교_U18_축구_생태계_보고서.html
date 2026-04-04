@@ -129,6 +129,52 @@
 
   .hidden { display:none!important; }
 
+  /* Coach badge */
+  .coach-tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:500; margin-right:4px; }
+  .tag-tech { background:#e8f5e9; color:var(--primary); }
+  .tag-phys { background:#fce4ec; color:#c62828; }
+  .tag-tact { background:var(--info-light); color:var(--info); }
+  .tag-creative { background:#f3e5f5; color:#7b1fa2; }
+  .tag-happy { background:#fff3e0; color:#e65100; }
+
+  /* Modal */
+  .modal-overlay { display:none; position:fixed; top:0;left:0;right:0;bottom:0; background:rgba(0,0,0,.55); z-index:1000; justify-content:center; align-items:center; padding:20px; }
+  .modal-overlay.active { display:flex; }
+  .modal-card { background:#fff; border-radius:16px; max-width:640px; width:100%; max-height:85vh; overflow-y:auto; position:relative; box-shadow:0 8px 40px rgba(0,0,0,.25); animation:modalIn .25s ease; }
+  @keyframes modalIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+  .modal-close { position:absolute; top:14px; right:16px; width:32px;height:32px; border-radius:50%; border:none; background:rgba(0,0,0,.08); font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:2; transition:background .2s; }
+  .modal-close:hover { background:rgba(0,0,0,.15); }
+  .modal-header { padding:28px 28px 16px; border-bottom:1px solid #eee; }
+  .modal-header h2 { font-size:1.4em; font-weight:900; color:var(--dark); margin-bottom:6px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  .modal-meta { font-size:13px; color:var(--gray); display:flex; gap:12px; flex-wrap:wrap; }
+  .modal-body { padding:20px 28px 28px; }
+  .modal-section { margin-bottom:20px; }
+  .modal-section-title { font-size:12px; text-transform:uppercase; letter-spacing:1.5px; color:var(--gray); font-weight:700; margin-bottom:8px; padding-bottom:4px; border-bottom:1px solid #f0f0f0; }
+  .modal-list { list-style:none; padding:0; margin:0; }
+  .modal-list li { padding:5px 0; font-size:14px; color:#444; line-height:1.5; display:flex; align-items:flex-start; gap:8px; }
+  .modal-list li::before { content:'\2022'; color:var(--primary); font-weight:700; flex-shrink:0; }
+  .modal-info-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .modal-info-item { background:var(--gray-light); border-radius:8px; padding:10px 14px; font-size:13px; }
+  .modal-info-item .label { font-size:11px; color:var(--gray); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:2px; }
+  .modal-info-item .value { font-weight:500; color:var(--dark); }
+  .score-bars { margin-top:8px; }
+  .score-bar-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; font-size:13px; }
+  .score-bar-label { width:60px; text-align:right; color:var(--gray); font-weight:500; flex-shrink:0; }
+  .score-bar-track { flex:1; height:10px; background:#eee; border-radius:5px; overflow:hidden; }
+  .score-bar-fill { height:100%; border-radius:5px; transition:width .4s ease; }
+  .score-bar-val { width:30px; font-weight:700; color:var(--dark); text-align:right; flex-shrink:0; }
+  .coach-detail { background:var(--gray-light); border-radius:10px; padding:14px 16px; margin-bottom:8px; }
+  .coach-detail .coach-name { font-weight:700; font-size:15px; color:var(--dark); margin-bottom:4px; }
+  .coach-detail .coach-career { font-size:13px; color:#555; line-height:1.5; }
+  .clickable-row { cursor:pointer; transition:background .15s; }
+  .clickable-row:hover { background:#eef6f0!important; }
+
+  .grade { display:inline-block; padding:3px 10px; border-radius:6px; font-weight:700; font-size:12px; color:#fff; }
+  .grade-a { background:var(--primary); }
+  .grade-b { background:var(--info); }
+  .grade-c { background:var(--accent); }
+  .grade-d { background:var(--danger); }
+
   .footer { text-align:center; padding:40px 20px; color:var(--gray); font-size:13px; line-height:1.8; }
 
   /* Scroll to top */
@@ -144,6 +190,11 @@
     .filter-bar { gap:6px; }
     .search-box { width:100%; }
     .profile-card { min-width:0; }
+    .modal-card { max-height:90vh; border-radius:12px; }
+    .modal-header { padding:20px 18px 12px; }
+    .modal-body { padding:14px 18px 20px; }
+    .modal-info-grid { grid-template-columns:1fr; }
+    .modal-overlay { padding:10px; }
   }
 </style>
 </head>
@@ -170,7 +221,7 @@
     <div class="hero-meta">
       <span>조사 기준: 2025년 4월</span>
       <span>대상: U-18 전국 고등학교 축구팀</span>
-      <span>팀 수: K리그1유스 12 | K리그2유스 14 | 학원축구 12+ | 클럽 3</span>
+      <span>팀 수: K리그1유스 12 | K리그2유스 14 | 학원축구 60+ | 클럽 10+</span>
     </div>
   </div>
 </div>
@@ -505,14 +556,14 @@
   <div class="section-body">
     <div class="filter-bar">
       <label>유형:</label>
-      <button class="filter-btn active" data-type="all" onclick="filterType('all')">전체</button>
-      <button class="filter-btn" data-type="K1유스" onclick="filterType('K1유스')">K리그1 유스</button>
-      <button class="filter-btn" data-type="K2유스" onclick="filterType('K2유스')">K리그2 유스</button>
-      <button class="filter-btn" data-type="학원" onclick="filterType('학원')">학원축구</button>
-      <button class="filter-btn" data-type="클럽" onclick="filterType('클럽')">클럽형</button>
+      <button class="filter-btn active" data-filter="all" onclick="filterTeams('type',this)">전체</button>
+      <button class="filter-btn" data-filter="K1유스" onclick="filterTeams('type',this)">K리그1 유스</button>
+      <button class="filter-btn" data-filter="K2유스" onclick="filterTeams('type',this)">K리그2 유스</button>
+      <button class="filter-btn" data-filter="학원" onclick="filterTeams('type',this)">학원축구</button>
+      <button class="filter-btn" data-filter="클럽" onclick="filterTeams('type',this)">클럽형</button>
       <div class="filter-sep"></div>
       <label>지역:</label>
-      <select class="filter-select" id="regionFilter" onchange="filterRegion(this.value)">
+      <select id="regionFilter" onchange="filterTeams('region')" style="padding:6px 10px; border:1px solid #ddd; border-radius:20px; font-size:13px; font-family:inherit;">
         <option value="all">전체 지역</option>
         <option value="서울">서울</option>
         <option value="인천">인천</option>
@@ -530,73 +581,27 @@
         <option value="경남">경남</option>
         <option value="경북">경북</option>
         <option value="제주">제주</option>
+        <option value="세종">세종</option>
       </select>
       <div class="filter-sep"></div>
-      <input type="text" class="search-box" id="searchBox" placeholder="팀명/감독/배출선수 검색..." oninput="searchTeam(this.value)">
-      <span class="team-count" id="teamCount">전체 41팀</span>
+      <input class="search-box" type="text" id="teamSearch" placeholder="팀명/감독/배출선수 검색..." oninput="filterTeams('search')">
+      <span class="team-count" id="teamCount"></span>
     </div>
 
     <div class="table-wrap">
       <table id="teamTable">
         <thead>
           <tr>
-            <th style="cursor:pointer" onclick="sortTable(0)">팀명 &#8597;</th>
-            <th style="cursor:pointer" onclick="sortTable(1)">유형 &#8597;</th>
-            <th style="cursor:pointer" onclick="sortTable(2)">지역 &#8597;</th>
-            <th>감독</th>
-            <th>주요 배출 선수</th>
-            <th>최근 주요 성적</th>
+            <th style="cursor:pointer" onclick="sortTable(0)">팀명 &#9650;&#9660;</th>
+            <th>유형</th>
+            <th style="cursor:pointer" onclick="sortTable(2)">지역 &#9650;&#9660;</th>
+            <th>연계 구단</th>
+            <th>감독/코치</th>
+            <th>주요 성적 / 특이사항</th>
           </tr>
         </thead>
         <tbody id="teamBody">
-          <!-- K리그1 유스 -->
-          <tr data-type="K1유스" data-region="울산"><td><strong>울산현대고</strong><br><span style="font-size:11px;color:var(--gray)">울산HD 유스</span></td><td><span class="badge badge-primary">K1유스</span></td><td>울산</td><td>이승현</td><td>이을용, 설기현, 양민혁</td><td>2025 부산MBC배 우승</td></tr>
-          <tr data-type="K1유스" data-region="경북"><td><strong>포항제철고</strong><br><span style="font-size:11px;color:var(--gray)">포항 유스</span></td><td><span class="badge badge-primary">K1유스</span></td><td>포항</td><td>황지수</td><td>김륜성, 오재혁</td><td>2020 왕중왕전 우승</td></tr>
-          <tr data-type="K1유스" data-region="전북"><td><strong>전주영생고</strong><br><span style="font-size:11px;color:var(--gray)">전북 유스</span></td><td><span class="badge badge-primary">K1유스</span></td><td>전주</td><td>-</td><td>권경원, 장윤호, 김준홍(MLS)</td><td>2024 유스챔피언십 우승</td></tr>
-          <tr data-type="K1유스" data-region="서울"><td><strong>오산고</strong><br><span style="font-size:11px;color:var(--gray)">FC서울 유스</span></td><td><span class="badge badge-primary">K1유스</span></td><td>서울</td><td>윤시호</td><td>황현수, 김주성</td><td>2025 백운기우승 + K리그주니어 1위</td></tr>
-          <tr data-type="K1유스" data-region="경기"><td><strong>매탄고</strong><br><span style="font-size:11px;color:var(--gray)">수원삼성 유스</span></td><td><span class="badge badge-primary">K1유스</span></td><td>수원</td><td>-</td><td>정상빈, 강현묵 (유럽진출 6명)</td><td>2022 춘계연맹전 우승</td></tr>
-          <tr data-type="K1유스" data-region="인천"><td><strong>인천대건고</strong><br><span style="font-size:11px;color:var(--gray)">인천 유스</span></td><td><span class="badge badge-primary">K1유스</span></td><td>인천</td><td>최재영</td><td>이강인(PSG), 이승우, 정우영(바이에른), 천성훈</td><td>해외파 최다 배출</td></tr>
-          <tr data-type="K1유스" data-region="대구"><td><strong>현풍고</strong><br><span style="font-size:11px;color:var(--gray)">대구FC 유스</span></td><td><span class="badge badge-primary">K1유스</span></td><td>대구</td><td>안재곤</td><td>-</td><td>2023 춘계연맹전 우승</td></tr>
-          <tr data-type="K1유스" data-region="강원"><td><strong>강릉제일고</strong><br><span style="font-size:11px;color:var(--gray)">강원FC 유스</span></td><td><span class="badge badge-primary">K1유스</span></td><td>강릉</td><td>방호진</td><td>-</td><td>-</td></tr>
-          <tr data-type="K1유스" data-region="대전"><td><strong>충남기계공고</strong><br><span style="font-size:11px;color:var(--gray)">대전 유스</span></td><td><span class="badge badge-primary">K1유스</span></td><td>대전</td><td>-</td><td>-</td><td>-</td></tr>
-          <tr data-type="K1유스" data-region="광주"><td><strong>금호고</strong><br><span style="font-size:11px;color:var(--gray)">광주FC 유스</span></td><td><span class="badge badge-primary">K1유스</span></td><td>광주</td><td>최수용</td><td>기성용, 나상호, 엄원상, 허율</td><td>1975 창단 / 대통령금배 3회 우승</td></tr>
-          <tr data-type="K1유스" data-region="제주"><td><strong>제주제일고</strong><br><span style="font-size:11px;color:var(--gray)">제주 유스</span></td><td><span class="badge badge-primary">K1유스</span></td><td>제주</td><td>-</td><td>-</td><td>2023 문체부장관배 우승</td></tr>
-          <tr data-type="K1유스" data-region="경북"><td><strong>용운고</strong><br><span style="font-size:11px;color:var(--gray)">김천상무 유스</span></td><td><span class="badge badge-primary">K1유스</span></td><td>김천</td><td>-</td><td>-</td><td>-</td></tr>
-
-          <!-- K리그2 유스 -->
-          <tr data-type="K2유스" data-region="경기"><td><strong>풍생고</strong><br><span style="font-size:11px;color:var(--gray)">성남FC 유스</span></td><td><span class="badge badge-info">K2유스</span></td><td>성남</td><td>-</td><td>황의조, 홍철, 김치우</td><td>2025 K리그주니어 2위</td></tr>
-          <tr class="highlight" data-type="K2유스" data-region="부산"><td><strong>개성고</strong><br><span style="font-size:11px;color:var(--gray)">부산아이파크 유스</span></td><td><span class="badge badge-info">K2유스</span></td><td>부산</td><td>-</td><td>이호진, 김동윤</td><td><span class="badge badge-accent">2025 3관왕</span></td></tr>
-          <tr data-type="K2유스" data-region="경남"><td><strong>진주고</strong><br><span style="font-size:11px;color:var(--gray)">경남FC 유스</span></td><td><span class="badge badge-info">K2유스</span></td><td>진주</td><td>안승인</td><td>조광래</td><td>2021 추계연맹전 우승</td></tr>
-          <tr data-type="K2유스" data-region="전남"><td><strong>광양제철고</strong><br><span style="font-size:11px;color:var(--gray)">전남 유스</span></td><td><span class="badge badge-info">K2유스</span></td><td>광양</td><td>-</td><td>지동원, 김영광, 윤석영</td><td>-</td></tr>
-          <tr data-type="K2유스" data-region="경기"><td><strong>안양공고</strong><br><span style="font-size:11px;color:var(--gray)">FC안양 유스</span></td><td><span class="badge badge-info">K2유스</span></td><td>안양</td><td>-</td><td>-</td><td>2025 K리그주니어 3위</td></tr>
-          <tr data-type="K2유스" data-region="경기"><td><strong>곽경근축구클럽</strong><br><span style="font-size:11px;color:var(--gray)">부천FC 유스(클럽형)</span></td><td><span class="badge badge-info">K2유스</span></td><td>부천</td><td>-</td><td>-</td><td>2020 춘계연맹전 우승</td></tr>
-          <tr data-type="K2유스" data-region="충남"><td><strong>충남아산 U-18</strong><br><span style="font-size:11px;color:var(--gray)">충남아산 유스</span></td><td><span class="badge badge-info">K2유스</span></td><td>아산</td><td>-</td><td>-</td><td>2024 K리그주니어 전기 무패우승</td></tr>
-          <tr data-type="K2유스" data-region="경기"><td><strong>덕영고</strong><br><span style="font-size:11px;color:var(--gray)">용인FC 유스</span></td><td><span class="badge badge-info">K2유스</span></td><td>용인</td><td>이영진</td><td>김보경, 김진수</td><td>2024 백록기 우승 / 경기권역 10년 연속 우승</td></tr>
-          <tr data-type="K2유스" data-region="충남"><td><strong>천안공고</strong><br><span style="font-size:11px;color:var(--gray)">천안시티 유스</span></td><td><span class="badge badge-info">K2유스</span></td><td>천안</td><td>-</td><td>-</td><td>-</td></tr>
-          <tr data-type="K2유스" data-region="충북"><td><strong>운호고</strong><br><span style="font-size:11px;color:var(--gray)">충북청주 유스</span></td><td><span class="badge badge-info">K2유스</span></td><td>청주</td><td>-</td><td>-</td><td>-</td></tr>
-          <tr data-type="K2유스" data-region="서울"><td><strong>서울이랜드 U-18</strong><br><span style="font-size:11px;color:var(--gray)">서울이랜드 유스</span></td><td><span class="badge badge-info">K2유스</span></td><td>서울</td><td>-</td><td>-</td><td>-</td></tr>
-          <tr data-type="K2유스" data-region="경기"><td><strong>수원FC U-18</strong><br><span style="font-size:11px;color:var(--gray)">수원FC 유스</span></td><td><span class="badge badge-info">K2유스</span></td><td>수원</td><td>-</td><td>-</td><td>-</td></tr>
-          <tr data-type="K2유스" data-region="경기"><td><strong>안산그리너스 U-18</strong><br><span style="font-size:11px;color:var(--gray)">안산그리너스 유스</span></td><td><span class="badge badge-info">K2유스</span></td><td>안산</td><td>-</td><td>-</td><td>-</td></tr>
-          <tr data-type="K2유스" data-region="경기"><td><strong>김포FC U-18</strong><br><span style="font-size:11px;color:var(--gray)">김포FC 유스</span></td><td><span class="badge badge-info">K2유스</span></td><td>김포</td><td>-</td><td>-</td><td>-</td></tr>
-
-          <!-- 학원축구 -->
-          <tr data-type="학원" data-region="서울"><td><strong>보인고</strong></td><td><span class="badge badge-accent">학원</span></td><td>서울</td><td>김형겸</td><td>구자철</td><td>2021 대통령금배 우승 / 1981 창단</td></tr>
-          <tr data-type="학원" data-region="서울"><td><strong>동북고</strong></td><td><span class="badge badge-accent">학원</span></td><td>서울</td><td>-</td><td>이회택, 홍명보, 손흥민</td><td>1954 창단 / 한국축구 역사의 산실</td></tr>
-          <tr data-type="학원" data-region="서울"><td><strong>영등포공고</strong></td><td><span class="badge badge-accent">학원</span></td><td>서울</td><td>-</td><td>-</td><td>2023~24 대통령금배 2연패</td></tr>
-          <tr data-type="학원" data-region="서울"><td><strong>경신고</strong></td><td><span class="badge badge-accent">학원</span></td><td>서울</td><td>-</td><td>차범근, 박항서, 유상철</td><td>1904 창단 / 한국 최고(最古) 축구팀</td></tr>
-          <tr data-type="학원" data-region="인천"><td><strong>부평고</strong></td><td><span class="badge badge-accent">학원</span></td><td>인천</td><td>-</td><td>김남일, 이천수, 이근호</td><td>대통령금배 최다 5회 우승</td></tr>
-          <tr data-type="학원" data-region="충남"><td><strong>신평고</strong></td><td><span class="badge badge-accent">학원</span></td><td>충남(당진)</td><td>유양준 (前수원삼성)</td><td>-</td><td>2025 대통령금배 우승</td></tr>
-          <tr data-type="학원" data-region="충북"><td><strong>청주대성고</strong></td><td><span class="badge badge-accent">학원</span></td><td>청주</td><td>-</td><td>-</td><td>2024 대통령금배 준우승</td></tr>
-          <tr data-type="학원" data-region="대구"><td><strong>대륜고</strong></td><td><span class="badge badge-accent">학원</span></td><td>대구</td><td>-</td><td>-</td><td>2024 문체부장관배 준우승</td></tr>
-          <tr data-type="학원" data-region="전북"><td><strong>전주공고</strong></td><td><span class="badge badge-accent">학원</span></td><td>전주</td><td>-</td><td>-</td><td>-</td></tr>
-          <tr data-type="학원" data-region="전북"><td><strong>이리고</strong></td><td><span class="badge badge-accent">학원</span></td><td>익산</td><td>-</td><td>-</td><td>-</td></tr>
-          <tr data-type="학원" data-region="부산"><td><strong>대동세무고</strong></td><td><span class="badge badge-accent">학원</span></td><td>부산</td><td>-</td><td>-</td><td>-</td></tr>
-          <tr data-type="학원" data-region="부산"><td><strong>동래고</strong></td><td><span class="badge badge-accent">학원</span></td><td>부산</td><td>-</td><td>-</td><td>-</td></tr>
-
-          <!-- 클럽형 -->
-          <tr data-type="클럽" data-region="경기"><td><strong>평택진위FC</strong></td><td><span class="badge badge-danger">클럽</span></td><td>평택</td><td>고재혁</td><td>-</td><td>2022 왕중왕전+대통령금배 우승 (창단 2년)</td></tr>
-          <tr data-type="클럽" data-region="경기"><td><strong>포천시민축구단 U-18</strong></td><td><span class="badge badge-danger">클럽</span></td><td>포천</td><td>홍성호</td><td>-</td><td>추계연맹전 클럽 최초 우승</td></tr>
-          <tr data-type="클럽" data-region="전남"><td><strong>영광FC U-18</strong></td><td><span class="badge badge-danger">클럽</span></td><td>영광</td><td>-</td><td>-</td><td>전국체전 우승</td></tr>
+          <!-- 동적 생성 -->
         </tbody>
       </table>
     </div>
@@ -861,81 +866,228 @@
   </div>
 </div>
 
+<!-- ===== MODAL ===== -->
+<div class="modal-overlay" id="teamModal">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div class="modal-header" id="modalHeader"></div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
 <!-- ===== FOOTER ===== -->
 <div class="footer">
   <p><strong>대한민국 고등학교(U-18) 축구 생태계 보고서</strong></p>
   <p>조사 기준: 2025년 4월 | 본 보고서는 공개 자료를 기반으로 작성되었습니다.</p>
-  <p>K리그 유스 12팀 + K리그2 유스 14팀 + 학원축구 12팀 + 클럽형 3팀 = 총 41팀 수록</p>
+  <p>K리그1 유스 12팀 + K리그2 유스 14팀 + 학원축구 60+팀 + 클럽형 10+팀 = 전국 팀 수록</p>
 </div>
 
 <!-- Scroll to top -->
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
 
 <script>
-// === Filter / Search / Sort Logic ===
+/* ====== 인라인 데이터 (fetch 실패 시 폴백) ====== */
+const teamsDataInline = [];
+
+let teamsData = [];
 let currentType = 'all';
 let currentRegion = 'all';
-let currentSearch = '';
 
-function updateVisibility() {
+/* ====== 초기화 ====== */
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const res = await fetch('data/teams_u18.json');
+    if (res.ok) {
+      teamsData = await res.json();
+    } else {
+      teamsData = teamsDataInline;
+    }
+  } catch (e) {
+    teamsData = teamsDataInline;
+  }
+  renderTable();
+});
+
+/* ====== 테이블 렌더링 ====== */
+function renderTable() {
+  const tbody = document.getElementById('teamBody');
+  tbody.innerHTML = '';
+  teamsData.forEach((team, idx) => {
+    const tr = document.createElement('tr');
+    tr.dataset.type = team.type;
+    tr.dataset.region = team.region;
+    tr.dataset.idx = idx;
+    tr.className = 'clickable-row';
+
+    const gradeClass = team.type === 'K1유스' ? 'grade-a' : team.type === 'K2유스' ? 'grade-b' : team.type === '클럽' ? 'grade-d' : 'grade-c';
+    const coachName = team.coach && team.coach.name ? team.coach.name : '-';
+    const coachStyle = team.coach && team.coach.style ? getStyleTag(team.coach.style) : '';
+    const linked = team.linked_club || '-';
+
+    let notes = [];
+    if (team.achievements && team.achievements.length) notes.push(team.achievements[0]);
+    if (team.features && team.features.length) notes.push(team.features[0]);
+    if (team.alumni && team.alumni.length) notes.push('배출: ' + team.alumni.slice(0,2).join(', '));
+    const noteText = notes.join('. ') || '-';
+
+    tr.innerHTML =
+      '<td><strong>' + esc(team.name) + '</strong></td>' +
+      '<td><span class="grade ' + gradeClass + '">' + esc(team.type) + '</span></td>' +
+      '<td>' + esc(team.region + (team.city && team.city !== team.region ? ' ' + team.city : '')) + '</td>' +
+      '<td>' + esc(linked) + '</td>' +
+      '<td>' + esc(coachName) + ' ' + coachStyle + '</td>' +
+      '<td>' + noteText + '</td>';
+
+    tr.addEventListener('click', () => openModal(idx));
+    tbody.appendChild(tr);
+  });
+  filterTeams('init');
+}
+
+function getStyleTag(style) {
+  if (!style) return '';
+  const map = {
+    '행복축구': 'tag-happy', '기술': 'tag-tech', '기술중심': 'tag-tech', '기술지향': 'tag-tech',
+    '기술+전술': 'tag-tact', '기술+전술 균형': 'tag-tact', '전술지향': 'tag-tact',
+    '기술+국제교류': 'tag-tech', '창의성': 'tag-creative', 'FW출신': 'tag-tech', '강팀': 'tag-phys'
+  };
+  const cls = map[style] || 'tag-tech';
+  return '<span class="coach-tag ' + cls + '">' + esc(style) + '</span>';
+}
+
+function esc(s) { if (!s) return ''; const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+/* ====== 필터/정렬 ====== */
+function filterTeams(trigger, btn) {
+  if (trigger === 'type') {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentType = btn.dataset.filter;
+  }
+  if (trigger === 'region') {
+    currentRegion = document.getElementById('regionFilter').value;
+  }
+  const search = document.getElementById('teamSearch').value.toLowerCase();
   const rows = document.querySelectorAll('#teamBody tr');
   let count = 0;
   rows.forEach(row => {
-    const type = row.getAttribute('data-type');
-    const region = row.getAttribute('data-region');
+    const type = row.dataset.type;
+    const region = row.dataset.region;
     const text = row.textContent.toLowerCase();
     const matchType = currentType === 'all' || type === currentType;
-    const matchRegion = currentRegion === 'all' || region === currentRegion ||
-      (currentRegion === '경기' && ['수원','성남','안양','부천','용인','평택','포천','안산','김포'].some(c => region.includes(c))) ||
-      (currentRegion === '경북' && ['포항','김천'].some(c => region.includes(c))) ||
-      (currentRegion === '경남' && ['진주'].some(c => region.includes(c))) ||
-      (currentRegion === '전남' && ['광양','영광'].some(c => region.includes(c))) ||
-      (currentRegion === '전북' && ['전주','익산'].some(c => region.includes(c))) ||
-      (currentRegion === '충남' && ['아산','천안','당진'].some(c => region.includes(c))) ||
-      (currentRegion === '충북' && ['청주'].some(c => region.includes(c))) ||
-      (currentRegion === '강원' && ['강릉'].some(c => region.includes(c)));
-    const matchSearch = !currentSearch || text.includes(currentSearch.toLowerCase());
+    const matchRegion = currentRegion === 'all' || (region && region.includes(currentRegion));
+    const matchSearch = !search || text.includes(search);
     if (matchType && matchRegion && matchSearch) {
-      row.style.display = '';
+      row.classList.remove('hidden');
       count++;
     } else {
-      row.style.display = 'none';
+      row.classList.add('hidden');
     }
   });
-  document.getElementById('teamCount').textContent = '검색 결과: ' + count + '팀';
+  document.getElementById('teamCount').textContent = count + '개 팀 표시';
 }
 
-function filterType(type) {
-  currentType = type;
-  document.querySelectorAll('.filter-btn[data-type]').forEach(btn => {
-    btn.classList.toggle('active', btn.getAttribute('data-type') === type);
-  });
-  updateVisibility();
-}
-
-function filterRegion(region) {
-  currentRegion = region;
-  updateVisibility();
-}
-
-function searchTeam(query) {
-  currentSearch = query;
-  updateVisibility();
-}
-
-// Sort table
 let sortDir = {};
-function sortTable(colIndex) {
+function sortTable(col) {
   const tbody = document.getElementById('teamBody');
   const rows = Array.from(tbody.querySelectorAll('tr'));
-  sortDir[colIndex] = !sortDir[colIndex];
+  sortDir[col] = !sortDir[col];
   rows.sort((a, b) => {
-    const aText = a.children[colIndex].textContent.trim();
-    const bText = b.children[colIndex].textContent.trim();
-    return sortDir[colIndex] ? aText.localeCompare(bText, 'ko') : bText.localeCompare(aText, 'ko');
+    const aVal = a.children[col].textContent.trim();
+    const bVal = b.children[col].textContent.trim();
+    return sortDir[col] ? aVal.localeCompare(bVal, 'ko') : bVal.localeCompare(aVal, 'ko');
   });
-  rows.forEach(row => tbody.appendChild(row));
+  rows.forEach(r => tbody.appendChild(r));
 }
+
+/* ====== 모달 ====== */
+function openModal(idx) {
+  const team = teamsData[idx];
+  if (!team) return;
+  const gradeClass = team.type === 'K1유스' ? 'grade-a' : team.type === 'K2유스' ? 'grade-b' : team.type === '클럽' ? 'grade-d' : 'grade-c';
+  const total = team.score ? (team.score.performance + team.score.advancement + team.score.coaching + team.score.infra + team.score.cost) : 0;
+
+  document.getElementById('modalHeader').innerHTML =
+    '<h2>' + esc(team.name) + ' <span class="grade ' + gradeClass + '">' + esc(team.type) + '</span></h2>' +
+    '<div class="modal-meta">' +
+      '<span>' + esc(team.region + (team.city && team.city !== team.region ? ' ' + team.city : '')) + '</span>' +
+      (team.founded ? '<span>창단 ' + esc(team.founded) + '</span>' : '') +
+      (team.linked_club ? '<span>연계: ' + esc(team.linked_club) + '</span>' : '') +
+    '</div>';
+
+  let body = '';
+
+  if (team.coach && (team.coach.name || team.coach.career)) {
+    body += '<div class="modal-section"><div class="modal-section-title">감독 / 코치진</div>';
+    body += '<div class="coach-detail">';
+    if (team.coach.name) body += '<div class="coach-name">' + esc(team.coach.name) + (team.coach.style ? ' ' + getStyleTag(team.coach.style) : '') + '</div>';
+    if (team.coach.career) body += '<div class="coach-career">' + esc(team.coach.career) + '</div>';
+    body += '</div></div>';
+  }
+
+  if (team.achievements && team.achievements.length) {
+    body += '<div class="modal-section"><div class="modal-section-title">주요 성적</div><ul class="modal-list">';
+    team.achievements.forEach(a => { body += '<li>' + esc(a) + '</li>'; });
+    body += '</ul></div>';
+  }
+
+  if (team.features && team.features.length) {
+    body += '<div class="modal-section"><div class="modal-section-title">팀 특징</div><ul class="modal-list">';
+    team.features.forEach(f => { body += '<li>' + esc(f) + '</li>'; });
+    body += '</ul></div>';
+  }
+
+  if (team.alumni && team.alumni.length) {
+    body += '<div class="modal-section"><div class="modal-section-title">배출 선수</div><ul class="modal-list">';
+    team.alumni.forEach(a => { body += '<li>' + esc(a) + '</li>'; });
+    body += '</ul></div>';
+  }
+
+  body += '<div class="modal-section"><div class="modal-section-title">상세 정보</div><div class="modal-info-grid">';
+  body += infoItem('시설', team.facility);
+  body += infoItem('비용', team.cost);
+  body += infoItem('연계 구단', team.linked_club);
+  body += infoItem('연락처', team.contact);
+  body += infoItem('SNS', team.sns);
+  body += '</div></div>';
+
+  if (team.score) {
+    const s = team.score;
+    body += '<div class="modal-section"><div class="modal-section-title">종합 평가 (100점 만점: <strong>' + total + '점</strong>)</div>';
+    body += '<div class="score-bars">';
+    body += scoreBar('성적', s.performance, 20, '#4caf50');
+    body += scoreBar('진학', s.advancement, 25, '#2471a3');
+    body += scoreBar('코칭', s.coaching, 25, '#7b1fa2');
+    body += scoreBar('인프라', s.infra, 15, '#e65100');
+    body += scoreBar('비용', s.cost, 15, '#d4a017');
+    body += '</div></div>';
+  }
+
+  document.getElementById('modalBody').innerHTML = body;
+  document.getElementById('teamModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function infoItem(label, value) {
+  const v = value || '-';
+  return '<div class="modal-info-item"><div class="label">' + esc(label) + '</div><div class="value">' + esc(v) + '</div></div>';
+}
+
+function scoreBar(label, value, max, color) {
+  const pct = Math.round((value / max) * 100);
+  return '<div class="score-bar-row">' +
+    '<span class="score-bar-label">' + label + '</span>' +
+    '<div class="score-bar-track"><div class="score-bar-fill" style="width:' + pct + '%;background:' + color + '"></div></div>' +
+    '<span class="score-bar-val">' + value + '/' + max + '</span></div>';
+}
+
+function closeModal() {
+  document.getElementById('teamModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+document.getElementById('teamModal').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal(); });
 
 // Scroll to top button
 window.addEventListener('scroll', () => {
