@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>대한민국 초등학교(U-12) 축구 생태계 보고서</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+  :root {
+    --primary: #1a5632; --primary-light: #2d8a4e; --primary-bg: #f0f7f2;
+    --accent: #d4a017; --accent-light: #fef9e7;
+    --danger: #c0392b; --danger-light: #fdecea;
+    --info: #2471a3; --info-light: #eaf2f8;
+    --dark: #1a1a2e; --gray: #6c757d; --gray-light: #f8f9fa;
+    --shadow: 0 2px 15px rgba(0,0,0,0.08); --shadow-hover: 0 4px 25px rgba(0,0,0,0.12);
+    --radius: 12px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans KR',-apple-system,sans-serif; background:#f4f6f9; color:#333; line-height:1.7; font-size:15px; }
+
+  /* Hero */
+  .hero { background:linear-gradient(135deg,#1a5632 0%,#0d2b1a 50%,#1a1a2e 100%); color:#fff; padding:60px 40px; position:relative; overflow:hidden; }
+  .hero::before { content:''; position:absolute; top:-50%;left:-50%; width:200%;height:200%; background:radial-gradient(circle at 30% 70%,rgba(212,160,23,.15) 0%,transparent 50%),radial-gradient(circle at 70% 30%,rgba(255,255,255,.05) 0%,transparent 50%); animation:hf 20s ease-in-out infinite; }
+  @keyframes hf { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-2%,2%)} }
+  .hero-content { position:relative; z-index:1; max-width:900px; margin:0 auto; }
+  .hero-badge { display:inline-block; background:rgba(212,160,23,.2); border:1px solid rgba(212,160,23,.4); color:var(--accent); padding:6px 16px; border-radius:20px; font-size:13px; font-weight:500; margin-bottom:20px; letter-spacing:1px; }
+  .hero h1 { font-size:2.4em; font-weight:900; line-height:1.3; margin-bottom:12px; }
+  .hero h1 span { color:var(--accent); }
+  .hero-sub { font-size:1.05em; color:rgba(255,255,255,.7); font-weight:300; margin-bottom:30px; }
+  .hero-meta { display:flex; gap:24px; flex-wrap:wrap; font-size:13px; color:rgba(255,255,255,.6); }
+
+  .container { max-width:960px; margin:0 auto; padding:0 20px; }
+
+  /* TOC */
+  .toc-section { background:#fff; margin:-30px auto 30px; max-width:960px; padding:30px 40px; border-radius:var(--radius); box-shadow:var(--shadow); position:relative; z-index:2; }
+  .toc-title { font-size:14px; text-transform:uppercase; letter-spacing:2px; color:var(--gray); margin-bottom:16px; font-weight:700; }
+  .toc-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:8px; }
+  .toc-item { display:block; padding:10px 14px; color:var(--dark); text-decoration:none; border-radius:8px; font-size:14px; transition:all .2s; border-left:3px solid transparent; }
+  .toc-item:hover { background:var(--primary-bg); border-left-color:var(--primary); color:var(--primary); }
+  .toc-num { color:var(--primary); font-weight:700; margin-right:8px; }
+
+  /* Sections */
+  .section { background:#fff; margin-bottom:24px; border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; }
+  .section-header { padding:28px 36px 20px; border-bottom:1px solid #eee; }
+  .section-num { display:inline-block; background:var(--primary); color:#fff; width:32px;height:32px; border-radius:8px; text-align:center; line-height:32px; font-size:14px; font-weight:700; margin-right:12px; vertical-align:middle; }
+  .section-header h2 { display:inline; font-size:1.4em; font-weight:700; color:var(--dark); vertical-align:middle; }
+  .section-body { padding:24px 36px 32px; }
+  h3 { font-size:1.1em; color:var(--primary); margin:28px 0 14px; padding-bottom:8px; border-bottom:2px solid var(--primary-bg); font-weight:700; }
+  h3:first-child { margin-top:0; }
+  h4 { font-size:1em; color:var(--dark); margin:20px 0 10px; font-weight:700; }
+
+  /* Tables */
+  .table-wrap { overflow-x:auto; margin:16px 0; }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  thead th { background:var(--primary); color:#fff; padding:12px 14px; text-align:left; font-weight:500; font-size:13px; white-space:nowrap; cursor:pointer; }
+  thead th:first-child { border-radius:8px 0 0 0; } thead th:last-child { border-radius:0 8px 0 0; }
+  tbody td { padding:11px 14px; border-bottom:1px solid #f0f0f0; vertical-align:top; }
+  tbody tr:hover { background:#fafbfc; }
+  tbody tr:last-child td { border-bottom:none; }
+  .text-center { text-align:center; }
+  table.alt thead th { background:var(--info); }
+  table.accent thead th { background:#7d6608; }
+  table.danger thead th { background:var(--danger); }
+  tr.highlight { background:var(--accent-light)!important; font-weight:500; }
+  tr.highlight-green { background:#e8f5e9!important; }
+  tr.highlight-red { background:var(--danger-light)!important; }
+
+  /* Cards */
+  .card-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; margin:16px 0; }
+  .card { background:var(--gray-light); border-radius:10px; padding:20px; border:1px solid #eee; transition:all .2s; }
+  .card:hover { box-shadow:var(--shadow-hover); transform:translateY(-2px); }
+  .card-title { font-weight:700; font-size:1em; color:var(--dark); margin-bottom:8px; display:flex; align-items:center; gap:8px; }
+  .card-body { font-size:14px; color:#555; line-height:1.6; }
+
+  /* Alert */
+  .alert { padding:16px 20px; border-radius:10px; margin:16px 0; font-size:14px; line-height:1.6; display:flex; gap:12px; align-items:flex-start; }
+  .alert-icon { font-size:20px; flex-shrink:0; margin-top:2px; }
+  .alert-success { background:#e8f5e9; border-left:4px solid var(--primary-light); }
+  .alert-warning { background:var(--accent-light); border-left:4px solid var(--accent); }
+  .alert-danger { background:var(--danger-light); border-left:4px solid var(--danger); }
+  .alert-info { background:var(--info-light); border-left:4px solid var(--info); }
+
+  /* Badges */
+  .badge { display:inline-block; padding:3px 10px; border-radius:6px; font-weight:700; font-size:12px; color:#fff; }
+  .badge-youth { background:var(--primary); }
+  .badge-school { background:var(--info); }
+  .badge-club { background:var(--accent); color:#333; }
+  .badge-academy { background:#7b1fa2; }
+  .stars { color:var(--accent); letter-spacing:1px; } .stars-empty { color:#ddd; }
+  .rank { display:inline-block; width:28px;height:28px; border-radius:50%; text-align:center; line-height:28px; font-size:13px; font-weight:700; color:#fff; }
+  .rank-1 { background:#d4a017; } .rank-2 { background:#95a5a6; } .rank-3 { background:#a0522d; }
+  .score { display:inline-block; padding:4px 12px; border-radius:20px; font-weight:700; font-size:14px; }
+  .score-a { background:#e8f5e9; color:var(--primary); } .score-b { background:#fff3cd; color:#856404; } .score-c { background:var(--danger-light); color:var(--danger); }
+
+  /* Compare bar */
+  .compare-row { margin:12px 0; } .compare-label { display:flex; justify-content:space-between; font-size:13px; margin-bottom:4px; font-weight:500; }
+  .compare-bar { height:8px; background:#eee; border-radius:4px; overflow:hidden; }
+  .compare-fill { height:100%; border-radius:4px; }
+  .fill-green { background:linear-gradient(90deg,#2d8a4e,#4caf50); }
+  .fill-blue { background:linear-gradient(90deg,#2471a3,#5dade2); }
+  .fill-orange { background:linear-gradient(90deg,#d4a017,#f0c040); }
+  .fill-purple { background:linear-gradient(90deg,#7b1fa2,#ab47bc); }
+
+  /* Filter controls */
+  .filter-bar { display:flex; flex-wrap:wrap; gap:8px; margin:16px 0; align-items:center; }
+  .filter-bar label { font-size:13px; font-weight:700; color:var(--gray); margin-right:4px; }
+  .filter-btn { padding:6px 14px; border:1px solid #ddd; border-radius:20px; background:#fff; font-size:13px; cursor:pointer; transition:all .2s; font-family:inherit; }
+  .filter-btn:hover { border-color:var(--primary); color:var(--primary); }
+  .filter-btn.active { background:var(--primary); color:#fff; border-color:var(--primary); }
+  .filter-sep { width:1px; height:24px; background:#ddd; margin:0 8px; }
+  .search-box { padding:6px 14px; border:1px solid #ddd; border-radius:20px; font-size:13px; width:200px; font-family:inherit; outline:none; }
+  .search-box:focus { border-color:var(--primary); }
+  .team-count { font-size:13px; color:var(--gray); margin-left:auto; }
+
+  .hidden { display:none!important; }
+
+  .footer { text-align:center; padding:40px 20px; color:var(--gray); font-size:13px; line-height:1.8; }
+
+  /* Timeline */
+  .timeline { margin:20px 0; padding-left:24px; border-left:3px solid var(--primary-bg); }
+  .timeline-item { margin-bottom:20px; position:relative; padding-left:20px; }
+  .timeline-item::before { content:''; position:absolute; left:-32px;top:6px; width:14px;height:14px; border-radius:50%; background:var(--primary); border:3px solid #fff; box-shadow:0 0 0 2px var(--primary-bg); }
+  .timeline-step { font-size:12px; color:var(--primary); font-weight:700; text-transform:uppercase; letter-spacing:1px; }
+  .timeline-title { font-weight:700; margin:4px 0; }
+  .timeline-desc { font-size:14px; color:#666; }
+
+  @media(max-width:768px) {
+    .hero { padding:40px 20px; } .hero h1 { font-size:1.6em; }
+    .toc-section { padding:20px; margin:-20px 16px 20px; }
+    .section-header { padding:20px; } .section-body { padding:16px 20px 24px; }
+    .card-grid { grid-template-columns:1fr; }
+    table { font-size:13px; } thead th,tbody td { padding:8px 10px; }
+    .filter-bar { flex-direction:column; align-items:stretch; }
+    .search-box { width:100%; }
+    .team-count { margin-left:0; margin-top:4px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- GNB -->
+<nav style="background:#fff;border-bottom:1px solid #e0e0e0;padding:0 20px;position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(0,0,0,.06)">
+  <div style="max-width:960px;margin:0 auto;display:flex;align-items:center;height:52px;gap:8px;flex-wrap:wrap">
+    <a href="index.html" style="font-weight:900;font-size:15px;color:#1a5632;text-decoration:none;margin-right:16px;white-space:nowrap">축구진학<span style="color:#d4a017">리포트</span></a>
+    <a href="index.html" style="padding:6px 14px;text-decoration:none;font-size:13px;font-weight:500;color:#6c757d;border-radius:8px">HOME</a>
+    <a href="초등U12_축구_생태계_보고서.html" style="padding:6px 14px;text-decoration:none;font-size:13px;font-weight:500;color:#fff;border-radius:8px;background:#2471a3">초등 U-12</a>
+    <a href="중등축구_진학_전수조사_보고서.html" style="padding:6px 14px;text-decoration:none;font-size:13px;font-weight:500;color:#6c757d;border-radius:8px;border-left:3px solid #1a5632">중등 U-15</a>
+    <a href="고등학교_U18_축구_생태계_보고서.html" style="padding:6px 14px;text-decoration:none;font-size:13px;font-weight:500;color:#6c757d;border-radius:8px;border-left:3px solid #c0392b">고등 U-18</a>
+    <a href="해외파_선수_연대표.html" style="padding:6px 14px;text-decoration:none;font-size:13px;font-weight:500;color:#6c757d;border-radius:8px;border-left:3px solid #d4a017">롤모델</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">U-12 ECOSYSTEM REPORT</div>
+    <h1>대한민국 초등학교(U-12)<br><span>축구 생태계 보고서</span></h1>
+    <p class="hero-sub">K리그 유스, 학교팀, 클럽, 아카데미 전수 조사 &mdash; 대회 체계, 팀 현황, 비용 구조 종합 분석</p>
+    <div class="hero-meta">
+      <span>2026-04-04</span>
+      <span>조사 범위: 전국 단위 (U-12)</span>
+      <span>팀 수: 120+ 개팀</span>
+    </div>
+  </div>
+</header>
+
+<!-- TOC -->
+<div class="container">
+<div class="toc-section">
+  <div class="toc-title">목차</div>
+  <div class="toc-grid">
+    <a href="#sec1" class="toc-item"><span class="toc-num">01</span> 초등 축구 주요 대회 체계</a>
+    <a href="#sec2" class="toc-item"><span class="toc-num">02</span> 팀 리스트업 (필터/정렬)</a>
+    <a href="#sec3" class="toc-item"><span class="toc-num">03</span> 유명 아카데미 소개</a>
+    <a href="#sec4" class="toc-item"><span class="toc-num">04</span> 비용 비교 분석</a>
+    <a href="#sec5" class="toc-item"><span class="toc-num">05</span> 주요 배출 선수 계보</a>
+  </div>
+</div>
+
+<!-- ===== 1. 초등 축구 주요 대회 체계 ===== -->
+<div class="section" id="sec1">
+  <div class="section-header"><span class="section-num">1</span><h2>초등 축구 주요 대회 체계</h2></div>
+  <div class="section-body">
+    <div class="alert alert-info"><div class="alert-icon">&#9917;</div><div>초등(U-12) 축구는 KFA 주관 공식 대회와 각종 초청 대회로 구성됩니다. 왕중왕전(화랑대기)이 최고 권위의 대회이며, 전국소년체전은 시도 대표 선발전 성격을 가집니다.</div></div>
+
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>대회명</th><th>주관</th><th>시기</th><th>특징</th><th>권위</th></tr></thead>
+      <tbody>
+        <tr class="highlight"><td><strong>화랑대기 전국 초등축구대회<br>(왕중왕전)</strong></td><td>대한축구협회(KFA)</td><td>매년 12월</td><td>연간 최종 대회, 전국 최강팀 결정. 학교팀/클럽팀/유스 모두 참가. 우승팀에 대통령배 수여.</td><td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td></tr>
+        <tr class="highlight"><td><strong>전국소년체육대회</strong></td><td>대한체육회</td><td>매년 5~6월</td><td>시도 대표 선발전. 지역별 최강 선수 집결. 개인 기량 평가에 중요한 대회.</td><td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td></tr>
+        <tr><td><strong>K리그 유스 챔피언십 U-12</strong></td><td>한국프로축구연맹</td><td>연중 리그</td><td>K리그 소속 유스팀 간 리그. 체계적 경쟁 환경 제공.</td><td><span class="stars">&#9733;&#9733;&#9733;&#9733;</span><span class="stars-empty">&#9733;</span></td></tr>
+        <tr><td><strong>전국초등축구리그</strong></td><td>KFA</td><td>연중 (지역별)</td><td>지역 리그 &rarr; 전국 본선 구조. 꾸준한 실전 경험 제공.</td><td><span class="stars">&#9733;&#9733;&#9733;&#9733;</span><span class="stars-empty">&#9733;</span></td></tr>
+        <tr><td><strong>금석배 전국초등축구대회</strong></td><td>KFA / 후원사</td><td>매년 7~8월</td><td>여름 대표 대회. 다수 팀 참가, 신예 발굴의 장.</td><td><span class="stars">&#9733;&#9733;&#9733;</span><span class="stars-empty">&#9733;&#9733;</span></td></tr>
+        <tr><td><strong>태백시장배 전국초등축구대회</strong></td><td>태백시</td><td>매년 여름</td><td>강원 태백 개최. 클럽/학교팀 다수 참가.</td><td><span class="stars">&#9733;&#9733;&#9733;</span><span class="stars-empty">&#9733;&#9733;</span></td></tr>
+        <tr><td><strong>각종 시장배/교육감배</strong></td><td>지자체/교육청</td><td>연중 수시</td><td>지역 단위 대회. 경험 축적용.</td><td><span class="stars">&#9733;&#9733;</span><span class="stars-empty">&#9733;&#9733;&#9733;</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="alert alert-warning"><div class="alert-icon">&#128161;</div><div><strong>핵심 포인트:</strong> 프로 유스 스카우트는 화랑대기(왕중왕전)와 전국소년체전을 가장 집중적으로 관찰합니다. 이 두 대회에서의 활약이 U-15 유스 입단에 결정적 영향을 미칩니다.</div></div>
+  </div>
+</div>
+
+<!-- ===== 2. 팀 리스트업 ===== -->
+<div class="section" id="sec2">
+  <div class="section-header"><span class="section-num">2</span><h2>팀 리스트업 (전국 U-12)</h2></div>
+  <div class="section-body">
+
+    <div class="filter-bar">
+      <label>유형:</label>
+      <button class="filter-btn active" data-filter="all" onclick="filterTeams('type',this)">전체</button>
+      <button class="filter-btn" data-filter="유스" onclick="filterTeams('type',this)">K리그 유스</button>
+      <button class="filter-btn" data-filter="학교" onclick="filterTeams('type',this)">학교팀</button>
+      <button class="filter-btn" data-filter="클럽" onclick="filterTeams('type',this)">클럽/아카데미</button>
+      <div class="filter-sep"></div>
+      <label>지역:</label>
+      <select id="regionFilter" onchange="filterTeams('region')" style="padding:6px 10px; border:1px solid #ddd; border-radius:20px; font-size:13px; font-family:inherit;">
+        <option value="all">전체 지역</option>
+        <option value="서울">서울</option>
+        <option value="경기">경기</option>
+        <option value="충청">충청</option>
+        <option value="경상">경상</option>
+        <option value="전라">전라</option>
+        <option value="강원">강원</option>
+        <option value="제주">제주</option>
+      </select>
+      <div class="filter-sep"></div>
+      <input class="search-box" type="text" id="teamSearch" placeholder="팀명/감독 검색..." oninput="filterTeams('search')">
+      <span class="team-count" id="teamCount"></span>
+    </div>
+
+    <div class="table-wrap">
+    <table id="teamTable">
+      <thead>
+        <tr>
+          <th onclick="sortTable(0)">팀명 &#8597;</th>
+          <th onclick="sortTable(1)">유형 &#8597;</th>
+          <th onclick="sortTable(2)">지역 &#8597;</th>
+          <th onclick="sortTable(3)">연계 구단</th>
+          <th onclick="sortTable(4)">감독/코치</th>
+          <th onclick="sortTable(5)">주요 성적 / 특이사항</th>
+        </tr>
+      </thead>
+      <tbody id="teamBody">
+        <!-- === 서울 유스 === -->
+        <tr data-type="유스" data-region="서울" class="highlight-green">
+          <td><strong>FC서울 U-12</strong></td>
+          <td><span class="badge badge-youth">유스</span></td>
+          <td>서울</td>
+          <td>FC서울</td>
+          <td>서기만 감독</td>
+          <td>금석배 우승(2016), 화랑대기 우승(2018). 수도권 최정상급 유스.</td>
+        </tr>
+        <tr data-type="유스" data-region="서울">
+          <td><strong>서울이랜드 U-12</strong></td>
+          <td><span class="badge badge-youth">유스</span></td>
+          <td>서울</td>
+          <td>서울이랜드FC</td>
+          <td>-</td>
+          <td>K리그2 소속 유스. 서울 지역 저변 확대 중.</td>
+        </tr>
+
+        <!-- === 서울 학교팀 === -->
+        <tr data-type="학교" data-region="서울" class="highlight">
+          <td><strong>신정초등학교</strong></td>
+          <td><span class="badge badge-school">학교</span></td>
+          <td>서울 (양천)</td>
+          <td>-</td>
+          <td>-</td>
+          <td><strong>왕중왕전 4회 우승.</strong> 서울 초등축구 최강 명문. 전통의 강호.</td>
+        </tr>
+        <tr data-type="학교" data-region="서울" class="highlight">
+          <td><strong>대동초등학교</strong></td>
+          <td><span class="badge badge-school">학교</span></td>
+          <td>서울 (영등포)</td>
+          <td>-</td>
+          <td>최광원 감독</td>
+          <td><strong>석현준, 이승우, 백승호 배출.</strong> 한국 초등축구 역사상 최고의 선수 배출 학교.</td>
+        </tr>
+        <tr data-type="학교" data-region="서울">
+          <td><strong>동명초등학교</strong></td>
+          <td><span class="badge badge-school">학교</span></td>
+          <td>서울 (동대문)</td>
+          <td>-</td>
+          <td>-</td>
+          <td>왕중왕전 준우승. 꾸준한 성적의 강팀.</td>
+        </tr>
+        <tr data-type="학교" data-region="서울">
+          <td><strong>신용산초등학교</strong></td>
+          <td><span class="badge badge-school">학교</span></td>
+          <td>서울 (용산)</td>
+          <td>-</td>
+          <td>-</td>
+          <td>왕중왕전 준우승. 용산 지역 대표 축구 명문.</td>
+        </tr>
+        <tr data-type="학교" data-region="서울">
+          <td><strong>신답초등학교</strong></td>
+          <td><span class="badge badge-school">학교</span></td>
+          <td>서울</td>
+          <td>-</td>
+          <td>-</td>
+          <td>서울 초등축구 상위권. 다수 대회 입상.</td>
+        </tr>
+        <tr data-type="학교" data-region="서울">
+          <td><strong>갈현초등학교</strong></td>
+          <td><span class="badge badge-school">학교</span></td>
+          <td>서울</td>
+          <td>-</td>
+          <td>-</td>
+          <td>서울 지역 주요 학교팀.</td>
+        </tr>
+
+        <!-- === 경기 유스 === -->
+        <tr data-type="유스" data-region="경기">
+          <td><strong>수원삼성 U-12</strong></td>
+          <td><span class="badge badge-youth">유스</span></td>
+          <td>경기 (수원)</td>
+          <td>수원삼성</td>
+          <td>-</td>
+          <td>K리그 명문 유스. 삼성 후원 체계적 육성 시스템.</td>
+        </tr>
+        <tr data-type="유스" data-region="경기">
+          <td><strong>성남FC U-12</strong></td>
+          <td><span class="badge badge-youth">유스</span></td>
+          <td>경기 (성남)</td>
+          <td>성남FC</td>
+          <td>-</td>
+          <td>성남 지역 기반 유스 육성.</td>
+        </tr>
+        <tr data-type="유스" data-region="경기">
+          <td><strong>부천FC U-12</strong></td>
+          <td><span class="badge badge-youth">유스</span></td>
+          <td>경기 (부천)</td>
+          <td>부천FC1995</td>
+          <td>-</td>
+          <td>부천 지역 유스 프로그램.</td>
+        </tr>
+        <tr data-type="유스" data-region="경기">
+          <td><strong>수원FC U-12</strong></td>
+          <td><span class="badge badge-youth">유스</span></td>
+          <td>경기 (수원)</td>
+          <td>수원FC</td>
+          <td>-</td>
+          <td>수원FC 산하 유스.</td>
+        </tr>
+        <tr data-type="유스" data-region="경기">
+          <td><strong>안산 그리너스 U-12</strong></td>
+          <td><span class="badge badge-youth">유스</span></td>
+          <td>경기 (안산)</td>
+          <td>안산 그리너스</td>
+          <td>-</td>
+          <td>안산 기반 K리그2 유스.</td>
+        </tr>
+        <tr data-type="유스" data-region="경기">
+          <td><strong>FC안양 U-12</strong></td>
+          <td><span class="badge badge-youth">유스</span></td>
+          <td>경기 (안양)</td>
+          <td>FC안양</td>
+          <td>-</td>
+          <td>안양 지역 유스 프로그램.</td>
+        </tr>
+
+        <!-- === 경기 학교팀 === -->
+        <tr data-type="학교" data-region="경기">
+          <td><strong>부양초등학교</strong></td>
+          <td><span class="badge badge-school">학교</span></td>
+          <td>경기</td>
+          <td>-</td>
+          <td>-</td>
+          <td>전국 대회 3위권 상위 입상 다수. 경기 지역 대표 명문.</td>
+        </tr>
+        <tr data-type="학교" data-region="경기">
+          <td><strong>하남중앙초등학교</strong></td>
+          <td><span class="badge badge-school">학교</span></td>
+          <td>경기 (하남)</td>
+          <td>-</td>
+          <td>-</td>
+          <td>경기 동부 지역 강팀.</td>
+        </tr>
+        <tr data-type="학교" data-region="경기">
+          <td><strong>포천일동초등학교</strong></td>
+          <td><span class="badge badge-school">학교</span></td>
+          <td>경기 (포천)</td>
+          <td>-</td>
+          <td>-</td>
+          <td>경기 북부 축구 전통교.</td>
+        </tr>
+        <tr data-type="학교" data-region="경기">
+          <td><strong>신갈초등학교</strong></td>
+          <td><span class="badge badge-school">학교</span></td>
+          <td>경기 (용인)</td>
+          <td>-</td>
+          <td>-</td>
+          <td>용인 지역. 신갈고(축구 명문고)와 지역적 연계.</td>
+        </tr>
+
+        <!-- === 경기 클럽/아카데미 === -->
+        <tr data-type="클럽" data-region="경기" class="highlight">
+          <td><strong>용인시축구센터</strong></td>
+          <td><span class="badge badge-club">클럽</span></td>
+          <td>경기 (용인)</td>
+          <td>-</td>
+          <td>-</td>
+          <td><strong>프로선수 200명+ 배출.</strong> 김보경, 김진수 등. 한국 최고의 초등 축구 클럽.</td>
+        </tr>
+        <tr data-type="클럽" data-region="경기">
+          <td><strong>구성PEC</strong></td>
+          <td><span class="badge badge-club">클럽</span></td>
+          <td>경기 (용인)</td>
+          <td>-</td>
+          <td>-</td>
+          <td>태백시장배 우승. 용인 지역 강력한 클럽.</td>
+        </tr>
+        <tr data-type="클럽" data-region="경기">
+          <td><strong>GS경수축구클럽</strong></td>
+          <td><span class="badge badge-club">클럽</span></td>
+          <td>경기</td>
+          <td>-</td>
+          <td>-</td>
+          <td>경기 남부 지역 주요 클럽.</td>
+        </tr>
+        <tr data-type="클럽" data-region="경기">
+          <td><strong>홍명보축구교실 (FCMB)</strong></td>
+          <td><span class="badge badge-academy">아카데미</span></td>
+          <td>경기</td>
+          <td>-</td>
+          <td>홍명보(명예)</td>
+          <td>전 국가대표 감독 홍명보 설립. 체계적 육성 프로그램.</td>
+        </tr>
+        <tr data-type="클럽" data-region="경기">
+          <td><strong>박지성축구센터 (JSFC)</strong></td>
+          <td><span class="badge badge-academy">아카데미</span></td>
+          <td>경기 (수원)</td>
+          <td>-</td>
+          <td>박지성(명예)</td>
+          <td>사비 110억 투자. 박지성 이름의 전문 축구센터.</td>
+        </tr>
+        <tr data-type="클럽" data-region="경기">
+          <td><strong>킥스풋볼아카데미</strong></td>
+          <td><span class="badge badge-academy">아카데미</span></td>
+          <td>경기</td>
+          <td>-</td>
+          <td>-</td>
+          <td>경기 지역 인기 아카데미. 체계적 커리큘럼.</td>
+        </tr>
+
+        <!-- === 경상 유스 === -->
+        <tr data-type="유스" data-region="경상" class="highlight-green">
+          <td><strong>포항스틸러스 U-12</strong></td>
+          <td><span class="badge badge-youth">유스</span></td>
+          <td>경상 (포항)</td>
+          <td>포항스틸러스</td>
+          <td>-</td>
+          <td><strong>2024~25 전국소년체전 2연패.</strong> MVP 송시율. 포항제철동초 연계. 전국 최강급.</td>
+        </tr>
+        <tr data-type="유스" data-region="경상">
+          <td><strong>대구FC U-12</strong></td>
+          <td><span class="badge badge-youth">유스</span></td>
+          <td>경상 (대구)</td>
+          <td>대구FC</td>
+          <td>-</td>
+          <td>대구 지역 유스 육성.</td>
+        </tr>
+        <tr data-type="유스" data-region="경상">
+          <td><strong>경남FC U-12</strong></td>
+          <td><span class="badge badge-youth">유스</span></td>
+          <td>경상 (창원)</td>
+          <td>경남FC</td>
+          <td>-</td>
+          <td>경남 지역 기반 유스.</td>
+        </tr>
+        <tr data-type="유스" data-region="경상">
+          <td><strong>김천상무 U-12</strong></td>
+          <td><span class="badge badge-youth">유스</span></td>
+          <td>경상 (김천)</td>
+          <td>김천상무FC</td>
+          <td>-</td>
+          <td>김천 지역 유스.</td>
+        </tr>
+        <tr data-type="유스" data-region="경상">
+          <td><strong>울산HD U-12</strong></td>
+          <td><span class="badge badge-youth">유스</span></td>
+          <td>경상 (울산)</td>
+          <td>울산HD FC</td>
+          <td>-</td>
+          <td><strong>전국 최강급.</strong> 울산 현대 전통의 유스 시스템.</td>
+        </tr>
+        <tr data-type="유스" data-region="경상">
+          <td><strong>부산아이파크 U-12</strong></td>
+          <td><span class="badge badge-youth">유스</span></td>
+          <td>경상 (부산)</td>
+          <td>부산아이파크</td>
+          <td>-</td>
+          <td>부산 지역 유스 프로그램.</td>
+        </tr>
+
+        <!-- === 경상 학교팀 === -->
+        <tr data-type="학교" data-region="경상" class="highlight">
+          <td><strong>포항제철동초등학교</strong></td>
+          <td><span class="badge badge-school">학교</span></td>
+          <td>경상 (포항)</td>
+          <td>포항스틸러스 연계</td>
+          <td>-</td>
+          <td><strong>2024~25 소년체전 2연패.</strong> 포항스틸러스 유스와 사실상 일체. 경북 최강.</td>
+        </tr>
+        <tr data-type="학교" data-region="경상">
+          <td><strong>김해외동초등학교</strong></td>
+          <td><span class="badge badge-school">학교</span></td>
+          <td>경상 (김해)</td>
+          <td>-</td>
+          <td>-</td>
+          <td>경남 지역 축구 전통교.</td>
+        </tr>
+
+        <!-- === 전라 유스 === -->
+        <tr data-type="유스" data-region="전라" class="highlight-green">
+          <td><strong>전북현대 U-12</strong></td>
+          <td><span class="badge badge-youth">유스</span></td>
+          <td>전라 (전주)</td>
+          <td>전북현대</td>
+          <td>신용주 총괄</td>
+          <td><strong>보급반 1,300명 운영.</strong> K리그 최대 규모 저변 육성 시스템.</td>
+        </tr>
+        <tr data-type="유스" data-region="전라">
+          <td><strong>전남드래곤즈 U-12</strong></td>
+          <td><span class="badge badge-youth">유스</span></td>
+          <td>전라 (광양)</td>
+          <td>전남드래곤즈</td>
+          <td>박종진 감독</td>
+          <td>광양제철남초 연계. 전남 지역 유스 핵심.</td>
+        </tr>
+        <tr data-type="유스" data-region="전라">
+          <td><strong>광주FC U-12</strong></td>
+          <td><span class="badge badge-youth">유스</span></td>
+          <td>전라 (광주)</td>
+          <td>광주FC</td>
+          <td>-</td>
+          <td>광주 지역 유스 육성.</td>
+        </tr>
+
+        <!-- === 전라 학교팀 === -->
+        <tr data-type="학교" data-region="전라">
+          <td><strong>광양제철남초등학교</strong></td>
+          <td><span class="badge badge-school">학교</span></td>
+          <td>전라 (광양)</td>
+          <td>전남드래곤즈 연계</td>
+          <td>-</td>
+          <td>전남드래곤즈 유스와 연계 운영. 광양 축구의 산실.</td>
+        </tr>
+        <tr data-type="학교" data-region="전라">
+          <td><strong>송정서초등학교</strong></td>
+          <td><span class="badge badge-school">학교</span></td>
+          <td>전라 (광주)</td>
+          <td>-</td>
+          <td>-</td>
+          <td>광주 지역 축구 명문 초등학교.</td>
+        </tr>
+        <tr data-type="학교" data-region="전라">
+          <td><strong>광주초등학교</strong></td>
+          <td><span class="badge badge-school">학교</span></td>
+          <td>전라 (광주)</td>
+          <td>-</td>
+          <td>-</td>
+          <td>광주 지역 전통 강팀.</td>
+        </tr>
+
+        <!-- === 충청 === -->
+        <tr data-type="학교" data-region="충청" class="highlight">
+          <td><strong>계성초등학교</strong></td>
+          <td><span class="badge badge-school">학교</span></td>
+          <td>충청 (당진)</td>
+          <td>-</td>
+          <td>유재호 감독</td>
+          <td><strong>4회 우승.</strong> 이종성, 서명원 배출. 당진화력 연 5,000만원 지원. 충남 최강.</td>
+        </tr>
+        <tr data-type="유스" data-region="충청">
+          <td><strong>대전하나시티즌 U-12</strong></td>
+          <td><span class="badge badge-youth">유스</span></td>
+          <td>충청 (대전)</td>
+          <td>대전하나시티즌</td>
+          <td>-</td>
+          <td>대전 지역 유스 프로그램.</td>
+        </tr>
+        <tr data-type="유스" data-region="충청">
+          <td><strong>충남아산FC U-12</strong></td>
+          <td><span class="badge badge-youth">유스</span></td>
+          <td>충청 (아산)</td>
+          <td>충남아산FC</td>
+          <td>-</td>
+          <td>충남 아산 기반 유스.</td>
+        </tr>
+        <tr data-type="클럽" data-region="충청">
+          <td><strong>천안축구센터 U-12</strong></td>
+          <td><span class="badge badge-club">클럽</span></td>
+          <td>충청 (천안)</td>
+          <td>천안시티FC 연계</td>
+          <td>-</td>
+          <td>천안시티FC 연계. 2025 왕중왕전 5관왕(중등). 초등부도 강세.</td>
+        </tr>
+
+        <!-- === 강원 === -->
+        <tr data-type="유스" data-region="강원">
+          <td><strong>강원FC U-12</strong></td>
+          <td><span class="badge badge-youth">유스</span></td>
+          <td>강원 (춘천)</td>
+          <td>강원FC</td>
+          <td>-</td>
+          <td>2008년 창단. 강원 지역 유일 K리그 유스.</td>
+        </tr>
+        <tr data-type="학교" data-region="강원">
+          <td><strong>원주태장초등학교</strong></td>
+          <td><span class="badge badge-school">학교</span></td>
+          <td>강원 (원주)</td>
+          <td>-</td>
+          <td>-</td>
+          <td><strong>2025 전국소년체전 준우승.</strong> 강원 지역 떠오르는 강팀.</td>
+        </tr>
+
+        <!-- === 제주 === -->
+        <tr data-type="유스" data-region="제주">
+          <td><strong>제주유나이티드 U-12</strong></td>
+          <td><span class="badge badge-youth">유스</span></td>
+          <td>제주</td>
+          <td>제주유나이티드</td>
+          <td>-</td>
+          <td>제주 지역 유일 K리그 유스.</td>
+        </tr>
+
+        <!-- === 인천 === -->
+        <tr data-type="유스" data-region="경기">
+          <td><strong>인천유나이티드 U-12</strong></td>
+          <td><span class="badge badge-youth">유스</span></td>
+          <td>경기 (인천)</td>
+          <td>인천유나이티드</td>
+          <td>-</td>
+          <td>인천 지역 K리그 유스. 수도권 접근성 양호.</td>
+        </tr>
+
+      </tbody>
+    </table>
+    </div>
+
+    <div class="alert alert-success"><div class="alert-icon">&#128202;</div><div><strong>참고:</strong> 서울 지역 학교팀은 약 43개, 경기 지역 학교팀은 약 32개가 KFA에 등록되어 있습니다. 위 표는 주요 팀 위주로 정리한 것이며, 전체 U-12 등록팀은 전국 120개 이상입니다.</div></div>
+  </div>
+</div>
+
+<!-- ===== 3. 유명 아카데미 ===== -->
+<div class="section" id="sec3">
+  <div class="section-header"><span class="section-num">3</span><h2>유명 아카데미 소개</h2></div>
+  <div class="section-body">
+
+    <div class="card-grid">
+      <div class="card" style="border-left:4px solid var(--accent)">
+        <div class="card-title">SON축구아카데미</div>
+        <div class="card-body">
+          <strong>손흥민 아버지 손웅정</strong> 설립. 춘천 소재. 기술 중심의 독자적 육성 철학. 학기당 30~50만원. 입단 테스트 경쟁 치열. 소수 정예 운영.<br>
+          <small style="color:var(--gray)">* 손흥민의 어린 시절 훈련 방식 기반</small>
+        </div>
+      </div>
+      <div class="card" style="border-left:4px solid var(--primary)">
+        <div class="card-title">FC서울 축구교실</div>
+        <div class="card-body">
+          FC서울 공식 아카데미. 서울 각 지역 운영. 유스 선발 파이프라인 역할. 우수 선수는 FC서울 U-12 유스로 승격 가능.<br>
+          <small style="color:var(--gray)">* 프로 유스 입단의 관문</small>
+        </div>
+      </div>
+      <div class="card" style="border-left:4px solid var(--info)">
+        <div class="card-title">홍명보축구교실 (FCMB)</div>
+        <div class="card-body">
+          전 국가대표 감독 <strong>홍명보</strong> 설립. 인성 교육 + 축구 기술 병행. 경기 지역 중심 운영. 체계적 커리큘럼과 훈련 시스템.<br>
+          <small style="color:var(--gray)">* 인성과 축구의 균형</small>
+        </div>
+      </div>
+      <div class="card" style="border-left:4px solid #7b1fa2">
+        <div class="card-title">박지성축구센터 (JSFC)</div>
+        <div class="card-body">
+          전 맨유 레전드 <strong>박지성</strong>이 사비 110억 투자하여 설립. 수원 소재. 최신 시설 보유. 글로벌 수준의 훈련 환경 제공.<br>
+          <small style="color:var(--gray)">* 세계적 시설 + 전문 코칭</small>
+        </div>
+      </div>
+      <div class="card" style="border-left:4px solid var(--danger)">
+        <div class="card-title">용인시축구센터</div>
+        <div class="card-body">
+          <strong>프로선수 200명 이상 배출.</strong> 김보경, 김진수 등 국가대표급 선수 다수 배출. 한국 초등 축구 클럽 중 최고의 실적.<br>
+          <small style="color:var(--gray)">* 실적 기준 국내 최고</small>
+        </div>
+      </div>
+      <div class="card" style="border-left:4px solid var(--gray)">
+        <div class="card-title">킥스풋볼아카데미</div>
+        <div class="card-body">
+          경기 지역 인기 아카데미. 연령별 세분화된 커리큘럼 운영. 체력-기술-전술 단계별 교육. 대회 출전 기회 풍부.<br>
+          <small style="color:var(--gray)">* 체계적 단계별 육성</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 4. 비용 비교 ===== -->
+<div class="section" id="sec4">
+  <div class="section-header"><span class="section-num">4</span><h2>비용 비교 분석</h2></div>
+  <div class="section-body">
+
+    <div class="table-wrap">
+    <table class="alt">
+      <thead><tr><th>유형</th><th>월 비용</th><th>포함 사항</th><th>추가 비용</th><th>비용 등급</th></tr></thead>
+      <tbody>
+        <tr class="highlight-green">
+          <td><span class="badge badge-youth">K리그 유스</span></td>
+          <td><strong>무상 (0원)</strong></td>
+          <td>훈련, 장비, 원정 교통, 숙소, 식비 전액 지원</td>
+          <td>거의 없음</td>
+          <td><span class="score score-a">A (최저)</span></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-school">학교팀</span></td>
+          <td><strong>거의 무료</strong></td>
+          <td>학교 시설 이용, 방과후 훈련</td>
+          <td>개인 장비, 원정 시 일부</td>
+          <td><span class="score score-a">A</span></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-club">클럽/아카데미</span></td>
+          <td><strong>월 6~20만원</strong></td>
+          <td>훈련, 코칭, 일부 대회 참가</td>
+          <td>장비, 원정, 합숙 별도</td>
+          <td><span class="score score-b">B (중간)</span></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-academy">SON아카데미</span></td>
+          <td><strong>학기당 30~50만원</strong></td>
+          <td>전문 코칭, 소수정예 훈련</td>
+          <td>입단 테스트, 합숙비 별도</td>
+          <td><span class="score score-b">B</span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>유형별 비용 수준 비교</h3>
+    <div class="compare-row">
+      <div class="compare-label"><span>K리그 유스</span><span>0원 (무상)</span></div>
+      <div class="compare-bar"><div class="compare-fill fill-green" style="width:2%"></div></div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-label"><span>학교팀</span><span>~무료</span></div>
+      <div class="compare-bar"><div class="compare-fill fill-green" style="width:5%"></div></div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-label"><span>클럽/아카데미</span><span>월 6~20만원</span></div>
+      <div class="compare-bar"><div class="compare-fill fill-orange" style="width:50%"></div></div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-label"><span>SON아카데미</span><span>학기 30~50만원</span></div>
+      <div class="compare-bar"><div class="compare-fill fill-purple" style="width:35%"></div></div>
+    </div>
+
+    <div class="alert alert-warning"><div class="alert-icon">&#128176;</div><div><strong>비용 판단 기준:</strong> 프로 유스는 무상이지만 입단 난이도가 극히 높습니다(상위 1~2%). 학교팀은 무료에 가깝지만 전문성에 편차가 큽니다. 아카데미는 비용 대비 코칭 품질을 반드시 비교 후 결정해야 합니다.</div></div>
+
+    <div class="alert alert-info"><div class="alert-icon">&#128161;</div><div><strong>계성초 사례:</strong> 당진화력에서 연간 5,000만원을 후원하고 있어 학부모 부담이 최소화됩니다. 지역 기업 후원이 있는 학교팀은 시설과 원정 지원이 우수합니다.</div></div>
+  </div>
+</div>
+
+<!-- ===== 5. 주요 배출 선수 계보 ===== -->
+<div class="section" id="sec5">
+  <div class="section-header"><span class="section-num">5</span><h2>주요 배출 선수 계보</h2></div>
+  <div class="section-body">
+
+    <div class="table-wrap">
+    <table class="accent">
+      <thead><tr><th>선수명</th><th>초등 소속</th><th>유형</th><th>현재/최종 소속</th><th>비고</th></tr></thead>
+      <tbody>
+        <tr class="highlight"><td><strong>석현준</strong></td><td>대동초 (서울)</td><td>학교팀</td><td>아인트라흐트 프랑크푸르트 등 유럽</td><td>최광원 감독 지도</td></tr>
+        <tr class="highlight"><td><strong>이승우</strong></td><td>대동초 (서울)</td><td>학교팀</td><td>바르셀로나 유스 &rarr; 유럽 리그</td><td>대동초 &rarr; 바르셀로나 직행</td></tr>
+        <tr class="highlight"><td><strong>백승호</strong></td><td>대동초 (서울)</td><td>학교팀</td><td>바르셀로나 유스 &rarr; 유럽 리그</td><td>대동초 &rarr; 바르셀로나 직행</td></tr>
+        <tr><td><strong>김보경</strong></td><td>용인시축구센터</td><td>클럽</td><td>전북현대 등 K리그</td><td>A매치 다수</td></tr>
+        <tr><td><strong>김진수</strong></td><td>용인시축구센터</td><td>클럽</td><td>전북현대 등 K리그</td><td>A매치 다수</td></tr>
+        <tr><td><strong>이종성</strong></td><td>계성초 (당진)</td><td>학교팀</td><td>프로 활동</td><td>유재호 감독 지도</td></tr>
+        <tr><td><strong>서명원</strong></td><td>계성초 (당진)</td><td>학교팀</td><td>프로 활동</td><td>유재호 감독 지도</td></tr>
+        <tr><td><strong>송시율</strong></td><td>포항제철동초</td><td>유스/학교</td><td>포항스틸러스 유스</td><td>2024~25 소년체전 MVP</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="alert alert-success"><div class="alert-icon">&#127942;</div><div><strong>트렌드:</strong> 대동초(서울 영등포)는 석현준, 이승우, 백승호를 배출하며 한국 초등축구 역사상 최고의 선수 배출 학교로 평가됩니다. 용인시축구센터는 클럽 중 유일하게 프로 200명+ 배출 기록을 보유하고 있습니다.</div></div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p><strong>초등학교(U-12) 축구 생태계 보고서</strong></p>
+  <p style="margin-top:12px;color:#aaa">조사일: 2026-04-04 &middot; 비용 수치 및 팀 정보는 공개 자료 기반 추정치<br>의사결정 전 해당 팀에 직접 방문하여 확인하시기 바랍니다.</p>
+</div>
+
+</div>
+
+<!-- ===== JAVASCRIPT: 필터/정렬 ===== -->
+<script>
+let currentType = 'all';
+let currentRegion = 'all';
+
+function filterTeams(trigger, btn) {
+  if (trigger === 'type') {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentType = btn.dataset.filter;
+  }
+  if (trigger === 'region') {
+    currentRegion = document.getElementById('regionFilter').value;
+  }
+  const search = document.getElementById('teamSearch').value.toLowerCase();
+  const rows = document.querySelectorAll('#teamBody tr');
+  let count = 0;
+  rows.forEach(row => {
+    const type = row.dataset.type;
+    const region = row.dataset.region;
+    const text = row.textContent.toLowerCase();
+    const matchType = currentType === 'all' || type === currentType;
+    const matchRegion = currentRegion === 'all' || (region && region.includes(currentRegion));
+    const matchSearch = !search || text.includes(search);
+    if (matchType && matchRegion && matchSearch) {
+      row.classList.remove('hidden');
+      count++;
+    } else {
+      row.classList.add('hidden');
+    }
+  });
+  document.getElementById('teamCount').textContent = count + '개 팀 표시';
+}
+
+let sortDir = {};
+function sortTable(col) {
+  const tbody = document.getElementById('teamBody');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+  sortDir[col] = !sortDir[col];
+  rows.sort((a, b) => {
+    const aVal = a.children[col].textContent.trim();
+    const bVal = b.children[col].textContent.trim();
+    return sortDir[col] ? aVal.localeCompare(bVal, 'ko') : bVal.localeCompare(aVal, 'ko');
+  });
+  rows.forEach(r => tbody.appendChild(r));
+}
+
+// 초기 카운트
+document.addEventListener('DOMContentLoaded', () => {
+  const total = document.querySelectorAll('#teamBody tr').length;
+  document.getElementById('teamCount').textContent = total + '개 팀 표시';
+});
+</script>
+
+</body>
+</html>

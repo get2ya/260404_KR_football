@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>대한민국 축구 진학 생태계 전수 조사</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+  :root { --primary:#1a5632; --primary-light:#2d8a4e; --accent:#d4a017; --info:#2471a3; --danger:#c0392b; --dark:#1a1a2e; --gray:#6c757d; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:#f4f6f9;color:#333;line-height:1.7}
+
+  /* GNB */
+  .gnb{background:#fff;border-bottom:1px solid #e0e0e0;padding:0 20px;position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(0,0,0,.06)}
+  .gnb-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;height:56px;gap:8px}
+  .gnb-logo{font-weight:900;font-size:15px;color:var(--primary);text-decoration:none;margin-right:20px;white-space:nowrap}
+  .gnb-logo span{color:var(--accent)}
+  .gnb-links{display:flex;gap:4px;flex-wrap:wrap}
+  .gnb-link{padding:8px 16px;text-decoration:none;font-size:14px;font-weight:500;color:var(--gray);border-radius:8px;transition:all .2s;white-space:nowrap}
+  .gnb-link:hover{background:var(--primary);color:#fff}
+  .gnb-link.active{background:var(--primary);color:#fff}
+  .gnb-link.el{border-left:3px solid var(--info)}
+  .gnb-link.mid{border-left:3px solid var(--primary)}
+  .gnb-link.high{border-left:3px solid var(--danger)}
+
+  /* Hero */
+  .hero{background:linear-gradient(135deg,#1a5632 0%,#0d2b1a 40%,#1a1a2e 100%);color:#fff;padding:100px 40px 80px;text-align:center;position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 60%,rgba(212,160,23,.12) 0%,transparent 50%),radial-gradient(circle at 70% 40%,rgba(255,255,255,.04) 0%,transparent 50%);animation:hf 25s ease-in-out infinite}
+  @keyframes hf{0%,100%{transform:translate(0,0)}50%{transform:translate(-2%,2%)}}
+  .hero-content{position:relative;z-index:1;max-width:800px;margin:0 auto}
+  .hero-badge{display:inline-block;background:rgba(212,160,23,.2);border:1px solid rgba(212,160,23,.4);color:var(--accent);padding:8px 20px;border-radius:24px;font-size:13px;font-weight:500;margin-bottom:24px;letter-spacing:2px}
+  .hero h1{font-size:2.8em;font-weight:900;line-height:1.3;margin-bottom:16px}
+  .hero h1 span{color:var(--accent)}
+  .hero-sub{font-size:1.1em;color:rgba(255,255,255,.65);font-weight:300;margin-bottom:40px;line-height:1.8}
+  .hero-meta{display:flex;justify-content:center;gap:32px;font-size:13px;color:rgba(255,255,255,.5)}
+
+  /* Cards */
+  .container{max-width:1100px;margin:0 auto;padding:0 20px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:-50px auto 40px;position:relative;z-index:2}
+  .page-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.08);transition:all .3s;text-decoration:none;color:inherit;display:flex;flex-direction:column}
+  .page-card:hover{transform:translateY(-6px);box-shadow:0 8px 40px rgba(0,0,0,.15)}
+  .card-top{padding:32px 28px 20px;flex:1}
+  .card-icon{font-size:48px;margin-bottom:16px}
+  .card-cat{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+  .card-cat.el{color:var(--info)} .card-cat.mid{color:var(--primary)} .card-cat.high{color:var(--danger)}
+  .card-title{font-size:1.4em;font-weight:900;color:var(--dark);margin-bottom:10px}
+  .card-desc{font-size:14px;color:#666;line-height:1.6}
+  .card-bottom{padding:16px 28px;background:#fafbfc;border-top:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center}
+  .card-stat{font-size:13px;color:var(--gray)}
+  .card-stat strong{color:var(--dark)}
+  .card-arrow{width:36px;height:36px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;transition:all .2s}
+  .page-card:hover .card-arrow{background:var(--accent)}
+  .card-bar{height:4px;border-radius:0}
+  .bar-el{background:linear-gradient(90deg,var(--info),#5dade2)} .bar-mid{background:linear-gradient(90deg,var(--primary),#4caf50)} .bar-high{background:linear-gradient(90deg,var(--danger),#e57373)}
+
+  /* Overview section */
+  .overview{background:#fff;border-radius:16px;box-shadow:0 2px 15px rgba(0,0,0,.06);padding:40px;margin-bottom:40px}
+  .overview h2{font-size:1.5em;font-weight:700;color:var(--dark);margin-bottom:24px;text-align:center}
+  .flow{display:flex;align-items:center;justify-content:center;gap:12px;margin:24px 0;flex-wrap:wrap}
+  .flow-item{padding:16px 24px;border-radius:12px;text-align:center;font-weight:700;font-size:15px;min-width:140px}
+  .flow-el{background:var(--info);color:#fff}
+  .flow-mid{background:var(--primary);color:#fff}
+  .flow-high{background:var(--danger);color:#fff}
+  .flow-pro{background:var(--dark);color:#fff}
+  .flow-arrow{font-size:24px;color:#ccc;font-weight:300}
+  .flow-sub{font-size:11px;font-weight:400;opacity:.8;display:block;margin-top:4px}
+
+  /* Stats */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:30px 0}
+  .stat-card{text-align:center;padding:20px;background:#f8f9fa;border-radius:12px}
+  .stat-num{font-size:2em;font-weight:900;color:var(--primary)}
+  .stat-label{font-size:13px;color:var(--gray);margin-top:4px}
+
+  /* Situation */
+  .situation{background:linear-gradient(135deg,#fef9e7,#fff3cd);border:2px solid var(--accent);border-radius:16px;padding:32px;margin-bottom:40px;text-align:center}
+  .situation h3{color:var(--dark);font-size:1.2em;margin-bottom:12px}
+  .situation p{font-size:15px;color:#555;line-height:1.8}
+  .situation strong{color:var(--primary)}
+
+  .footer{text-align:center;padding:40px 20px;color:var(--gray);font-size:13px}
+
+  @media(max-width:768px){
+    .hero{padding:60px 20px 50px} .hero h1{font-size:1.8em}
+    .cards{grid-template-columns:1fr;margin:-30px 16px 30px}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .flow{flex-direction:column} .flow-arrow{transform:rotate(90deg)}
+    .gnb-inner{flex-wrap:wrap;height:auto;padding:8px 0}
+    .gnb-links{width:100%}
+  }
+</style>
+</head>
+<body>
+
+<!-- GNB -->
+<nav class="gnb">
+  <div class="gnb-inner">
+    <a href="index.html" class="gnb-logo">축구진학<span>리포트</span></a>
+    <div class="gnb-links">
+      <a href="index.html" class="gnb-link active">HOME</a>
+      <a href="초등U12_축구_생태계_보고서.html" class="gnb-link el">초등 U-12</a>
+      <a href="중등축구_진학_전수조사_보고서.html" class="gnb-link mid">중등 U-15</a>
+      <a href="고등학교_U18_축구_생태계_보고서.html" class="gnb-link high">고등 U-18</a>
+      <a href="해외파_선수_연대표.html" class="gnb-link" style="border-left:3px solid #d4a017">롤모델</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">COMPREHENSIVE REPORT 2026</div>
+    <h1>대한민국 축구 진학<br><span>생태계 전수 조사</span></h1>
+    <p class="hero-sub">초등(U-12) &rarr; 중등(U-15) &rarr; 고등(U-18) &rarr; 프로<br>전 과정을 아우르는 데이터 기반 진학 전략 리포트</p>
+    <div class="hero-meta">
+      <span>조사일: 2026-04-04</span>
+      <span>4인 전문 에이전트 분석</span>
+      <span>전국 단위 조사</span>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN CARDS -->
+<div class="container">
+<div class="cards">
+  <a href="초등U12_축구_생태계_보고서.html" class="page-card">
+    <div class="card-bar bar-el"></div>
+    <div class="card-top">
+      <div class="card-icon">&#9917;</div>
+      <div class="card-cat el">ELEMENTARY</div>
+      <div class="card-title">초등학교 U-12</div>
+      <div class="card-desc">K리그 유스 U-12, 전국 초등학교 축구부, 유소년 클럽/아카데미 총정리. 화랑대기, 소년체전 등 대회 체계 포함.</div>
+    </div>
+    <div class="card-bottom">
+      <div class="card-stat">팀 <strong>200+</strong>개 | 아카데미 <strong>6</strong>개</div>
+      <div class="card-arrow">&rarr;</div>
+    </div>
+  </a>
+
+  <a href="중등축구_진학_전수조사_보고서.html" class="page-card">
+    <div class="card-bar bar-mid"></div>
+    <div class="card-top">
+      <div class="card-icon">&#127942;</div>
+      <div class="card-cat mid">MIDDLE SCHOOL</div>
+      <div class="card-title">중학교 U-15</div>
+      <div class="card-desc">K리그 유스 25팀 + 학원축구 16팀 + 클럽팀 9팀. 비용/감독/성적/진학 종합 분석. 월드컵FC 상세 프로파일 포함.</div>
+    </div>
+    <div class="card-bottom">
+      <div class="card-stat">팀 <strong>50</strong>개 | 100점 매트릭스</div>
+      <div class="card-arrow">&rarr;</div>
+    </div>
+  </a>
+
+  <a href="고등학교_U18_축구_생태계_보고서.html" class="page-card">
+    <div class="card-bar bar-high"></div>
+    <div class="card-top">
+      <div class="card-icon">&#127941;</div>
+      <div class="card-cat high">HIGH SCHOOL</div>
+      <div class="card-title">고등학교 U-18</div>
+      <div class="card-desc">K리그 유스 U-18, 전국 197개 고교 축구부, 클럽형 팀. 백록기/대통령금배 등 15개 대회. 프로 진출 경로.</div>
+    </div>
+    <div class="card-bottom">
+      <div class="card-stat">팀 <strong>197</strong>개 | 대회 <strong>15</strong>개</div>
+      <div class="card-arrow">&rarr;</div>
+    </div>
+  </a>
+</div>
+
+<!-- 현재 상황 -->
+<div class="situation">
+  <h3>현재 상황</h3>
+  <p>6학년 선수가 <strong>수원월드컵FC</strong>(클럽팀) 오퍼를 수령한 상태.<br>
+  2024 추계 전국 U15 <strong>준우승</strong> 실적 확인. 허남철 감독(울산현대 드래프트 출신).<br>
+  <strong>K리그 유스 셀렉션 병행 전략</strong>을 최종 권고합니다. &rarr; <a href="중등축구_진학_전수조사_보고서.html#sec10" style="color:var(--primary);font-weight:700">상세 전략 보기</a></p>
+</div>
+
+<!-- 진학 플로우 -->
+<div class="overview">
+  <h2>축구 선수 성장 경로</h2>
+  <div class="flow">
+    <div class="flow-item flow-el">초등 U-12<span class="flow-sub">유소년 클럽 / 학교팀</span></div>
+    <div class="flow-arrow">&rarr;</div>
+    <div class="flow-item flow-mid">중등 U-15<span class="flow-sub">K리그유스 / 학원 / 클럽</span></div>
+    <div class="flow-arrow">&rarr;</div>
+    <div class="flow-item flow-high">고등 U-18<span class="flow-sub">K리그유스 / 학원 / 클럽</span></div>
+    <div class="flow-arrow">&rarr;</div>
+    <div class="flow-item flow-pro">프로<span class="flow-sub">K리그 / 해외 / 대학</span></div>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card"><div class="stat-num">200+</div><div class="stat-label">초등 팀</div></div>
+    <div class="stat-card"><div class="stat-num">50</div><div class="stat-label">중등 팀 (상세분석)</div></div>
+    <div class="stat-card"><div class="stat-num">197</div><div class="stat-label">고등 팀</div></div>
+    <div class="stat-card"><div class="stat-num">39%</div><div class="stat-label">K리그 유스 출신 비율</div></div>
+  </div>
+
+  <h2 style="margin-top:32px">보고서별 핵심 포인트</h2>
+  <div style="overflow-x:auto;margin-top:16px">
+  <table style="width:100%;border-collapse:collapse;font-size:14px">
+    <thead><tr style="background:var(--primary);color:#fff">
+      <th style="padding:12px 16px;text-align:left;border-radius:8px 0 0 0">구분</th>
+      <th style="padding:12px 16px;text-align:left">핵심 발견</th>
+      <th style="padding:12px 16px;text-align:left">주목 팀</th>
+      <th style="padding:12px 16px;text-align:left;border-radius:0 8px 0 0">액션 아이템</th>
+    </tr></thead>
+    <tbody>
+      <tr style="border-bottom:1px solid #f0f0f0">
+        <td style="padding:12px 16px;font-weight:700;color:var(--info)">초등 U-12</td>
+        <td style="padding:12px 16px">K리그 유스 U-12 무상 / 아카데미 월 6~20만원</td>
+        <td style="padding:12px 16px">포항제철동초(소년체전 2연패), 대동초(해외파 다수)</td>
+        <td style="padding:12px 16px">유소년기는 즐거운 축구가 핵심. 과도한 경쟁 주의</td>
+      </tr>
+      <tr style="border-bottom:1px solid #f0f0f0;background:#f8f9fa">
+        <td style="padding:12px 16px;font-weight:700;color:var(--primary)">중등 U-15</td>
+        <td style="padding:12px 16px">클럽팀(천안축구센터) 5관왕. 유스 출신 프로 39%</td>
+        <td style="padding:12px 16px"><strong>수원월드컵FC(2024 준우승)</strong>, 수원삼성(유스 최강)</td>
+        <td style="padding:12px 16px">월드컵FC 직접 방문 + K리그 유스 셀렉션 병행</td>
+      </tr>
+      <tr>
+        <td style="padding:12px 16px;font-weight:700;color:var(--danger)">고등 U-18</td>
+        <td style="padding:12px 16px">개성고 2025 3관왕. 인천대건고 해외파 최다 배출</td>
+        <td style="padding:12px 16px">개성고, 인천대건고, 금호고, 덕영고</td>
+        <td style="padding:12px 16px">중학교 선택이 고교 진학을 결정. 피더 라인 확인</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="footer">
+  <p><strong>축구 진학 컨설팅 그룹</strong> &mdash; 데이터분석가 / 필드스카우트 / 운영감사 / 전략기획가</p>
+  <p style="margin-top:8px;color:#aaa">조사일: 2026-04-04 &middot; 공개 자료 기반 추정치 &middot; 의사결정 전 직접 방문 확인 필수</p>
+</div>
+
+</div>
+</body>
+</html>

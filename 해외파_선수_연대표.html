@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>대한민국 해외 진출 축구선수 연대표</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#1a5632;--accent:#d4a017;--info:#2471a3;--danger:#c0392b;--dark:#1a1a2e;--bg:#f8f9fa;--card-bg:#fff;--text:#333;--text-light:#6c757d;--radius:12px;--shadow:0 2px 12px rgba(0,0,0,.08)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{text-decoration:none;color:inherit}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#0d2b1a 0%,#1a5632 40%,#2d7a4f 70%,#1a4a2e 100%);color:#fff;padding:80px 20px 60px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hero h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;margin-bottom:12px;position:relative}
+.hero h1 span{color:var(--accent)}
+.hero p{font-size:clamp(0.9rem,2vw,1.1rem);opacity:.85;max-width:600px;margin:0 auto;position:relative}
+
+/* Container */
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* Section */
+.section{padding:50px 0}
+.section-title{font-size:1.5rem;font-weight:900;color:var(--primary);margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.section-title::before{content:'';width:4px;height:28px;background:var(--accent);border-radius:2px;flex-shrink:0}
+.section-desc{color:var(--text-light);margin-bottom:30px;font-size:.95rem}
+
+/* Filter Bar */
+.filter-bar{background:#fff;border-radius:var(--radius);padding:20px;margin-bottom:30px;box-shadow:var(--shadow);display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.filter-group{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.filter-group label{font-size:.8rem;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:.5px}
+.filter-btn{padding:6px 14px;border:1.5px solid #e0e0e0;border-radius:20px;font-size:.82rem;font-weight:500;cursor:pointer;background:#fff;color:var(--text);transition:all .2s;font-family:inherit}
+.filter-btn:hover{border-color:var(--primary);color:var(--primary)}
+.filter-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.filter-btn.active-accent{background:var(--accent);color:#fff;border-color:var(--accent)}
+select.filter-select{padding:6px 12px;border:1.5px solid #e0e0e0;border-radius:20px;font-size:.82rem;font-family:inherit;cursor:pointer;background:#fff;outline:none}
+.filter-divider{width:1px;height:30px;background:#e0e0e0;margin:0 4px}
+
+/* Card Grid */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.player-card{background:#fff;border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);cursor:pointer;transition:all .25s;position:relative;border:2px solid transparent}
+.player-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.12);border-color:var(--primary)}
+.player-card.selected{border-color:var(--accent);background:#fffdf5}
+.card-check{position:absolute;top:12px;right:12px;width:22px;height:22px;border-radius:50%;border:2px solid #ccc;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;background:#fff;z-index:2}
+.card-check.checked{background:var(--accent);border-color:var(--accent);color:#fff}
+.card-check.checked::after{content:'✓';font-size:13px;font-weight:700}
+.card-top{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.avatar{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:900;color:#fff;flex-shrink:0;letter-spacing:-1px}
+.card-info h3{font-size:1.05rem;font-weight:700;margin-bottom:2px}
+.card-info .pos-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.7rem;font-weight:700;background:#e8f5e9;color:var(--primary)}
+.card-meta{font-size:.8rem;color:var(--text-light);display:flex;flex-direction:column;gap:4px;margin-top:6px}
+.card-meta span{display:flex;align-items:center;gap:4px}
+.card-club{font-weight:600;color:var(--info)}
+.card-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px}
+.tag{padding:2px 8px;border-radius:8px;font-size:.68rem;font-weight:600}
+.tag-active{background:#e8f5e9;color:#1a5632}
+.tag-legend{background:#fef3e2;color:#b8860b}
+.tag-route{background:#e8eaf6;color:#3949ab}
+
+/* Floating Compare Button */
+.compare-float{position:fixed;bottom:30px;right:30px;background:var(--accent);color:#fff;border:none;padding:14px 28px;border-radius:30px;font-size:.95rem;font-weight:700;font-family:inherit;cursor:pointer;box-shadow:0 4px 20px rgba(212,160,23,.4);z-index:90;display:none;transition:all .3s;animation:pulse 2s infinite}
+.compare-float:hover{transform:scale(1.05)}
+@keyframes pulse{0%,100%{box-shadow:0 4px 20px rgba(212,160,23,.4)}50%{box-shadow:0 4px 30px rgba(212,160,23,.7)}}
+
+/* Path Type Cards */
+.path-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.path-card{background:#fff;border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);border-top:4px solid var(--primary)}
+.path-card.type-overseas{border-top-color:var(--info)}
+.path-card.type-kleague{border-top-color:var(--primary)}
+.path-card.type-youth{border-top-color:var(--danger)}
+.path-card h3{font-size:1.1rem;font-weight:700;margin-bottom:6px}
+.path-card .path-desc{font-size:.85rem;color:var(--text-light);margin-bottom:12px}
+.path-card .path-players{display:flex;flex-wrap:wrap;gap:6px}
+.path-card .path-player{padding:4px 10px;background:var(--bg);border-radius:8px;font-size:.8rem;font-weight:500}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;display:none;align-items:flex-start;justify-content:center;padding:30px 16px;overflow-y:auto}
+.modal-overlay.show{display:flex}
+.modal{background:#fff;border-radius:16px;max-width:800px;width:100%;max-height:calc(100vh - 60px);overflow-y:auto;position:relative;animation:modalIn .3s}
+@keyframes modalIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.modal-close{position:sticky;top:0;float:right;width:36px;height:36px;border-radius:50%;border:none;background:rgba(0,0,0,.08);font-size:1.2rem;cursor:pointer;z-index:5;margin:12px 12px 0 0}
+.modal-header{padding:30px 30px 20px;border-bottom:1px solid #eee}
+.modal-header h2{font-size:1.4rem;font-weight:900}
+.modal-header .modal-sub{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;font-size:.85rem;color:var(--text-light)}
+.modal-header .modal-sub span{display:flex;align-items:center;gap:4px}
+.modal-body{padding:30px}
+
+/* Timeline */
+.timeline{position:relative;padding-left:30px}
+.timeline::before{content:'';position:absolute;left:12px;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--primary),var(--accent),var(--info))}
+.tl-item{position:relative;margin-bottom:24px;padding-bottom:4px}
+.tl-item::before{content:'';position:absolute;left:-23px;top:4px;width:14px;height:14px;border-radius:50%;background:var(--primary);border:3px solid #fff;box-shadow:0 0 0 2px var(--primary);z-index:1}
+.tl-item.tl-overseas::before{background:var(--info);box-shadow:0 0 0 2px var(--info)}
+.tl-item.tl-natl::before{background:var(--danger);box-shadow:0 0 0 2px var(--danger)}
+.tl-stage{font-size:.7rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+.tl-title{font-size:.95rem;font-weight:700;margin-bottom:2px}
+.tl-detail{font-size:.82rem;color:var(--text-light);line-height:1.5}
+.tl-highlight{background:#fffde7;padding:2px 6px;border-radius:4px;font-weight:600;color:#b8860b}
+.tl-fee{display:inline-block;padding:2px 8px;background:#e3f2fd;border-radius:6px;font-weight:700;color:var(--info);font-size:.78rem;margin-top:2px}
+
+/* Compare Modal */
+.compare-grid{display:grid;gap:0;overflow-x:auto}
+.compare-row{display:contents}
+.compare-cell{padding:12px 14px;border-bottom:1px solid #f0f0f0;font-size:.82rem}
+.compare-cell.header-cell{background:var(--bg);font-weight:700;font-size:.75rem;color:var(--text-light);text-transform:uppercase;position:sticky;left:0;z-index:1}
+.compare-cell.player-name{background:var(--primary);color:#fff;font-weight:700;text-align:center;font-size:.9rem;padding:14px 10px}
+.compare-cell .compare-val{font-weight:600}
+.compare-cell .compare-sub{font-size:.75rem;color:var(--text-light);margin-top:2px}
+.compare-common{background:#e8f5e9;padding:4px 8px;border-radius:6px;font-size:.78rem;color:#1a5632;font-weight:600;display:inline-block;margin:2px}
+.compare-diff{background:#fce4ec;padding:4px 8px;border-radius:6px;font-size:.78rem;color:#c0392b;font-weight:600;display:inline-block;margin:2px}
+
+/* Responsive */
+@media(max-width:768px){
+  .filter-bar{flex-direction:column;align-items:flex-start}
+  .filter-divider{display:none}
+  .card-grid{grid-template-columns:1fr 1fr}
+  .modal{border-radius:12px}
+  .modal-header,.modal-body{padding:20px}
+  .compare-float{bottom:16px;right:16px;padding:12px 20px;font-size:.85rem}
+}
+@media(max-width:480px){
+  .card-grid{grid-template-columns:1fr}
+  .hero{padding:60px 16px 40px}
+}
+
+/* Scrollbar */
+.modal::-webkit-scrollbar{width:6px}
+.modal::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px}
+
+/* Badge colors by position */
+.pos-fw{background:#ffebee;color:#c62828}
+.pos-mf{background:#e8f5e9;color:#2e7d32}
+.pos-df{background:#e3f2fd;color:#1565c0}
+.pos-gk{background:#fff3e0;color:#e65100}
+</style>
+</head>
+<body>
+
+<!-- GNB -->
+<nav style="background:#fff;border-bottom:1px solid #e0e0e0;padding:0 20px;position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(0,0,0,.06)">
+  <div style="max-width:960px;margin:0 auto;display:flex;align-items:center;height:52px;gap:8px;flex-wrap:wrap">
+    <a href="index.html" style="font-weight:900;font-size:15px;color:#1a5632;text-decoration:none;margin-right:16px;white-space:nowrap">축구진학<span style="color:#d4a017">리포트</span></a>
+    <a href="index.html" style="padding:6px 14px;text-decoration:none;font-size:13px;font-weight:500;color:#6c757d;border-radius:8px">HOME</a>
+    <a href="초등U12_축구_생태계_보고서.html" style="padding:6px 14px;text-decoration:none;font-size:13px;font-weight:500;color:#6c757d;border-radius:8px;border-left:3px solid #2471a3">초등 U-12</a>
+    <a href="중등축구_진학_전수조사_보고서.html" style="padding:6px 14px;text-decoration:none;font-size:13px;font-weight:500;color:#6c757d;border-radius:8px;border-left:3px solid #1a5632">중등 U-15</a>
+    <a href="고등학교_U18_축구_생태계_보고서.html" style="padding:6px 14px;text-decoration:none;font-size:13px;font-weight:500;color:#6c757d;border-radius:8px;border-left:3px solid #c0392b">고등 U-18</a>
+    <a href="해외파_선수_연대표.html" style="padding:6px 14px;text-decoration:none;font-size:13px;font-weight:500;color:#fff;border-radius:8px;background:#d4a017">롤모델</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <h1>대한민국 해외 진출 축구선수 <span>연대표</span></h1>
+  <p>초등학교부터 해외 무대까지 --- 20명의 성장 경로를 인터랙티브로 비교 분석합니다</p>
+</section>
+
+<!-- Section 2: Player Cards -->
+<section class="section">
+<div class="container">
+  <h2 class="section-title">선수 카드</h2>
+  <p class="section-desc">카드를 클릭하면 상세 경력 타임라인을, 체크박스로 2~4명을 선택하면 비교 분석이 가능합니다.</p>
+
+  <div class="filter-bar" id="filterBar">
+    <div class="filter-group">
+      <label>상태</label>
+      <button class="filter-btn active" data-filter="status" data-value="all">전체</button>
+      <button class="filter-btn" data-filter="status" data-value="active">현역</button>
+      <button class="filter-btn" data-filter="status" data-value="legend">레전드</button>
+    </div>
+    <div class="filter-divider"></div>
+    <div class="filter-group">
+      <label>포지션</label>
+      <button class="filter-btn active" data-filter="pos" data-value="all">전체</button>
+      <button class="filter-btn" data-filter="pos" data-value="FW">FW</button>
+      <button class="filter-btn" data-filter="pos" data-value="MF">MF</button>
+      <button class="filter-btn" data-filter="pos" data-value="DF">DF</button>
+    </div>
+    <div class="filter-divider"></div>
+    <div class="filter-group">
+      <label>진출경로</label>
+      <button class="filter-btn active" data-filter="route" data-value="all">전체</button>
+      <button class="filter-btn" data-filter="route" data-value="유소년해외직행">유소년해외직행</button>
+      <button class="filter-btn" data-filter="route" data-value="K리그경유">K리그경유</button>
+      <button class="filter-btn" data-filter="route" data-value="프로유스일관">프로유스일관</button>
+    </div>
+    <div class="filter-divider"></div>
+    <div class="filter-group">
+      <label>정렬</label>
+      <select class="filter-select" id="sortSelect">
+        <option value="age">나이순 (어린순)</option>
+        <option value="age-desc">나이순 (연장자순)</option>
+        <option value="fee">해외 이적료순</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="card-grid" id="cardGrid"></div>
+</div>
+</section>
+
+<!-- Section 3: Path Type Analysis -->
+<section class="section" style="background:#fff;padding-top:50px;padding-bottom:60px">
+<div class="container">
+  <h2 class="section-title">성장 경로 유형 분석</h2>
+  <p class="section-desc">해외 진출 한국 축구선수들의 3가지 대표적 성장 경로 유형</p>
+  <div class="path-cards" id="pathCards"></div>
+</div>
+</section>
+
+<!-- Floating Compare Button -->
+<button class="compare-float" id="compareBtn" onclick="openCompare()">
+  선택한 선수 비교하기 (<span id="compareCount">0</span>명)
+</button>
+
+<!-- Detail Modal -->
+<div class="modal-overlay" id="detailModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('detailModal')">&times;</button>
+    <div class="modal-header" id="modalHeader"></div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- Compare Modal -->
+<div class="modal-overlay" id="compareModal">
+  <div class="modal" style="max-width:1100px">
+    <button class="modal-close" onclick="closeModal('compareModal')">&times;</button>
+    <div class="modal-header"><h2>선수 비교 분석</h2></div>
+    <div class="modal-body" id="compareBody" style="overflow-x:auto"></div>
+  </div>
+</div>
+
+<script>
+// ========== PLAYER DATA ==========
+const players = [
+  {
+    id:1, name:'손흥민', birth:1992, position:'윙어/ST', posGroup:'FW', club:'토트넘', league:'EPL', country:'잉글랜드',
+    status:'active', route:'프로유스일관', fee:3000, feeUnit:'만€',
+    timeline:[
+      {stage:'초등',title:'부안초 (춘천)',period:'~2004',detail:'아버지 손웅정의 개인 교습으로 기초 훈련',highlight:''},
+      {stage:'중학',title:'육민관중 → 동북중',period:'2005~2007',detail:'중학교 시절 재능 발현',highlight:''},
+      {stage:'고등',title:'동북고 (FC서울 U-18)',period:'2008~2009',detail:'16세에 독일 유학 결정',highlight:'16세 독일 유학'},
+      {stage:'해외',title:'함부르크 HSV',period:'2008~2013',detail:'독일 분데스리가 데뷔',highlight:'',overseas:true},
+      {stage:'해외',title:'레버쿠젠',period:'2013~2015',detail:'이적료 1,000만€',highlight:'',fee:'1,000만€',overseas:true},
+      {stage:'해외',title:'토트넘 홋스퍼',period:'2015~현재',detail:'이적료 3,000만€ / EPL 골든부트 / 푸슈카시상 수상',highlight:'EPL 골든부트, 푸슈카시상',fee:'3,000만€',overseas:true}
+    ],
+    national:'A매치 137경기 53골, 월드컵 3회 출전',
+    note:'아시아 최고의 공격수, EPL 득점왕'
+  },
+  {
+    id:2, name:'김민재', birth:1996, position:'CB', posGroup:'DF', club:'바이에른 뮌헨', league:'분데스리가', country:'독일',
+    status:'active', route:'K리그경유', fee:5000, feeUnit:'만€',
+    timeline:[
+      {stage:'초등',title:'두룡초 (통영)',period:'~2008',detail:'통영 지역 축구 시작',highlight:''},
+      {stage:'중학',title:'연초중',period:'2009~2011',detail:'센터백 전향',highlight:'센터백 전향'},
+      {stage:'고등',title:'통영 지역 고등학교',period:'2012~2014',detail:'',highlight:''},
+      {stage:'대학',title:'연세대학교',period:'2015~2016',detail:'2학년 자퇴 후 프로 전향',highlight:'2학년 자퇴'},
+      {stage:'프로',title:'경주한수원 → 전북현대',period:'2017~2019',detail:'K리그 베스트11',highlight:''},
+      {stage:'해외',title:'베이징 궈안',period:'2019~2021',detail:'중국 슈퍼리그',highlight:'',overseas:true},
+      {stage:'해외',title:'페네르바체',period:'2021~2022',detail:'터키 리그 활약',highlight:'',overseas:true},
+      {stage:'해외',title:'SSC 나폴리',period:'2022~2023',detail:'이적료 1,950만€ / 세리에A 우승',highlight:'세리에A 우승',fee:'1,950만€',overseas:true},
+      {stage:'해외',title:'바이에른 뮌헨',period:'2023~현재',detail:'이적료 5,000만€ (아시아 역대 최고 이적료)',highlight:'아시아 역대 최고 이적료',fee:'5,000만€',overseas:true}
+    ],
+    national:'A매치 60+ 경기',
+    note:'아시아 역대 최고 이적료 수립 센터백'
+  },
+  {
+    id:3, name:'이강인', birth:2001, position:'AM/윙어', posGroup:'MF', club:'PSG', league:'리그앙', country:'프랑스',
+    status:'active', route:'유소년해외직행', fee:2200, feeUnit:'만€',
+    timeline:[
+      {stage:'초등',title:'인천 (유나이티드 U-12)',period:'~2011',detail:'만 6세부터 유나이티드 U-12 소속',highlight:'만 6세 축구 시작'},
+      {stage:'해외유소년',title:'발렌시아 CF 유소년',period:'2011~2018',detail:'만 10세에 스페인 발렌시아 유소년 입단',highlight:'만 10세 스페인행',overseas:true},
+      {stage:'프로',title:'발렌시아 CF 1군',period:'2018~2021',detail:'17세 1군 데뷔, 코파 델 레이 우승',highlight:'17세 데뷔, 코파 델 레이 우승',overseas:true},
+      {stage:'해외',title:'마요르카 (임대)',period:'2021~2022',detail:'라리가 임대',highlight:'',overseas:true},
+      {stage:'해외',title:'PSG (파리 생제르맹)',period:'2023~현재',detail:'이적료 2,200만€',highlight:'',fee:'2,200만€',overseas:true}
+    ],
+    national:'U-20 월드컵 골든볼 MVP',
+    note:'만 10세 스페인행, 유소년 해외 직행의 대표 사례'
+  },
+  {
+    id:4, name:'황희찬', birth:1996, position:'ST/윙어', posGroup:'FW', club:'울버햄턴', league:'EPL', country:'잉글랜드',
+    status:'active', route:'프로유스일관', fee:150, feeUnit:'억원',
+    timeline:[
+      {stage:'초등',title:'신곡초',period:'~2008',detail:'화랑대기 19골 득점왕, 동원컵 왕중왕전 득점왕',highlight:'화랑대기 19골 득점왕'},
+      {stage:'중학',title:'포항제철중 (U-15)',period:'2009~2011',detail:'왕중왕전 우승',highlight:'왕중왕전 우승'},
+      {stage:'고등',title:'포항제철고 (U-18)',period:'2012~2014',detail:'포항 유스 시스템',highlight:''},
+      {stage:'프로',title:'포항 스틸러스',period:'2014~2018',detail:'K리그 활약',highlight:''},
+      {stage:'해외',title:'잘츠부르크',period:'2018~2020',detail:'오스트리아 리그',highlight:'',overseas:true},
+      {stage:'해외',title:'RB 라이프치히',period:'2020~2021',detail:'이적료 약 120억원',highlight:'',fee:'120억원',overseas:true},
+      {stage:'해외',title:'울버햄턴',period:'2021~현재',detail:'EPL 활약',highlight:'',overseas:true}
+    ],
+    national:'A매치 60+ 경기, 월드컵 2회',
+    note:'포항 유스 출신 프로유스일관 모델'
+  },
+  {
+    id:5, name:'이재성', birth:1992, position:'AM/CM', posGroup:'MF', club:'마인츠', league:'분데스리가', country:'독일',
+    status:'active', route:'K리그경유', fee:50, feeUnit:'억원',
+    timeline:[
+      {stage:'초등',title:'울산 초등학교',period:'~2004',detail:'울산 지역 축구',highlight:''},
+      {stage:'중학',title:'울산 중학교',period:'2005~2007',detail:'',highlight:''},
+      {stage:'고등',title:'학성고',period:'2008~2010',detail:'',highlight:''},
+      {stage:'대학',title:'고려대학교',period:'2011~2014',detail:'대학 축구 활약',highlight:''},
+      {stage:'프로',title:'전북현대',period:'2015~2018',detail:'K리그 활약',highlight:''},
+      {stage:'해외',title:'홀슈타인 킬',period:'2018~2021',detail:'독일 2부 리그',highlight:'',overseas:true},
+      {stage:'해외',title:'마인츠 05',period:'2021~현재',detail:'분데스리가 핵심 미드필더',highlight:'',overseas:true}
+    ],
+    national:'A매치 99경기, 월드컵 2회',
+    note:'대학-K리그-독일 전통적 경로의 모범 사례'
+  },
+  {
+    id:6, name:'황인범', birth:1996, position:'CM', posGroup:'MF', club:'페예노르트', league:'에레디비지', country:'네덜란드',
+    status:'active', route:'K리그경유', fee:60, feeUnit:'억원',
+    timeline:[
+      {stage:'초등',title:'문화초 (대전)',period:'~2008',detail:'대전 지역 축구',highlight:''},
+      {stage:'중학',title:'유성중 (대전시티즌 U-15)',period:'2009~2011',detail:'대전 유소년 시스템',highlight:''},
+      {stage:'고등',title:'충남기계공고 (대전 U-18)',period:'2012~2014',detail:'',highlight:''},
+      {stage:'프로',title:'대전 시티즌',period:'2015~2019',detail:'K리그 핵심 미드필더',highlight:''},
+      {stage:'해외',title:'밴쿠버 화이트캡스',period:'2020',detail:'MLS',highlight:'',overseas:true},
+      {stage:'해외',title:'루빈 카잔',period:'2021~2022',detail:'러시아 리그',highlight:'',overseas:true},
+      {stage:'해외',title:'올림피아코스',period:'2022~2023',detail:'그리스 리그',highlight:'',overseas:true},
+      {stage:'해외',title:'페예노르트',period:'2023~현재',detail:'에레디비지 활약',highlight:'',overseas:true}
+    ],
+    national:'A매치 60+ 경기, 월드컵 2회',
+    note:'K리그 경유 다양한 유럽 리그 경험'
+  },
+  {
+    id:7, name:'정우영', birth:1999, position:'윙어', posGroup:'FW', club:'슈투트가르트', league:'분데스리가', country:'독일',
+    status:'active', route:'K리그경유', fee:80, feeUnit:'억원',
+    timeline:[
+      {stage:'초등',title:'인천 (이회택축구교실 → 인천 U-12)',period:'~2011',detail:'초5 입문, 이회택 축구교실',highlight:'초5 축구 입문'},
+      {stage:'중학',title:'광성중 (인천 U-15)',period:'2012~2014',detail:'인천 유소년',highlight:''},
+      {stage:'고등',title:'인천대건고 (인천 U-18)',period:'2015~2017',detail:'',highlight:''},
+      {stage:'프로',title:'인천 유나이티드',period:'2017~2019',detail:'K리그 데뷔',highlight:''},
+      {stage:'해외',title:'바이에른 뮌헨',period:'2019~2022',detail:'최초 한국인 바이에른 뮌헨 공식 경기 출전',highlight:'최초 한국인 바이에른 공식전',overseas:true},
+      {stage:'해외',title:'SC 프라이부르크',period:'2022~2023',detail:'분데스리가 활약',highlight:'',overseas:true},
+      {stage:'해외',title:'VfB 슈투트가르트',period:'2023~현재',detail:'등번호 10번',highlight:'10번',overseas:true}
+    ],
+    national:'A매치 40+ 경기, 아시안게임 8골 득점왕',
+    note:'초5 늦은 입문에도 바이에른까지 진출'
+  },
+  {
+    id:8, name:'이승우', birth:2001, position:'FW', posGroup:'FW', club:'전북현대', league:'K리그', country:'한국',
+    status:'active', route:'유소년해외직행', fee:30, feeUnit:'억원',
+    timeline:[
+      {stage:'초등',title:'서울 대동초',period:'~2011',detail:'차범근 축구상 수상, 다농 네이션스컵 12골 득점왕',highlight:'차범근 축구상, 다농네이션스컵 12골'},
+      {stage:'중학',title:'광성중 (인천 U-15) → 바르셀로나 유소년',period:'2012~2016',detail:'만 10세 바르셀로나 유소년 입단, 인판틸A 29경기 39골, "코리안 메시"',highlight:'만 10세 바르사, 인판틸A 39골',overseas:true},
+      {stage:'해외',title:'FC 바르셀로나 B',period:'2016~2018',detail:'FIFA 미성년자 이적 징계 3년',highlight:'FIFA 징계',overseas:true},
+      {stage:'해외',title:'엘라스 베로나',period:'2018~2019',detail:'세리에A',highlight:'',overseas:true},
+      {stage:'해외',title:'STVV (신트트라위던)',period:'2019~2021',detail:'벨기에 리그',highlight:'',overseas:true},
+      {stage:'복귀',title:'수원FC → 전북현대',period:'2021~현재',detail:'K리그 복귀',highlight:''}
+    ],
+    national:'A매치 11경기, 아시안게임 금메달',
+    note:'바르셀로나 유소년 출신, FIFA 징계 영향'
+  },
+  {
+    id:9, name:'백승호', birth:1997, position:'CM', posGroup:'MF', club:'버밍엄 시티', league:'EFL 챔피언십', country:'잉글랜드',
+    status:'active', route:'유소년해외직행', fee:20, feeUnit:'억원',
+    timeline:[
+      {stage:'초등',title:'서울 대동초',period:'~2009',detail:'차범근 축구대상 수상',highlight:'차범근 축구대상'},
+      {stage:'중학',title:'매탄중 (수원삼성 U-15) → 바르셀로나',period:'2010~2014',detail:'만 13세 바르셀로나 5년 계약',highlight:'만 13세 바르사 입단',overseas:true},
+      {stage:'해외',title:'FC 바르셀로나 B',period:'2014~2019',detail:'FIFA 징계 영향',highlight:'FIFA 징계',overseas:true},
+      {stage:'해외',title:'지로나 FC',period:'2019~2020',detail:'스페인 리그',highlight:'',overseas:true},
+      {stage:'해외',title:'다름슈타트 98',period:'2020~2022',detail:'독일 2부 리그',highlight:'',overseas:true},
+      {stage:'복귀',title:'전북현대',period:'2022~2023',detail:'K리그',highlight:''},
+      {stage:'해외',title:'버밍엄 시티',period:'2023~현재',detail:'월드컵 브라질전 골 (FIFA 베스트골 후보)',highlight:'월드컵 브라질전 골',overseas:true}
+    ],
+    national:'월드컵 브라질전 골 (FIFA 베스트골)',
+    note:'바르셀로나 유소년 → FIFA 징계 → 역경 극복'
+  },
+  {
+    id:10, name:'조규성', birth:1998, position:'ST', posGroup:'FW', club:'FC 미트윌란', league:'수퍼리가엔', country:'덴마크',
+    status:'active', route:'K리그경유', fee:43, feeUnit:'억원',
+    timeline:[
+      {stage:'초등',title:'이호초 (안산)',period:'~2010',detail:'3학년 때 축구 시작',highlight:'3학년 축구 시작'},
+      {stage:'중학',title:'원곡중',period:'2011~2013',detail:'벤치 생활',highlight:'벤치'},
+      {stage:'고등',title:'안양공고 (FC안양 U-18)',period:'2014~2016',detail:'',highlight:''},
+      {stage:'프로',title:'안산 → 김천상무(군) → 전북현대',period:'2017~2023',detail:'K리그 득점왕 17골',highlight:'K리그 득점왕 17골'},
+      {stage:'해외',title:'FC 미트윌란',period:'2024~현재',detail:'이적료 약 43억원',highlight:'',fee:'43억원',overseas:true}
+    ],
+    national:'월드컵 가나전 멀티골',
+    note:'중학교 벤치에서 월드컵 골잡이로 성장'
+  },
+  {
+    id:11, name:'권창훈', birth:1994, position:'AM/윙어', posGroup:'MF', club:'전북현대', league:'K리그', country:'한국',
+    status:'active', route:'프로유스일관', fee:40, feeUnit:'억원',
+    timeline:[
+      {stage:'초등',title:'서울 양전초',period:'~2006',detail:'',highlight:''},
+      {stage:'중학',title:'중동중',period:'2007~2009',detail:'',highlight:''},
+      {stage:'고등',title:'매탄고 (수원삼성 U-18)',period:'2010~2012',detail:'주장, 10번',highlight:'U-18 주장 10번'},
+      {stage:'프로',title:'수원삼성',period:'2013~2017',detail:'K리그 활약',highlight:''},
+      {stage:'해외',title:'디종 FCO (프랑스)',period:'2017~2020',detail:'리그앙 활약',highlight:'',overseas:true},
+      {stage:'해외',title:'SC 프라이부르크 (독일)',period:'2020~2022',detail:'분데스리가',highlight:'',overseas:true},
+      {stage:'복귀',title:'수원삼성 → 전북현대',period:'2022~현재',detail:'K리그 복귀',highlight:''}
+    ],
+    national:'A매치 43경기 12골',
+    note:'수원 유스 출신 프랑스-독일 진출'
+  },
+  {
+    id:12, name:'배준호', birth:2003, position:'AM/윙어', posGroup:'MF', club:'스토크 시티', league:'EFL 챔피언십', country:'잉글랜드',
+    status:'active', route:'K리그경유', fee:30, feeUnit:'억원',
+    timeline:[
+      {stage:'초등',title:'대구 신흥초 → 반야월초 (대구FC U-12)',period:'~2015',detail:'대구FC 유소년',highlight:''},
+      {stage:'중학',title:'대구 대륜중',period:'2016~2018',detail:'',highlight:''},
+      {stage:'고등',title:'천안제일고 → 평택 진위고',period:'2019~2021',detail:'감독 승부조작 사건으로 전학, 진위FC 창단 멤버',highlight:'승부조작 사건 → 전학'},
+      {stage:'프로',title:'대전 시티즌',period:'2022~2023',detail:'K리그 데뷔',highlight:''},
+      {stage:'해외',title:'스토크 시티',period:'2023~현재',detail:'4년 계약, 10번, 올해의 선수',highlight:'10번, 올해의 선수',overseas:true}
+    ],
+    national:'청소년 대표',
+    note:'역경(승부조작 여파) 극복 후 잉글랜드 진출'
+  },
+  {
+    id:13, name:'양민혁', birth:2006, position:'윙어', posGroup:'FW', club:'토트넘', league:'EPL', country:'잉글랜드',
+    status:'active', route:'K리그경유', fee:100, feeUnit:'억원',
+    timeline:[
+      {stage:'초등',title:'효정초 (수원, 경희FC)',period:'~2018',detail:'',highlight:''},
+      {stage:'중학',title:'속초중 (충남아산→수원월드컵FC→천안FMC)',period:'2019~2021',detail:'다수 유소년 클럽 거침',highlight:''},
+      {stage:'고등',title:'강릉제일고 (강원FC U-18)',period:'2022~2023',detail:'강원FC 유스',highlight:''},
+      {stage:'프로',title:'강원FC',period:'2023~2025',detail:'최연소 기록 다수 수립',highlight:'최연소 기록 다수'},
+      {stage:'해외',title:'토트넘 홋스퍼',period:'2025~현재',detail:'6년 계약',highlight:'6년 계약',overseas:true},
+      {stage:'해외',title:'QPR (임대)',period:'2025',detail:'임대',highlight:'',overseas:true}
+    ],
+    national:'U-17 월드컵',
+    note:'2006년생 최연소 해외파, 손흥민의 후계자'
+  },
+  {
+    id:14, name:'박지성', birth:1981, position:'MF', posGroup:'MF', club:'은퇴', league:'-', country:'-',
+    status:'legend', route:'K리그경유', fee:900, feeUnit:'만€',
+    timeline:[
+      {stage:'초등',title:'신안초 (고흥) → 세류초 (수원)',period:'~1993',detail:'축구부 창단 멤버',highlight:'축구부 창단 멤버'},
+      {stage:'중학',title:'안용중',period:'1994~1996',detail:'무명 선수',highlight:'무명'},
+      {stage:'고등',title:'수원공고',period:'1997~1999',detail:'프로 드래프트 탈락',highlight:'드래프트 탈락'},
+      {stage:'대학',title:'명지대학교',period:'2000~2002',detail:'2002 월드컵 4강 멤버',highlight:'2002 월드컵 4강'},
+      {stage:'해외',title:'교토 퍼플상가 (일본)',period:'2003~2005',detail:'J리그',highlight:'',overseas:true},
+      {stage:'해외',title:'PSV 에인트호번',period:'2003~2005',detail:'에레디비지 우승, UCL 4강',highlight:'에레디비지 우승, UCL 4강',overseas:true},
+      {stage:'해외',title:'맨체스터 유나이티드',period:'2005~2012',detail:'EPL 4회 우승 + UCL 1회 우승',highlight:'EPL 4회 + UCL 우승',overseas:true},
+      {stage:'해외',title:'QPR',period:'2012~2014',detail:'',highlight:'',overseas:true}
+    ],
+    national:'A매치 100경기 13골, 2002 월드컵 4강',
+    note:'드래프트 탈락에서 맨유 레전드까지, 한국 축구 해외파의 개척자'
+  },
+  {
+    id:15, name:'기성용', birth:1989, position:'DM', posGroup:'MF', club:'은퇴', league:'-', country:'-',
+    status:'legend', route:'프로유스일관', fee:108, feeUnit:'억원',
+    timeline:[
+      {stage:'초등',title:'광양제철남초 → 순천중앙초',period:'~2001',detail:'차범근 축구상 대상 수상',highlight:'차범근 축구상 대상'},
+      {stage:'중학',title:'광양제철중 → 호주 유학',period:'2002~2005',detail:'호주 4년반 유학',highlight:'호주 4년반 유학'},
+      {stage:'고등',title:'금호고',period:'2006~2007',detail:'1년 출전 금지',highlight:'1년 출전 금지'},
+      {stage:'프로',title:'FC서울',period:'2008~2010',detail:'K리그 활약',highlight:''},
+      {stage:'해외',title:'셀틱 FC',period:'2010~2012',detail:'스코틀랜드 리그',highlight:'',overseas:true},
+      {stage:'해외',title:'스완지 시티',period:'2012~2018',detail:'구단 역대 최고 이적료 108억원',highlight:'구단 역대 최고 이적료',fee:'108억원',overseas:true},
+      {stage:'해외',title:'뉴캐슬 유나이티드',period:'2018~2020',detail:'',highlight:'',overseas:true},
+      {stage:'복귀',title:'FC서울',period:'2020~2021',detail:'K리그 복귀',highlight:''}
+    ],
+    national:'A매치 110경기, 월드컵 3회',
+    note:'호주 유학 → FC서울 → EPL 진출 독자적 경로'
+  },
+  {
+    id:16, name:'차범근', birth:1953, position:'ST', posGroup:'FW', club:'은퇴', league:'-', country:'-',
+    status:'legend', route:'K리그경유', fee:0, feeUnit:'',
+    timeline:[
+      {stage:'초등',title:'화산초',period:'~1965',detail:'',highlight:''},
+      {stage:'중학',title:'영도중 → 경신중',period:'1966~1968',detail:'필드하키에서 축구로 전향',highlight:'하키→축구 전향'},
+      {stage:'고등',title:'경신고',period:'1969~1971',detail:'',highlight:''},
+      {stage:'대학',title:'고려대학교',period:'1972~1978',detail:'최연소 국가대표 발탁',highlight:'최연소 국대'},
+      {stage:'국내',title:'한국신탁 → 공군',period:'1975~1978',detail:'국내 프로',highlight:''},
+      {stage:'해외',title:'다름슈타트 98',period:'1978~1983',detail:'분데스리가 진출',highlight:'',overseas:true},
+      {stage:'해외',title:'아인트라흐트 프랑크푸르트',period:'1983~1988',detail:'122경기 46골, UEFA컵 우승',highlight:'UEFA컵 우승',overseas:true},
+      {stage:'해외',title:'바이어 레버쿠젠',period:'1988~1989',detail:'155경기 49골',highlight:'',overseas:true}
+    ],
+    national:'A매치 136경기 58골, 분데스리가 통산 308경기 98골 (외국인 최다)',
+    note:'한국 축구 해외 진출의 아버지, 분데스리가 레전드'
+  },
+  {
+    id:17, name:'홍명보', birth:1969, position:'CB/리베로', posGroup:'DF', club:'은퇴', league:'-', country:'-',
+    status:'legend', route:'프로유스일관', fee:0, feeUnit:'',
+    timeline:[
+      {stage:'초등',title:'서울 광장초',period:'~1981',detail:'5학년 때 축구 시작',highlight:'5학년 축구 시작'},
+      {stage:'고등',title:'동북고',period:'1985~1987',detail:'',highlight:''},
+      {stage:'대학',title:'고려대학교',period:'1988~1991',detail:'',highlight:''},
+      {stage:'프로',title:'포항 스틸러스',period:'1992~2002',detail:'데뷔시즌 MVP, ACL 우승',highlight:'데뷔시즌 MVP, ACL 우승'},
+      {stage:'해외',title:'LA 갤럭시 (MLS)',period:'2003~2004',detail:'',highlight:'',overseas:true}
+    ],
+    national:'A매치 136경기, 월드컵 4회 연속 (2002 주장, 4강)',
+    note:'대한민국 축구의 아이콘, 월드컵 4회 연속 출전'
+  },
+  {
+    id:18, name:'이영표', birth:1977, position:'LB', posGroup:'DF', club:'은퇴', league:'-', country:'-',
+    status:'legend', route:'K리그경유', fee:0, feeUnit:'',
+    timeline:[
+      {stage:'초등',title:'안양',period:'~1989',detail:'',highlight:''},
+      {stage:'고등',title:'안양공고',period:'1993~1995',detail:'',highlight:''},
+      {stage:'대학',title:'홍익대학교',period:'1996~1999',detail:'',highlight:''},
+      {stage:'프로',title:'안양 LG',period:'2000~2003',detail:'K리그',highlight:''},
+      {stage:'해외',title:'PSV 에인트호번',period:'2003~2005',detail:'UCL 4강',highlight:'UCL 4강',overseas:true},
+      {stage:'해외',title:'토트넘 홋스퍼',period:'2005~2008',detail:'EPL',highlight:'',overseas:true},
+      {stage:'해외',title:'도르트문트',period:'2008~2009',detail:'분데스리가',highlight:'',overseas:true},
+      {stage:'해외',title:'알힐랄 → 밴쿠버',period:'2009~2012',detail:'',highlight:'',overseas:true}
+    ],
+    national:'A매치 127경기, 2002 월드컵 4강',
+    note:'풀백으로 유럽 빅클럽 3개 거친 선구자'
+  },
+  {
+    id:19, name:'구자철', birth:1989, position:'AM', posGroup:'MF', club:'은퇴', league:'-', country:'-',
+    status:'legend', route:'K리그경유', fee:50, feeUnit:'억원',
+    timeline:[
+      {stage:'초등',title:'서울',period:'~2001',detail:'',highlight:''},
+      {stage:'중학',title:'서울 보인중',period:'2002~2004',detail:'',highlight:''},
+      {stage:'고등',title:'보인고',period:'2005~2007',detail:'',highlight:''},
+      {stage:'대학',title:'연세대학교',period:'2008~2010',detail:'',highlight:''},
+      {stage:'프로',title:'제주 유나이티드',period:'2011',detail:'K리그',highlight:''},
+      {stage:'해외',title:'VfL 볼프스부르크',period:'2011~2014',detail:'분데스리가',highlight:'',overseas:true},
+      {stage:'해외',title:'마인츠 05',period:'2014~2016',detail:'',highlight:'',overseas:true},
+      {stage:'해외',title:'FC 아우크스부르크',period:'2016~2019',detail:'',highlight:'',overseas:true}
+    ],
+    national:'A매치 84경기, 월드컵 2회',
+    note:'분데스리가 3개 클럽 거친 안정적 해외 경력'
+  },
+  {
+    id:20, name:'이청용', birth:1988, position:'윙어', posGroup:'FW', club:'은퇴', league:'-', country:'-',
+    status:'legend', route:'K리그경유', fee:50, feeUnit:'억원',
+    timeline:[
+      {stage:'초등',title:'서울 인헌초',period:'~2000',detail:'축구부 없어 매일 혼자 연습',highlight:'축구부 없이 독학'},
+      {stage:'중학',title:'보인중 → 중퇴 후 FC서울 입단',period:'2001~2003',detail:'중학교 중퇴',highlight:'중퇴 후 FC서울 입단'},
+      {stage:'프로',title:'FC서울',period:'2004~2009',detail:'K리그 MVP',highlight:'K리그 MVP'},
+      {stage:'해외',title:'볼턴 원더러스',period:'2009~2015',detail:'EPL',highlight:'',overseas:true},
+      {stage:'해외',title:'크리스탈 팰리스',period:'2015~2017',detail:'',highlight:'',overseas:true},
+      {stage:'해외',title:'VfL 보훔',period:'2017~2019',detail:'독일 2부',highlight:'',overseas:true},
+      {stage:'복귀',title:'울산 HD',period:'2019~2022',detail:'K리그 복귀',highlight:''}
+    ],
+    national:'A매치 89경기, 2010 월드컵 16강',
+    note:'축구부 없는 초등학교 출신 → K리그 MVP → EPL'
+  }
+];
+
+// ========== AVATAR COLORS ==========
+const avatarColors = ['#1a5632','#2471a3','#c0392b','#8e44ad','#d35400','#16a085','#2c3e50','#c0392b','#27ae60','#e74c3c','#3498db','#9b59b6','#f39c12','#1abc9c','#e67e22','#2980b9','#8e44ad','#d4a017','#34495e','#e74c3c'];
+
+// ========== STATE ==========
+let selectedPlayers = new Set();
+let currentFilters = { status:'all', pos:'all', route:'all' };
+let currentSort = 'age';
+
+// ========== RENDER CARDS ==========
+function getFilteredSorted() {
+  let list = [...players];
+  if (currentFilters.status !== 'all') list = list.filter(p => p.status === currentFilters.status);
+  if (currentFilters.pos !== 'all') list = list.filter(p => p.posGroup === currentFilters.pos);
+  if (currentFilters.route !== 'all') list = list.filter(p => p.route === currentFilters.route);
+  if (currentSort === 'age') list.sort((a,b) => b.birth - a.birth);
+  else if (currentSort === 'age-desc') list.sort((a,b) => a.birth - b.birth);
+  else if (currentSort === 'fee') list.sort((a,b) => {
+    const fa = a.feeUnit.includes('€') ? a.fee * 15 : a.fee;
+    const fb = b.feeUnit.includes('€') ? b.fee * 15 : b.fee;
+    return fb - fa;
+  });
+  return list;
+}
+
+function renderCards() {
+  const grid = document.getElementById('cardGrid');
+  const list = getFilteredSorted();
+  if (list.length === 0) {
+    grid.innerHTML = '<p style="text-align:center;color:#999;padding:40px;grid-column:1/-1">조건에 맞는 선수가 없습니다.</p>';
+    return;
+  }
+  grid.innerHTML = list.map((p,i) => {
+    const initials = p.name.length >= 2 ? p.name[0] + p.name[p.name.length-1] : p.name[0];
+    const color = avatarColors[p.id % avatarColors.length];
+    const sel = selectedPlayers.has(p.id);
+    const posClass = p.posGroup === 'FW' ? 'pos-fw' : p.posGroup === 'MF' ? 'pos-mf' : p.posGroup === 'DF' ? 'pos-df' : 'pos-gk';
+    const statusTag = p.status === 'active' ? '<span class="tag tag-active">현역</span>' : '<span class="tag tag-legend">레전드</span>';
+    const routeTag = `<span class="tag tag-route">${p.route}</span>`;
+    return `<div class="player-card ${sel?'selected':''}" data-id="${p.id}">
+      <div class="card-check ${sel?'checked':''}" onclick="event.stopPropagation();toggleSelect(${p.id})"></div>
+      <div class="card-top">
+        <div class="avatar" style="background:${color}">${initials}</div>
+        <div class="card-info">
+          <h3>${p.name}</h3>
+          <span class="pos-badge ${posClass}">${p.position}</span>
+        </div>
+      </div>
+      <div class="card-meta">
+        <span>&#128197; ${p.birth}년생 (${2026 - p.birth}세)</span>
+        <span class="card-club">&#9917; ${p.club}${p.league !== '-' ? ' ('+p.league+')' : ''}</span>
+        ${p.fee > 0 ? '<span>&#128176; 이적료 ' + p.fee.toLocaleString() + p.feeUnit + '</span>' : ''}
+      </div>
+      <div class="card-tags">${statusTag}${routeTag}</div>
+    </div>`;
+  }).join('');
+
+  grid.querySelectorAll('.player-card').forEach(card => {
+    card.addEventListener('click', () => openDetail(+card.dataset.id));
+  });
+}
+
+// ========== FILTERS ==========
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const filter = btn.dataset.filter;
+    const value = btn.dataset.value;
+    document.querySelectorAll(`.filter-btn[data-filter="${filter}"]`).forEach(b => b.classList.remove('active','active-accent'));
+    btn.classList.add('active');
+    currentFilters[filter] = value;
+    renderCards();
+  });
+});
+document.getElementById('sortSelect').addEventListener('change', e => {
+  currentSort = e.target.value;
+  renderCards();
+});
+
+// ========== SELECT / COMPARE ==========
+function toggleSelect(id) {
+  if (selectedPlayers.has(id)) selectedPlayers.delete(id);
+  else if (selectedPlayers.size < 4) selectedPlayers.add(id);
+  else { alert('최대 4명까지 선택할 수 있습니다.'); return; }
+  updateCompareBtn();
+  renderCards();
+}
+
+function updateCompareBtn() {
+  const btn = document.getElementById('compareBtn');
+  const cnt = document.getElementById('compareCount');
+  cnt.textContent = selectedPlayers.size;
+  btn.style.display = selectedPlayers.size >= 2 ? 'block' : 'none';
+}
+
+// ========== DETAIL MODAL ==========
+function openDetail(id) {
+  const p = players.find(x => x.id === id);
+  if (!p) return;
+  const posClass = p.posGroup === 'FW' ? 'pos-fw' : p.posGroup === 'MF' ? 'pos-mf' : 'pos-df';
+  document.getElementById('modalHeader').innerHTML = `
+    <h2>${p.name}</h2>
+    <div class="modal-sub">
+      <span class="pos-badge ${posClass}">${p.position}</span>
+      <span>&#128197; ${p.birth}년생</span>
+      <span>&#9917; ${p.club}</span>
+      <span>${p.status === 'active' ? '&#127941; 현역' : '&#127942; 레전드'}</span>
+    </div>`;
+
+  let tlHtml = '<div class="timeline">';
+  p.timeline.forEach(t => {
+    const isOverseas = t.overseas ? ' tl-overseas' : '';
+    const stageLabel = {'초등':'초등학교','중학':'중학교','고등':'고등학교','대학':'대학교','프로':'프로(국내)','해외':'해외','해외유소년':'해외 유소년','국내':'국내 프로','복귀':'국내 복귀'}[t.stage] || t.stage;
+    tlHtml += `<div class="tl-item${isOverseas}">
+      <div class="tl-stage">${stageLabel} ${t.period ? '(' + t.period + ')' : ''}</div>
+      <div class="tl-title">${t.title}</div>
+      <div class="tl-detail">${t.detail}${t.highlight ? ' <span class="tl-highlight">' + t.highlight + '</span>' : ''}${t.fee ? ' <span class="tl-fee">' + t.fee + '</span>' : ''}</div>
+    </div>`;
+  });
+  tlHtml += '</div>';
+
+  let natl = '';
+  if (p.national) {
+    natl = `<div class="tl-item tl-natl" style="margin-top:20px;padding-top:16px;border-top:2px dashed #eee">
+      <div class="tl-stage">국가대표</div>
+      <div class="tl-detail">${p.national}</div>
+    </div>`;
+  }
+  let noteHtml = p.note ? `<div style="margin-top:20px;padding:14px;background:#f8f9fa;border-radius:10px;font-size:.88rem"><strong>&#128161; 특이사항:</strong> ${p.note}</div>` : '';
+
+  document.getElementById('modalBody').innerHTML = tlHtml + natl + noteHtml;
+  document.getElementById('detailModal').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+// ========== COMPARE MODAL ==========
+function openCompare() {
+  if (selectedPlayers.size < 2) return;
+  const sel = [...selectedPlayers].map(id => players.find(x => x.id === id));
+  const cols = sel.length;
+  const stages = ['초등','중학','고등','대학','프로','해외','복귀','국가대표','특이사항'];
+  const stageLabels = {'초등':'초등학교','중학':'중학교','고등':'고등학교','대학':'대학교','프로':'프로(국내)','해외':'해외 경력','복귀':'국내 복귀','국가대표':'국가대표','특이사항':'특이사항'};
+
+  let html = `<div class="compare-grid" style="display:grid;grid-template-columns:120px repeat(${cols},1fr)">`;
+
+  // Header row
+  html += '<div class="compare-cell header-cell" style="background:#fff"></div>';
+  sel.forEach(p => {
+    const color = avatarColors[p.id % avatarColors.length];
+    html += `<div class="compare-cell player-name" style="background:${color}">${p.name}<br><span style="font-size:.75rem;opacity:.8">${p.birth}년생 | ${p.position}</span></div>`;
+  });
+
+  stages.forEach(stage => {
+    html += `<div class="compare-cell header-cell">${stageLabels[stage]}</div>`;
+    sel.forEach(p => {
+      if (stage === '국가대표') {
+        html += `<div class="compare-cell"><div class="compare-val">${p.national || '-'}</div></div>`;
+      } else if (stage === '특이사항') {
+        html += `<div class="compare-cell"><div class="compare-val">${p.note || '-'}</div></div>`;
+      } else {
+        const items = p.timeline.filter(t => {
+          if (stage === '해외') return t.stage === '해외' || t.stage === '해외유소년';
+          return t.stage === stage;
+        });
+        if (items.length === 0) {
+          html += '<div class="compare-cell" style="color:#ccc">-</div>';
+        } else {
+          html += '<div class="compare-cell">';
+          items.forEach(t => {
+            html += `<div class="compare-val">${t.title}</div><div class="compare-sub">${t.period || ''}${t.highlight ? ' / ' + t.highlight : ''}${t.fee ? ' / ' + t.fee : ''}</div>`;
+          });
+          html += '</div>';
+        }
+      }
+    });
+  });
+
+  // Common/Difference analysis
+  html += `<div class="compare-cell header-cell" style="border-top:2px solid var(--accent)">공통점 / 차이점</div>`;
+  html += `<div class="compare-cell" style="grid-column:2/-1;border-top:2px solid var(--accent)">`;
+  // Find commonalities
+  const routes = sel.map(p => p.route);
+  const allSameRoute = routes.every(r => r === routes[0]);
+  if (allSameRoute) html += `<span class="compare-common">동일 진출경로: ${routes[0]}</span> `;
+  else html += `<span class="compare-diff">진출경로 상이: ${[...new Set(routes)].join(' vs ')}</span> `;
+
+  const statuses = sel.map(p => p.status);
+  const allSameStatus = statuses.every(s => s === statuses[0]);
+  if (allSameStatus) html += `<span class="compare-common">모두 ${statuses[0]==='active'?'현역':'레전드'}</span> `;
+  else html += `<span class="compare-diff">현역/레전드 혼재</span> `;
+
+  const posGroups = sel.map(p => p.posGroup);
+  const allSamePos = posGroups.every(pg => pg === posGroups[0]);
+  if (allSamePos) html += `<span class="compare-common">동일 포지션 그룹: ${posGroups[0]}</span> `;
+  else html += `<span class="compare-diff">포지션 상이: ${[...new Set(posGroups)].join(' vs ')}</span> `;
+
+  // Check if any share same school
+  const allSchools = sel.map(p => p.timeline.map(t => t.title)).flat();
+  const schoolCounts = {};
+  allSchools.forEach(s => { schoolCounts[s] = (schoolCounts[s]||0)+1; });
+  const shared = Object.entries(schoolCounts).filter(([k,v]) => v > 1).map(([k]) => k);
+  if (shared.length > 0) html += `<br><span class="compare-common" style="margin-top:6px">공통 소속: ${shared.join(', ')}</span>`;
+
+  html += '</div></div>';
+
+  document.getElementById('compareBody').innerHTML = html;
+  document.getElementById('compareModal').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+// ========== CLOSE MODAL ==========
+function closeModal(id) {
+  document.getElementById(id).classList.remove('show');
+  document.body.style.overflow = '';
+}
+document.getElementById('detailModal').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal('detailModal'); });
+document.getElementById('compareModal').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal('compareModal'); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal('detailModal'); closeModal('compareModal'); }});
+
+// ========== PATH TYPE CARDS ==========
+function renderPathCards() {
+  const types = [
+    {
+      cls:'type-overseas', title:'유소년 해외 직행형', icon:'&#9992;',
+      desc:'어린 나이에 해외 유소년 아카데미로 직행. 일찍 유럽 축구 환경에 적응하나 FIFA 징계 등 리스크 존재.',
+      players: players.filter(p => p.route === '유소년해외직행')
+    },
+    {
+      cls:'type-kleague', title:'K리그 경유형', icon:'&#127470;&#127479;',
+      desc:'국내 초중고 → 대학/프로 → K리그 활약 후 해외 이적. 가장 보편적인 경로.',
+      players: players.filter(p => p.route === 'K리그경유')
+    },
+    {
+      cls:'type-youth', title:'프로 유스 일관형', icon:'&#127942;',
+      desc:'국내 프로구단 유소년(U-12~U-18) 시스템을 통해 체계적으로 성장.',
+      players: players.filter(p => p.route === '프로유스일관')
+    }
+  ];
+
+  document.getElementById('pathCards').innerHTML = types.map(t => `
+    <div class="path-card ${t.cls}">
+      <h3>${t.icon} ${t.title} (${t.players.length}명)</h3>
+      <p class="path-desc">${t.desc}</p>
+      <div class="path-players">${t.players.map(p => `<span class="path-player">${p.name} (${p.birth})</span>`).join('')}</div>
+    </div>
+  `).join('');
+}
+
+// ========== INIT ==========
+renderCards();
+renderPathCards();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>대한민국 고등학교(U-18) 축구 생태계 보고서</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+  :root {
+    --primary: #1a5632; --primary-light: #2d8a4e; --primary-bg: #f0f7f2;
+    --accent: #d4a017; --accent-light: #fef9e7;
+    --danger: #c0392b; --danger-light: #fdecea;
+    --info: #2471a3; --info-light: #eaf2f8;
+    --dark: #1a1a2e; --gray: #6c757d; --gray-light: #f8f9fa;
+    --shadow: 0 2px 15px rgba(0,0,0,0.08); --shadow-hover: 0 4px 25px rgba(0,0,0,0.12);
+    --radius: 12px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans KR',-apple-system,sans-serif; background:#f4f6f9; color:#333; line-height:1.7; font-size:15px; }
+
+  /* Hero */
+  .hero { background:linear-gradient(135deg,#1a5632 0%,#0d2b1a 50%,#1a1a2e 100%); color:#fff; padding:60px 40px; position:relative; overflow:hidden; }
+  .hero::before { content:''; position:absolute; top:-50%;left:-50%; width:200%;height:200%; background:radial-gradient(circle at 30% 70%,rgba(212,160,23,.15) 0%,transparent 50%),radial-gradient(circle at 70% 30%,rgba(255,255,255,.05) 0%,transparent 50%); animation:hf 20s ease-in-out infinite; }
+  @keyframes hf { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-2%,2%)} }
+  .hero-content { position:relative; z-index:1; max-width:900px; margin:0 auto; }
+  .hero-badge { display:inline-block; background:rgba(212,160,23,.2); border:1px solid rgba(212,160,23,.4); color:var(--accent); padding:6px 16px; border-radius:20px; font-size:13px; font-weight:500; margin-bottom:20px; letter-spacing:1px; }
+  .hero h1 { font-size:2.4em; font-weight:900; line-height:1.3; margin-bottom:12px; }
+  .hero h1 span { color:var(--accent); }
+  .hero-sub { font-size:1.05em; color:rgba(255,255,255,.7); font-weight:300; margin-bottom:30px; }
+  .hero-meta { display:flex; gap:24px; flex-wrap:wrap; font-size:13px; color:rgba(255,255,255,.6); }
+
+  .container { max-width:960px; margin:0 auto; padding:0 20px; }
+
+  /* TOC */
+  .toc-section { background:#fff; margin:-30px auto 30px; max-width:960px; padding:30px 40px; border-radius:var(--radius); box-shadow:var(--shadow); position:relative; z-index:2; }
+  .toc-title { font-size:14px; text-transform:uppercase; letter-spacing:2px; color:var(--gray); margin-bottom:16px; font-weight:700; }
+  .toc-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:8px; }
+  .toc-item { display:block; padding:10px 14px; color:var(--dark); text-decoration:none; border-radius:8px; font-size:14px; transition:all .2s; border-left:3px solid transparent; }
+  .toc-item:hover { background:var(--primary-bg); border-left-color:var(--primary); color:var(--primary); }
+  .toc-num { color:var(--primary); font-weight:700; margin-right:8px; }
+
+  /* Sections */
+  .section { background:#fff; margin-bottom:24px; border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; max-width:960px; margin-left:auto; margin-right:auto; }
+  .section-header { padding:28px 36px 20px; border-bottom:1px solid #eee; }
+  .section-num { display:inline-block; background:var(--primary); color:#fff; width:32px;height:32px; border-radius:8px; text-align:center; line-height:32px; font-size:14px; font-weight:700; margin-right:12px; vertical-align:middle; }
+  .section-header h2 { display:inline; font-size:1.4em; font-weight:700; color:var(--dark); vertical-align:middle; }
+  .section-body { padding:24px 36px 32px; }
+  h3 { font-size:1.1em; color:var(--primary); margin:28px 0 14px; padding-bottom:8px; border-bottom:2px solid var(--primary-bg); font-weight:700; }
+  h3:first-child { margin-top:0; }
+  h4 { font-size:1em; color:var(--dark); margin:20px 0 10px; font-weight:700; }
+
+  /* Tables */
+  .table-wrap { overflow-x:auto; margin:16px 0; }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  thead th { background:var(--primary); color:#fff; padding:12px 14px; text-align:left; font-weight:500; font-size:13px; white-space:nowrap; }
+  thead th:first-child { border-radius:8px 0 0 0; } thead th:last-child { border-radius:0 8px 0 0; }
+  tbody td { padding:11px 14px; border-bottom:1px solid #f0f0f0; vertical-align:top; }
+  tbody tr:hover { background:#fafbfc; }
+  tbody tr:last-child td { border-bottom:none; }
+  .text-center { text-align:center; }
+  table.alt thead th { background:var(--info); }
+  table.accent thead th { background:#7d6608; }
+  table.danger thead th { background:var(--danger); }
+  tr.highlight { background:var(--accent-light)!important; font-weight:500; }
+  tr.highlight-green { background:#e8f5e9!important; }
+  tr.highlight-red { background:var(--danger-light)!important; }
+
+  /* Cards */
+  .card-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; margin:16px 0; }
+  .card { background:var(--gray-light); border-radius:10px; padding:20px; border:1px solid #eee; transition:all .2s; }
+  .card:hover { box-shadow:var(--shadow-hover); transform:translateY(-2px); }
+  .card-title { font-weight:700; font-size:1em; color:var(--dark); margin-bottom:8px; display:flex; align-items:center; gap:8px; }
+  .card-body { font-size:14px; color:#555; line-height:1.6; }
+
+  /* Profile Cards */
+  .profile-card { background:#fff; border-radius:var(--radius); border:2px solid #eee; overflow:hidden; transition:all .2s; }
+  .profile-card:hover { box-shadow:var(--shadow-hover); transform:translateY(-2px); border-color:var(--primary-light); }
+  .profile-header { background:linear-gradient(135deg,var(--primary),#0d2b1a); color:#fff; padding:20px; }
+  .profile-header h4 { color:#fff; margin:0 0 4px; font-size:1.1em; }
+  .profile-header .sub { color:rgba(255,255,255,.7); font-size:13px; }
+  .profile-body { padding:16px 20px; }
+  .profile-stat { display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid #f0f0f0; font-size:13px; }
+  .profile-stat:last-child { border-bottom:none; }
+  .profile-stat .label { color:var(--gray); }
+  .profile-stat .value { font-weight:700; color:var(--dark); }
+  .profile-badge { display:inline-block; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:700; margin:2px; }
+  .badge-gold { background:var(--accent-light); color:#7d6608; border:1px solid var(--accent); }
+  .badge-green { background:#e8f5e9; color:var(--primary); border:1px solid var(--primary-light); }
+  .badge-blue { background:var(--info-light); color:var(--info); border:1px solid var(--info); }
+  .badge-red { background:var(--danger-light); color:var(--danger); border:1px solid var(--danger); }
+
+  /* Alert */
+  .alert { padding:16px 20px; border-radius:10px; margin:16px 0; font-size:14px; line-height:1.6; display:flex; gap:12px; align-items:flex-start; }
+  .alert-icon { font-size:20px; flex-shrink:0; margin-top:2px; }
+  .alert-success { background:#e8f5e9; border-left:4px solid var(--primary-light); }
+  .alert-warning { background:var(--accent-light); border-left:4px solid var(--accent); }
+  .alert-danger { background:var(--danger-light); border-left:4px solid var(--danger); }
+  .alert-info { background:var(--info-light); border-left:4px solid var(--info); }
+
+  /* Badges */
+  .badge { display:inline-block; padding:3px 10px; border-radius:6px; font-weight:700; font-size:12px; color:#fff; }
+  .badge-primary { background:var(--primary); }
+  .badge-accent { background:var(--accent); }
+  .badge-info { background:var(--info); }
+  .badge-danger { background:var(--danger); }
+  .stars { color:var(--accent); letter-spacing:1px; }
+
+  /* Compare bar */
+  .compare-row { margin:12px 0; } .compare-label { display:flex; justify-content:space-between; font-size:13px; margin-bottom:4px; font-weight:500; }
+  .compare-bar { height:8px; background:#eee; border-radius:4px; overflow:hidden; }
+  .compare-fill { height:100%; border-radius:4px; }
+  .fill-green { background:linear-gradient(90deg,#2d8a4e,#4caf50); }
+  .fill-blue { background:linear-gradient(90deg,#2471a3,#5dade2); }
+  .fill-orange { background:linear-gradient(90deg,#d4a017,#f0c040); }
+  .fill-red { background:linear-gradient(90deg,#c0392b,#e74c3c); }
+
+  /* Filter controls */
+  .filter-bar { display:flex; flex-wrap:wrap; gap:8px; margin:16px 0; align-items:center; }
+  .filter-bar label { font-size:13px; font-weight:700; color:var(--gray); margin-right:4px; }
+  .filter-btn { padding:6px 14px; border:1px solid #ddd; border-radius:20px; background:#fff; font-size:13px; cursor:pointer; transition:all .2s; font-family:inherit; }
+  .filter-btn:hover { border-color:var(--primary); color:var(--primary); }
+  .filter-btn.active { background:var(--primary); color:#fff; border-color:var(--primary); }
+  .filter-sep { width:1px; height:24px; background:#ddd; margin:0 8px; }
+  .search-box { padding:6px 14px; border:1px solid #ddd; border-radius:20px; font-size:13px; width:200px; font-family:inherit; outline:none; }
+  .search-box:focus { border-color:var(--primary); }
+  .team-count { font-size:13px; color:var(--gray); margin-left:auto; }
+  select.filter-select { padding:6px 14px; border:1px solid #ddd; border-radius:20px; font-size:13px; font-family:inherit; outline:none; background:#fff; cursor:pointer; }
+  select.filter-select:focus { border-color:var(--primary); }
+
+  .hidden { display:none!important; }
+
+  .footer { text-align:center; padding:40px 20px; color:var(--gray); font-size:13px; line-height:1.8; }
+
+  /* Scroll to top */
+  .scroll-top { position:fixed; bottom:24px; right:24px; width:44px; height:44px; border-radius:50%; background:var(--primary); color:#fff; border:none; font-size:20px; cursor:pointer; box-shadow:var(--shadow); z-index:100; display:none; transition:all .3s; }
+  .scroll-top:hover { background:var(--primary-light); transform:translateY(-2px); }
+
+  @media(max-width:768px) {
+    .hero { padding:40px 20px; } .hero h1 { font-size:1.6em; }
+    .toc-section { padding:20px; margin:-20px 16px 20px; }
+    .section-header { padding:20px; } .section-body { padding:16px 20px 24px; }
+    .card-grid { grid-template-columns:1fr; }
+    table { font-size:13px; } thead th,tbody td { padding:8px 10px; }
+    .filter-bar { gap:6px; }
+    .search-box { width:100%; }
+    .profile-card { min-width:0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- GNB -->
+<nav style="background:#fff;border-bottom:1px solid #e0e0e0;padding:0 20px;position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(0,0,0,.06)">
+  <div style="max-width:960px;margin:0 auto;display:flex;align-items:center;height:52px;gap:8px;flex-wrap:wrap">
+    <a href="index.html" style="font-weight:900;font-size:15px;color:#1a5632;text-decoration:none;margin-right:16px;white-space:nowrap">축구진학<span style="color:#d4a017">리포트</span></a>
+    <a href="index.html" style="padding:6px 14px;text-decoration:none;font-size:13px;font-weight:500;color:#6c757d;border-radius:8px">HOME</a>
+    <a href="초등U12_축구_생태계_보고서.html" style="padding:6px 14px;text-decoration:none;font-size:13px;font-weight:500;color:#6c757d;border-radius:8px;border-left:3px solid #2471a3">초등 U-12</a>
+    <a href="중등축구_진학_전수조사_보고서.html" style="padding:6px 14px;text-decoration:none;font-size:13px;font-weight:500;color:#6c757d;border-radius:8px;border-left:3px solid #1a5632">중등 U-15</a>
+    <a href="고등학교_U18_축구_생태계_보고서.html" style="padding:6px 14px;text-decoration:none;font-size:13px;font-weight:500;color:#fff;border-radius:8px;background:#c0392b">고등 U-18</a>
+    <a href="해외파_선수_연대표.html" style="padding:6px 14px;text-decoration:none;font-size:13px;font-weight:500;color:#6c757d;border-radius:8px;border-left:3px solid #d4a017">롤모델</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">U-18 HIGH SCHOOL FOOTBALL ECOSYSTEM</div>
+    <h1>대한민국 <span>고등학교(U-18)</span><br>축구 생태계 보고서</h1>
+    <div class="hero-sub">K리그 유스부터 학원축구, 클럽형까지 - 고교 축구의 모든 것을 한눈에</div>
+    <div class="hero-meta">
+      <span>조사 기준: 2025년 4월</span>
+      <span>대상: U-18 전국 고등학교 축구팀</span>
+      <span>팀 수: K리그1유스 12 | K리그2유스 14 | 학원축구 12+ | 클럽 3</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TOC ===== -->
+<div class="toc-section">
+  <div class="toc-title">목차 Table of Contents</div>
+  <div class="toc-grid">
+    <a href="#sec1" class="toc-item"><span class="toc-num">01</span>고교 축구 대회 체계</a>
+    <a href="#sec2" class="toc-item"><span class="toc-num">02</span>최근 대회 우승팀 종합 (2020~2025)</a>
+    <a href="#sec3" class="toc-item"><span class="toc-num">03</span>팀 리스트업 (필터/정렬)</a>
+    <a href="#sec4" class="toc-item"><span class="toc-num">04</span>명문팀 프로파일 카드</a>
+    <a href="#sec5" class="toc-item"><span class="toc-num">05</span>2025년 최강팀 분석</a>
+  </div>
+</div>
+
+<!-- ===== SECTION 1: 대회 체계 ===== -->
+<div class="section" id="sec1">
+  <div class="section-header">
+    <span class="section-num">1</span>
+    <h2>고교 축구 대회 체계</h2>
+  </div>
+  <div class="section-body">
+    <p style="margin-bottom:16px; color:#555;">대한민국 고등학교(U-18) 축구팀이 참가하는 주요 대회는 약 15개로, 대한축구협회(KFA) 및 대한학원축구연맹이 주관합니다. 대회는 크게 <strong>연맹전(리그형)</strong>, <strong>전국 토너먼트</strong>, <strong>K리그 유스 대회</strong>로 분류됩니다.</p>
+
+    <h3>주요 대회 총람</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>대회명</th>
+            <th>유형</th>
+            <th>주관</th>
+            <th>시기</th>
+            <th>비고</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight">
+            <td>1</td>
+            <td><strong>춘계 고교연맹전</strong></td>
+            <td>리그+토너먼트</td>
+            <td>대한학원축구연맹</td>
+            <td>3~5월</td>
+            <td>전통 연맹전, 시즌 개막 대회</td>
+          </tr>
+          <tr class="highlight">
+            <td>2</td>
+            <td><strong>추계 고교연맹전</strong></td>
+            <td>리그+토너먼트</td>
+            <td>대한학원축구연맹</td>
+            <td>9~11월</td>
+            <td>하반기 연맹전</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><strong>대통령금배 전국고교축구대회</strong></td>
+            <td>토너먼트</td>
+            <td>대한축구협회</td>
+            <td>6~7월</td>
+            <td>고교축구 최고 권위 대회</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td><strong>청룡기 전국고교축구대회</strong></td>
+            <td>토너먼트</td>
+            <td>조선일보사/KFA</td>
+            <td>7~8월</td>
+            <td>전통 명문 대회</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td><strong>백록기 전국고교축구대회</strong></td>
+            <td>토너먼트</td>
+            <td>제주특별자치도</td>
+            <td>1~2월</td>
+            <td>동계 제주 개최</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td><strong>K리그 유스챔피언십 U-18</strong></td>
+            <td>리그+플레이오프</td>
+            <td>한국프로축구연맹</td>
+            <td>연중</td>
+            <td>K리그 소속 유스팀 대상</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td><strong>K리그 주니어 리그</strong></td>
+            <td>리그</td>
+            <td>한국프로축구연맹</td>
+            <td>전기/후기</td>
+            <td>유스팀 리그전(전기+후기)</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td><strong>금강대기 전국고교축구대회</strong></td>
+            <td>토너먼트</td>
+            <td>충남축구협회</td>
+            <td>5~6월</td>
+            <td>충남 개최 전통 대회</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td><strong>무학기 전국고교축구대회</strong></td>
+            <td>토너먼트</td>
+            <td>무학재단/KFA</td>
+            <td>10~11월</td>
+            <td>하반기 주요 토너먼트</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td><strong>전국체전 축구(고등부)</strong></td>
+            <td>토너먼트</td>
+            <td>대한체육회</td>
+            <td>10월</td>
+            <td>시/도 대표 선발전</td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td><strong>왕중왕전(종합선수권)</strong></td>
+            <td>토너먼트</td>
+            <td>대한축구협회</td>
+            <td>12월</td>
+            <td>시즌 마감 최강자전</td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td><strong>문화체육관광부장관배</strong></td>
+            <td>토너먼트</td>
+            <td>문체부/KFA</td>
+            <td>8~9월</td>
+            <td>정부 주관 대회</td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td><strong>백운기 전국고교축구대회</strong></td>
+            <td>토너먼트</td>
+            <td>서울시축구협회</td>
+            <td>4~5월</td>
+            <td>서울 개최</td>
+          </tr>
+          <tr>
+            <td>14</td>
+            <td><strong>부산MBC배 전국축구대회</strong></td>
+            <td>토너먼트</td>
+            <td>부산MBC</td>
+            <td>3~4월</td>
+            <td>부산 개최</td>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td><strong>FA컵 (고교부 참가)</strong></td>
+            <td>토너먼트</td>
+            <td>대한축구협회</td>
+            <td>2~3월(예선)</td>
+            <td>프로/아마 통합 컵대회 예선 참가</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="alert alert-info">
+      <div class="alert-icon">&#9432;</div>
+      <div><strong>대회 위계:</strong> 대통령금배 > 청룡기 > 왕중왕전 순으로 권위가 높으며, K리그 유스챔피언십은 유스팀만 참가하는 별도 체계입니다. 학원축구팀과 유스팀이 함께 참가하는 대회(연맹전, 대통령금배 등)에서의 성적이 팀 평가의 핵심 지표입니다.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 2: 최근 대회 우승팀 종합 ===== -->
+<div class="section" id="sec2">
+  <div class="section-header">
+    <span class="section-num">2</span>
+    <h2>최근 대회 우승팀 종합 (2020~2025)</h2>
+  </div>
+  <div class="section-body">
+    <p style="margin-bottom:16px; color:#555;">2020년부터 2025년까지 주요 대회 우승팀을 연도별로 정리한 매트릭스입니다.</p>
+
+    <h3>주요 대회 우승팀 매트릭스</h3>
+    <div class="table-wrap">
+      <table class="alt">
+        <thead>
+          <tr>
+            <th>대회</th>
+            <th>2020</th>
+            <th>2021</th>
+            <th>2022</th>
+            <th>2023</th>
+            <th>2024</th>
+            <th>2025</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>춘계연맹전</strong></td>
+            <td>곽경근축구클럽</td>
+            <td>-</td>
+            <td>매탄고</td>
+            <td>현풍고</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td><strong>추계연맹전</strong></td>
+            <td>-</td>
+            <td>진주고</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>포천시민U-18</td>
+          </tr>
+          <tr class="highlight">
+            <td><strong>대통령금배</strong></td>
+            <td>-</td>
+            <td>보인고</td>
+            <td>평택진위FC</td>
+            <td>영등포공고</td>
+            <td>영등포공고</td>
+            <td>신평고</td>
+          </tr>
+          <tr>
+            <td><strong>청룡기</strong></td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>개성고</td>
+          </tr>
+          <tr>
+            <td><strong>백록기</strong></td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>덕영고</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td><strong>K리그유스챔피언십</strong></td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>전주영생고</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td><strong>K리그주니어</strong></td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>충남아산U-18(전기)</td>
+            <td>오산고(1위)</td>
+          </tr>
+          <tr>
+            <td><strong>왕중왕전</strong></td>
+            <td>포항제철고</td>
+            <td>-</td>
+            <td>평택진위FC</td>
+            <td>-</td>
+            <td>-</td>
+            <td>개성고</td>
+          </tr>
+          <tr>
+            <td><strong>문체부장관배</strong></td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>제주제일고</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td><strong>백운기</strong></td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>오산고</td>
+          </tr>
+          <tr>
+            <td><strong>부산MBC배</strong></td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>울산현대고</td>
+          </tr>
+          <tr>
+            <td><strong>전국체전</strong></td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>영광FC U-18</td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px; color:var(--gray); margin-top:8px;">* "-" 표기는 해당 데이터가 미확인이거나 대회 미개최를 의미합니다.</p>
+
+    <h3>다관왕 팀 요약</h3>
+    <div class="card-grid">
+      <div class="card" style="border-left:4px solid var(--accent);">
+        <div class="card-title">&#127942; 개성고 (부산아이파크 유스) - 2025 3관왕</div>
+        <div class="card-body">2025년 청룡기 + 왕중왕전 + 1개 대회 석권으로 시즌 3관왕 달성. 부산의 전통 명문이 K리그2 유스로 재편 후 최강 시즌을 보냄.</div>
+      </div>
+      <div class="card" style="border-left:4px solid var(--primary);">
+        <div class="card-title">&#127942; 평택진위FC - 2022 더블</div>
+        <div class="card-body">2020년 창단 불과 2년 만에 2022 왕중왕전 + 대통령금배 동시 우승. 클럽형 팀의 놀라운 약진.</div>
+      </div>
+      <div class="card" style="border-left:4px solid var(--info);">
+        <div class="card-title">&#127942; 영등포공고 - 2023~24 대통령금배 2연패</div>
+        <div class="card-body">고교축구 최고 권위 대회 대통령금배를 2년 연속 제패한 학원축구의 강자.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 3: 팀 리스트업 ===== -->
+<div class="section" id="sec3">
+  <div class="section-header">
+    <span class="section-num">3</span>
+    <h2>팀 리스트업 (필터/정렬)</h2>
+  </div>
+  <div class="section-body">
+    <div class="filter-bar">
+      <label>유형:</label>
+      <button class="filter-btn active" data-type="all" onclick="filterType('all')">전체</button>
+      <button class="filter-btn" data-type="K1유스" onclick="filterType('K1유스')">K리그1 유스</button>
+      <button class="filter-btn" data-type="K2유스" onclick="filterType('K2유스')">K리그2 유스</button>
+      <button class="filter-btn" data-type="학원" onclick="filterType('학원')">학원축구</button>
+      <button class="filter-btn" data-type="클럽" onclick="filterType('클럽')">클럽형</button>
+      <div class="filter-sep"></div>
+      <label>지역:</label>
+      <select class="filter-select" id="regionFilter" onchange="filterRegion(this.value)">
+        <option value="all">전체 지역</option>
+        <option value="서울">서울</option>
+        <option value="인천">인천</option>
+        <option value="경기">경기</option>
+        <option value="부산">부산</option>
+        <option value="대구">대구</option>
+        <option value="광주">광주</option>
+        <option value="대전">대전</option>
+        <option value="울산">울산</option>
+        <option value="강원">강원</option>
+        <option value="충남">충남</option>
+        <option value="충북">충북</option>
+        <option value="전북">전북</option>
+        <option value="전남">전남</option>
+        <option value="경남">경남</option>
+        <option value="경북">경북</option>
+        <option value="제주">제주</option>
+      </select>
+      <div class="filter-sep"></div>
+      <input type="text" class="search-box" id="searchBox" placeholder="팀명/감독/배출선수 검색..." oninput="searchTeam(this.value)">
+      <span class="team-count" id="teamCount">전체 41팀</span>
+    </div>
+
+    <div class="table-wrap">
+      <table id="teamTable">
+        <thead>
+          <tr>
+            <th style="cursor:pointer" onclick="sortTable(0)">팀명 &#8597;</th>
+            <th style="cursor:pointer" onclick="sortTable(1)">유형 &#8597;</th>
+            <th style="cursor:pointer" onclick="sortTable(2)">지역 &#8597;</th>
+            <th>감독</th>
+            <th>주요 배출 선수</th>
+            <th>최근 주요 성적</th>
+          </tr>
+        </thead>
+        <tbody id="teamBody">
+          <!-- K리그1 유스 -->
+          <tr data-type="K1유스" data-region="울산"><td><strong>울산현대고</strong><br><span style="font-size:11px;color:var(--gray)">울산HD 유스</span></td><td><span class="badge badge-primary">K1유스</span></td><td>울산</td><td>이승현</td><td>이을용, 설기현, 양민혁</td><td>2025 부산MBC배 우승</td></tr>
+          <tr data-type="K1유스" data-region="경북"><td><strong>포항제철고</strong><br><span style="font-size:11px;color:var(--gray)">포항 유스</span></td><td><span class="badge badge-primary">K1유스</span></td><td>포항</td><td>황지수</td><td>김륜성, 오재혁</td><td>2020 왕중왕전 우승</td></tr>
+          <tr data-type="K1유스" data-region="전북"><td><strong>전주영생고</strong><br><span style="font-size:11px;color:var(--gray)">전북 유스</span></td><td><span class="badge badge-primary">K1유스</span></td><td>전주</td><td>-</td><td>권경원, 장윤호, 김준홍(MLS)</td><td>2024 유스챔피언십 우승</td></tr>
+          <tr data-type="K1유스" data-region="서울"><td><strong>오산고</strong><br><span style="font-size:11px;color:var(--gray)">FC서울 유스</span></td><td><span class="badge badge-primary">K1유스</span></td><td>서울</td><td>윤시호</td><td>황현수, 김주성</td><td>2025 백운기우승 + K리그주니어 1위</td></tr>
+          <tr data-type="K1유스" data-region="경기"><td><strong>매탄고</strong><br><span style="font-size:11px;color:var(--gray)">수원삼성 유스</span></td><td><span class="badge badge-primary">K1유스</span></td><td>수원</td><td>-</td><td>정상빈, 강현묵 (유럽진출 6명)</td><td>2022 춘계연맹전 우승</td></tr>
+          <tr data-type="K1유스" data-region="인천"><td><strong>인천대건고</strong><br><span style="font-size:11px;color:var(--gray)">인천 유스</span></td><td><span class="badge badge-primary">K1유스</span></td><td>인천</td><td>최재영</td><td>이강인(PSG), 이승우, 정우영(바이에른), 천성훈</td><td>해외파 최다 배출</td></tr>
+          <tr data-type="K1유스" data-region="대구"><td><strong>현풍고</strong><br><span style="font-size:11px;color:var(--gray)">대구FC 유스</span></td><td><span class="badge badge-primary">K1유스</span></td><td>대구</td><td>안재곤</td><td>-</td><td>2023 춘계연맹전 우승</td></tr>
+          <tr data-type="K1유스" data-region="강원"><td><strong>강릉제일고</strong><br><span style="font-size:11px;color:var(--gray)">강원FC 유스</span></td><td><span class="badge badge-primary">K1유스</span></td><td>강릉</td><td>방호진</td><td>-</td><td>-</td></tr>
+          <tr data-type="K1유스" data-region="대전"><td><strong>충남기계공고</strong><br><span style="font-size:11px;color:var(--gray)">대전 유스</span></td><td><span class="badge badge-primary">K1유스</span></td><td>대전</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr data-type="K1유스" data-region="광주"><td><strong>금호고</strong><br><span style="font-size:11px;color:var(--gray)">광주FC 유스</span></td><td><span class="badge badge-primary">K1유스</span></td><td>광주</td><td>최수용</td><td>기성용, 나상호, 엄원상, 허율</td><td>1975 창단 / 대통령금배 3회 우승</td></tr>
+          <tr data-type="K1유스" data-region="제주"><td><strong>제주제일고</strong><br><span style="font-size:11px;color:var(--gray)">제주 유스</span></td><td><span class="badge badge-primary">K1유스</span></td><td>제주</td><td>-</td><td>-</td><td>2023 문체부장관배 우승</td></tr>
+          <tr data-type="K1유스" data-region="경북"><td><strong>용운고</strong><br><span style="font-size:11px;color:var(--gray)">김천상무 유스</span></td><td><span class="badge badge-primary">K1유스</span></td><td>김천</td><td>-</td><td>-</td><td>-</td></tr>
+
+          <!-- K리그2 유스 -->
+          <tr data-type="K2유스" data-region="경기"><td><strong>풍생고</strong><br><span style="font-size:11px;color:var(--gray)">성남FC 유스</span></td><td><span class="badge badge-info">K2유스</span></td><td>성남</td><td>-</td><td>황의조, 홍철, 김치우</td><td>2025 K리그주니어 2위</td></tr>
+          <tr class="highlight" data-type="K2유스" data-region="부산"><td><strong>개성고</strong><br><span style="font-size:11px;color:var(--gray)">부산아이파크 유스</span></td><td><span class="badge badge-info">K2유스</span></td><td>부산</td><td>-</td><td>이호진, 김동윤</td><td><span class="badge badge-accent">2025 3관왕</span></td></tr>
+          <tr data-type="K2유스" data-region="경남"><td><strong>진주고</strong><br><span style="font-size:11px;color:var(--gray)">경남FC 유스</span></td><td><span class="badge badge-info">K2유스</span></td><td>진주</td><td>안승인</td><td>조광래</td><td>2021 추계연맹전 우승</td></tr>
+          <tr data-type="K2유스" data-region="전남"><td><strong>광양제철고</strong><br><span style="font-size:11px;color:var(--gray)">전남 유스</span></td><td><span class="badge badge-info">K2유스</span></td><td>광양</td><td>-</td><td>지동원, 김영광, 윤석영</td><td>-</td></tr>
+          <tr data-type="K2유스" data-region="경기"><td><strong>안양공고</strong><br><span style="font-size:11px;color:var(--gray)">FC안양 유스</span></td><td><span class="badge badge-info">K2유스</span></td><td>안양</td><td>-</td><td>-</td><td>2025 K리그주니어 3위</td></tr>
+          <tr data-type="K2유스" data-region="경기"><td><strong>곽경근축구클럽</strong><br><span style="font-size:11px;color:var(--gray)">부천FC 유스(클럽형)</span></td><td><span class="badge badge-info">K2유스</span></td><td>부천</td><td>-</td><td>-</td><td>2020 춘계연맹전 우승</td></tr>
+          <tr data-type="K2유스" data-region="충남"><td><strong>충남아산 U-18</strong><br><span style="font-size:11px;color:var(--gray)">충남아산 유스</span></td><td><span class="badge badge-info">K2유스</span></td><td>아산</td><td>-</td><td>-</td><td>2024 K리그주니어 전기 무패우승</td></tr>
+          <tr data-type="K2유스" data-region="경기"><td><strong>덕영고</strong><br><span style="font-size:11px;color:var(--gray)">용인FC 유스</span></td><td><span class="badge badge-info">K2유스</span></td><td>용인</td><td>이영진</td><td>김보경, 김진수</td><td>2024 백록기 우승 / 경기권역 10년 연속 우승</td></tr>
+          <tr data-type="K2유스" data-region="충남"><td><strong>천안공고</strong><br><span style="font-size:11px;color:var(--gray)">천안시티 유스</span></td><td><span class="badge badge-info">K2유스</span></td><td>천안</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr data-type="K2유스" data-region="충북"><td><strong>운호고</strong><br><span style="font-size:11px;color:var(--gray)">충북청주 유스</span></td><td><span class="badge badge-info">K2유스</span></td><td>청주</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr data-type="K2유스" data-region="서울"><td><strong>서울이랜드 U-18</strong><br><span style="font-size:11px;color:var(--gray)">서울이랜드 유스</span></td><td><span class="badge badge-info">K2유스</span></td><td>서울</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr data-type="K2유스" data-region="경기"><td><strong>수원FC U-18</strong><br><span style="font-size:11px;color:var(--gray)">수원FC 유스</span></td><td><span class="badge badge-info">K2유스</span></td><td>수원</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr data-type="K2유스" data-region="경기"><td><strong>안산그리너스 U-18</strong><br><span style="font-size:11px;color:var(--gray)">안산그리너스 유스</span></td><td><span class="badge badge-info">K2유스</span></td><td>안산</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr data-type="K2유스" data-region="경기"><td><strong>김포FC U-18</strong><br><span style="font-size:11px;color:var(--gray)">김포FC 유스</span></td><td><span class="badge badge-info">K2유스</span></td><td>김포</td><td>-</td><td>-</td><td>-</td></tr>
+
+          <!-- 학원축구 -->
+          <tr data-type="학원" data-region="서울"><td><strong>보인고</strong></td><td><span class="badge badge-accent">학원</span></td><td>서울</td><td>김형겸</td><td>구자철</td><td>2021 대통령금배 우승 / 1981 창단</td></tr>
+          <tr data-type="학원" data-region="서울"><td><strong>동북고</strong></td><td><span class="badge badge-accent">학원</span></td><td>서울</td><td>-</td><td>이회택, 홍명보, 손흥민</td><td>1954 창단 / 한국축구 역사의 산실</td></tr>
+          <tr data-type="학원" data-region="서울"><td><strong>영등포공고</strong></td><td><span class="badge badge-accent">학원</span></td><td>서울</td><td>-</td><td>-</td><td>2023~24 대통령금배 2연패</td></tr>
+          <tr data-type="학원" data-region="서울"><td><strong>경신고</strong></td><td><span class="badge badge-accent">학원</span></td><td>서울</td><td>-</td><td>차범근, 박항서, 유상철</td><td>1904 창단 / 한국 최고(最古) 축구팀</td></tr>
+          <tr data-type="학원" data-region="인천"><td><strong>부평고</strong></td><td><span class="badge badge-accent">학원</span></td><td>인천</td><td>-</td><td>김남일, 이천수, 이근호</td><td>대통령금배 최다 5회 우승</td></tr>
+          <tr data-type="학원" data-region="충남"><td><strong>신평고</strong></td><td><span class="badge badge-accent">학원</span></td><td>충남(당진)</td><td>유양준 (前수원삼성)</td><td>-</td><td>2025 대통령금배 우승</td></tr>
+          <tr data-type="학원" data-region="충북"><td><strong>청주대성고</strong></td><td><span class="badge badge-accent">학원</span></td><td>청주</td><td>-</td><td>-</td><td>2024 대통령금배 준우승</td></tr>
+          <tr data-type="학원" data-region="대구"><td><strong>대륜고</strong></td><td><span class="badge badge-accent">학원</span></td><td>대구</td><td>-</td><td>-</td><td>2024 문체부장관배 준우승</td></tr>
+          <tr data-type="학원" data-region="전북"><td><strong>전주공고</strong></td><td><span class="badge badge-accent">학원</span></td><td>전주</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr data-type="학원" data-region="전북"><td><strong>이리고</strong></td><td><span class="badge badge-accent">학원</span></td><td>익산</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr data-type="학원" data-region="부산"><td><strong>대동세무고</strong></td><td><span class="badge badge-accent">학원</span></td><td>부산</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr data-type="학원" data-region="부산"><td><strong>동래고</strong></td><td><span class="badge badge-accent">학원</span></td><td>부산</td><td>-</td><td>-</td><td>-</td></tr>
+
+          <!-- 클럽형 -->
+          <tr data-type="클럽" data-region="경기"><td><strong>평택진위FC</strong></td><td><span class="badge badge-danger">클럽</span></td><td>평택</td><td>고재혁</td><td>-</td><td>2022 왕중왕전+대통령금배 우승 (창단 2년)</td></tr>
+          <tr data-type="클럽" data-region="경기"><td><strong>포천시민축구단 U-18</strong></td><td><span class="badge badge-danger">클럽</span></td><td>포천</td><td>홍성호</td><td>-</td><td>추계연맹전 클럽 최초 우승</td></tr>
+          <tr data-type="클럽" data-region="전남"><td><strong>영광FC U-18</strong></td><td><span class="badge badge-danger">클럽</span></td><td>영광</td><td>-</td><td>-</td><td>전국체전 우승</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 4: 명문팀 프로파일 카드 ===== -->
+<div class="section" id="sec4">
+  <div class="section-header">
+    <span class="section-num">4</span>
+    <h2>명문팀 프로파일 카드</h2>
+  </div>
+  <div class="section-body">
+    <p style="margin-bottom:20px; color:#555;">역사, 선수 배출력, 최근 성적을 종합하여 선정한 고교축구 명문팀 5곳의 상세 프로파일입니다.</p>
+
+    <div class="card-grid" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr));">
+
+      <!-- 개성고 -->
+      <div class="profile-card">
+        <div class="profile-header" style="background:linear-gradient(135deg,#d4a017,#7d6608);">
+          <h4 style="margin:0;">&#127942; 개성고 (부산아이파크 유스)</h4>
+          <div class="sub">부산 | K리그2 유스 | <strong>2025 시즌 3관왕</strong></div>
+        </div>
+        <div class="profile-body">
+          <div class="profile-stat"><span class="label">유형</span><span class="value">K리그2 유스</span></div>
+          <div class="profile-stat"><span class="label">소재지</span><span class="value">부산광역시</span></div>
+          <div class="profile-stat"><span class="label">주요 배출</span><span class="value">이호진, 김동윤</span></div>
+          <div class="profile-stat"><span class="label">2025 성적</span><span class="value"><span class="profile-badge badge-gold">청룡기 우승</span><span class="profile-badge badge-gold">왕중왕전 우승</span><span class="profile-badge badge-gold">3관왕</span></span></div>
+          <div class="profile-stat"><span class="label">특징</span><span class="value">부산 전통 명문. 2025 시즌 압도적 경쟁력으로 3관왕 달성</span></div>
+          <div style="margin-top:12px;">
+            <div class="compare-row"><div class="compare-label"><span>대회 성적</span><span>98/100</span></div><div class="compare-bar"><div class="compare-fill fill-orange" style="width:98%"></div></div></div>
+            <div class="compare-row"><div class="compare-label"><span>선수 배출력</span><span>70/100</span></div><div class="compare-bar"><div class="compare-fill fill-blue" style="width:70%"></div></div></div>
+            <div class="compare-row"><div class="compare-label"><span>전통/역사</span><span>80/100</span></div><div class="compare-bar"><div class="compare-fill fill-green" style="width:80%"></div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 인천대건고 -->
+      <div class="profile-card">
+        <div class="profile-header" style="background:linear-gradient(135deg,#2471a3,#1a5276);">
+          <h4 style="margin:0;">&#127758; 인천대건고 (인천 유스)</h4>
+          <div class="sub">인천 | K리그1 유스 | <strong>해외파 최다 배출</strong></div>
+        </div>
+        <div class="profile-body">
+          <div class="profile-stat"><span class="label">유형</span><span class="value">K리그1 유스</span></div>
+          <div class="profile-stat"><span class="label">소재지</span><span class="value">인천광역시</span></div>
+          <div class="profile-stat"><span class="label">감독</span><span class="value">최재영</span></div>
+          <div class="profile-stat"><span class="label">주요 배출</span><span class="value"><span class="profile-badge badge-blue">이강인(PSG)</span><span class="profile-badge badge-blue">이승우</span><span class="profile-badge badge-blue">정우영(바이에른)</span><span class="profile-badge badge-blue">천성훈</span></span></div>
+          <div class="profile-stat"><span class="label">특징</span><span class="value">유럽 빅클럽 진출 선수를 가장 많이 배출한 유스 명가. 기술 중심 육성 철학</span></div>
+          <div style="margin-top:12px;">
+            <div class="compare-row"><div class="compare-label"><span>대회 성적</span><span>65/100</span></div><div class="compare-bar"><div class="compare-fill fill-orange" style="width:65%"></div></div></div>
+            <div class="compare-row"><div class="compare-label"><span>선수 배출력</span><span>99/100</span></div><div class="compare-bar"><div class="compare-fill fill-blue" style="width:99%"></div></div></div>
+            <div class="compare-row"><div class="compare-label"><span>해외 진출</span><span>98/100</span></div><div class="compare-bar"><div class="compare-fill fill-green" style="width:98%"></div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 금호고 -->
+      <div class="profile-card">
+        <div class="profile-header" style="background:linear-gradient(135deg,#1a5632,#0d2b1a);">
+          <h4 style="margin:0;">&#127807; 금호고 (광주FC 유스)</h4>
+          <div class="sub">광주 | K리그1 유스 | <strong>1975 창단 전통명문</strong></div>
+        </div>
+        <div class="profile-body">
+          <div class="profile-stat"><span class="label">유형</span><span class="value">K리그1 유스</span></div>
+          <div class="profile-stat"><span class="label">소재지</span><span class="value">광주광역시</span></div>
+          <div class="profile-stat"><span class="label">감독</span><span class="value">최수용</span></div>
+          <div class="profile-stat"><span class="label">주요 배출</span><span class="value"><span class="profile-badge badge-green">기성용</span><span class="profile-badge badge-green">나상호</span><span class="profile-badge badge-green">엄원상</span><span class="profile-badge badge-green">허율</span></span></div>
+          <div class="profile-stat"><span class="label">성적</span><span class="value">대통령금배 3회 우승</span></div>
+          <div class="profile-stat"><span class="label">특징</span><span class="value">1975년 창단, 반세기 역사. A대표팀급 선수를 꾸준히 배출하는 호남 축구의 산실</span></div>
+          <div style="margin-top:12px;">
+            <div class="compare-row"><div class="compare-label"><span>대회 성적</span><span>85/100</span></div><div class="compare-bar"><div class="compare-fill fill-orange" style="width:85%"></div></div></div>
+            <div class="compare-row"><div class="compare-label"><span>선수 배출력</span><span>95/100</span></div><div class="compare-bar"><div class="compare-fill fill-blue" style="width:95%"></div></div></div>
+            <div class="compare-row"><div class="compare-label"><span>전통/역사</span><span>95/100</span></div><div class="compare-bar"><div class="compare-fill fill-green" style="width:95%"></div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 덕영고 -->
+      <div class="profile-card">
+        <div class="profile-header" style="background:linear-gradient(135deg,#5b2c6f,#1a1a2e);">
+          <h4 style="margin:0;">&#9917; 덕영고 (용인FC 유스)</h4>
+          <div class="sub">용인 | K리그2 유스 | <strong>경기권역 10년 연속 우승</strong></div>
+        </div>
+        <div class="profile-body">
+          <div class="profile-stat"><span class="label">유형</span><span class="value">K리그2 유스</span></div>
+          <div class="profile-stat"><span class="label">소재지</span><span class="value">경기도 용인</span></div>
+          <div class="profile-stat"><span class="label">감독</span><span class="value">이영진</span></div>
+          <div class="profile-stat"><span class="label">주요 배출</span><span class="value"><span class="profile-badge badge-green">김보경</span><span class="profile-badge badge-green">김진수</span></span></div>
+          <div class="profile-stat"><span class="label">최근 성적</span><span class="value">2024 백록기 우승 / 경기권역 10년 연속 우승</span></div>
+          <div class="profile-stat"><span class="label">특징</span><span class="value">경기도 최강자. 꾸준한 프로 배출과 지역 리그 절대 강자</span></div>
+          <div style="margin-top:12px;">
+            <div class="compare-row"><div class="compare-label"><span>대회 성적</span><span>88/100</span></div><div class="compare-bar"><div class="compare-fill fill-orange" style="width:88%"></div></div></div>
+            <div class="compare-row"><div class="compare-label"><span>선수 배출력</span><span>85/100</span></div><div class="compare-bar"><div class="compare-fill fill-blue" style="width:85%"></div></div></div>
+            <div class="compare-row"><div class="compare-label"><span>지역 지배력</span><span>99/100</span></div><div class="compare-bar"><div class="compare-fill fill-green" style="width:99%"></div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 보인고 -->
+      <div class="profile-card">
+        <div class="profile-header" style="background:linear-gradient(135deg,#c0392b,#7b241c);">
+          <h4 style="margin:0;">&#127979; 보인고 (학원축구)</h4>
+          <div class="sub">서울 | 학원축구 | <strong>1981 창단</strong></div>
+        </div>
+        <div class="profile-body">
+          <div class="profile-stat"><span class="label">유형</span><span class="value">학원축구</span></div>
+          <div class="profile-stat"><span class="label">소재지</span><span class="value">서울특별시</span></div>
+          <div class="profile-stat"><span class="label">감독</span><span class="value">김형겸</span></div>
+          <div class="profile-stat"><span class="label">주요 배출</span><span class="value"><span class="profile-badge badge-red">구자철</span></span></div>
+          <div class="profile-stat"><span class="label">최근 성적</span><span class="value">2021 대통령금배 우승</span></div>
+          <div class="profile-stat"><span class="label">특징</span><span class="value">서울 학원축구의 대표 명문. 1981년 창단 이래 꾸준한 전국대회 성적</span></div>
+          <div style="margin-top:12px;">
+            <div class="compare-row"><div class="compare-label"><span>대회 성적</span><span>80/100</span></div><div class="compare-bar"><div class="compare-fill fill-orange" style="width:80%"></div></div></div>
+            <div class="compare-row"><div class="compare-label"><span>선수 배출력</span><span>75/100</span></div><div class="compare-bar"><div class="compare-fill fill-blue" style="width:75%"></div></div></div>
+            <div class="compare-row"><div class="compare-label"><span>전통/역사</span><span>85/100</span></div><div class="compare-bar"><div class="compare-fill fill-green" style="width:85%"></div></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 5: 2025년 최강팀 분석 ===== -->
+<div class="section" id="sec5">
+  <div class="section-header">
+    <span class="section-num">5</span>
+    <h2>2025년 최강팀 분석</h2>
+  </div>
+  <div class="section-body">
+    <p style="margin-bottom:20px; color:#555;">2025 시즌 성적을 기반으로 올해 가장 강력한 경쟁력을 보여준 팀들을 종합 분석합니다.</p>
+
+    <h3>2025 시즌 주요 대회 성적 종합</h3>
+    <div class="table-wrap">
+      <table class="accent">
+        <thead>
+          <tr>
+            <th>순위</th>
+            <th>팀명</th>
+            <th>유형</th>
+            <th>주요 우승/상위 성적</th>
+            <th>종합 평가</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight">
+            <td><span style="display:inline-block;width:28px;height:28px;border-radius:50%;text-align:center;line-height:28px;font-size:13px;font-weight:700;color:#fff;background:#d4a017;">1</span></td>
+            <td><strong>개성고</strong><br><span style="font-size:11px;color:var(--gray)">부산아이파크 유스</span></td>
+            <td>K2유스</td>
+            <td><span class="profile-badge badge-gold">청룡기 우승</span><span class="profile-badge badge-gold">왕중왕전 우승</span><span class="profile-badge badge-gold">+1 대회 우승</span></td>
+            <td><span class="badge badge-accent">3관왕 - 시즌 MVP</span></td>
+          </tr>
+          <tr>
+            <td><span style="display:inline-block;width:28px;height:28px;border-radius:50%;text-align:center;line-height:28px;font-size:13px;font-weight:700;color:#fff;background:#95a5a6;">2</span></td>
+            <td><strong>오산고</strong><br><span style="font-size:11px;color:var(--gray)">FC서울 유스</span></td>
+            <td>K1유스</td>
+            <td><span class="profile-badge badge-green">백운기 우승</span><span class="profile-badge badge-green">K리그주니어 1위</span></td>
+            <td><span class="badge badge-primary">리그+컵 복수 타이틀</span></td>
+          </tr>
+          <tr>
+            <td><span style="display:inline-block;width:28px;height:28px;border-radius:50%;text-align:center;line-height:28px;font-size:13px;font-weight:700;color:#fff;background:#a0522d;">3</span></td>
+            <td><strong>신평고</strong></td>
+            <td>학원축구</td>
+            <td><span class="profile-badge badge-gold">대통령금배 우승</span></td>
+            <td><span class="badge badge-accent">최고 권위 대회 제패</span></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td><strong>울산현대고</strong><br><span style="font-size:11px;color:var(--gray)">울산HD 유스</span></td>
+            <td>K1유스</td>
+            <td><span class="profile-badge badge-green">부산MBC배 우승</span></td>
+            <td>시즌 초반 강세</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td><strong>풍생고</strong><br><span style="font-size:11px;color:var(--gray)">성남FC 유스</span></td>
+            <td>K2유스</td>
+            <td><span class="profile-badge badge-blue">K리그주니어 2위</span></td>
+            <td>리그 안정적 상위권</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td><strong>안양공고</strong><br><span style="font-size:11px;color:var(--gray)">FC안양 유스</span></td>
+            <td>K2유스</td>
+            <td><span class="profile-badge badge-blue">K리그주니어 3위</span></td>
+            <td>리그 상위 약진</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td><strong>포천시민 U-18</strong></td>
+            <td>클럽</td>
+            <td><span class="profile-badge badge-red">추계연맹전 우승</span></td>
+            <td>클럽 최초 연맹전 제패</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>2025 시즌 핵심 트렌드</h3>
+    <div class="card-grid">
+      <div class="card" style="border-left:4px solid var(--accent);">
+        <div class="card-title">&#128293; K리그2 유스의 약진</div>
+        <div class="card-body">개성고(부산)가 3관왕을 달성하며 K리그2 유스팀도 충분히 최정상에 설 수 있음을 증명. K리그1 유스 독주 시대의 종말 신호.</div>
+      </div>
+      <div class="card" style="border-left:4px solid var(--primary);">
+        <div class="card-title">&#9889; FC서울 유스(오산고)의 부활</div>
+        <div class="card-body">윤시호 감독 체제 하에 백운기 우승 + K리그주니어 1위를 기록. 황현수, 김주성 등 주전 선수들의 성장이 돋보이는 시즌.</div>
+      </div>
+      <div class="card" style="border-left:4px solid var(--danger);">
+        <div class="card-title">&#127981; 학원축구의 건재</div>
+        <div class="card-body">신평고가 대통령금배를 제패하며 학원축구팀이 여전히 최고 권위 대회에서 경쟁력을 갖고 있음을 입증. 유양준 감독(前 수원삼성)의 프로 경험이 녹아든 지도력이 핵심.</div>
+      </div>
+      <div class="card" style="border-left:4px solid var(--info);">
+        <div class="card-title">&#128640; 클럽형 팀의 성장</div>
+        <div class="card-body">포천시민 U-18이 추계연맹전에서 클럽 최초 우승을 달성. 평택진위FC(2022)에 이어 클럽형 팀들이 전국 무대에서 존재감을 키우는 추세.</div>
+      </div>
+    </div>
+
+    <h3>개성고 - 2025 시즌 3관왕 심층 분석</h3>
+    <div class="alert alert-warning">
+      <div class="alert-icon">&#127942;</div>
+      <div>
+        <strong>개성고(부산아이파크 유스)</strong>는 2025 시즌 청룡기, 왕중왕전 등 3개 대회를 석권하며 <strong>시즌 3관왕</strong>이라는 경이적 기록을 세웠습니다. K리그2 유스팀이 이 같은 성과를 거둔 것은 극히 이례적이며, 부산 축구의 저력을 다시 한번 입증했습니다.
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px;">
+      <div>
+        <h4>강점 분석</h4>
+        <ul style="font-size:14px; color:#555; padding-left:20px;">
+          <li>토너먼트형 대회에서의 뛰어난 집중력과 멘탈</li>
+          <li>부산아이파크 1군과의 연계 훈련 시스템</li>
+          <li>이호진, 김동윤 등 핵심 선수들의 결정력</li>
+          <li>부산 지역 중학교 유망주 선점 네트워크</li>
+        </ul>
+      </div>
+      <div>
+        <h4>시사점</h4>
+        <ul style="font-size:14px; color:#555; padding-left:20px;">
+          <li>K리그 유스 서열이 1부/2부와 무관함을 입증</li>
+          <li>유스 육성에 대한 구단 투자의 중요성 재확인</li>
+          <li>부산 지역 축구 인프라의 경쟁력</li>
+          <li>학원축구 대비 유스팀의 체계적 육성 우위</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>유형별 전력 비교 (2025 기준)</h3>
+    <div style="margin-top:16px;">
+      <div class="compare-row"><div class="compare-label"><span>K리그1 유스 (오산고, 울산현대고 등)</span><span>88/100</span></div><div class="compare-bar"><div class="compare-fill fill-green" style="width:88%"></div></div></div>
+      <div class="compare-row"><div class="compare-label"><span>K리그2 유스 (개성고, 풍생고, 안양공고 등)</span><span>92/100</span></div><div class="compare-bar"><div class="compare-fill fill-blue" style="width:92%"></div></div></div>
+      <div class="compare-row"><div class="compare-label"><span>학원축구 (신평고, 영등포공고 등)</span><span>78/100</span></div><div class="compare-bar"><div class="compare-fill fill-orange" style="width:78%"></div></div></div>
+      <div class="compare-row"><div class="compare-label"><span>클럽형 (포천시민, 평택진위FC 등)</span><span>72/100</span></div><div class="compare-bar"><div class="compare-fill fill-red" style="width:72%"></div></div></div>
+    </div>
+
+    <div class="alert alert-success" style="margin-top:24px;">
+      <div class="alert-icon">&#128161;</div>
+      <div>
+        <strong>결론:</strong> 2025 시즌은 K리그2 유스팀인 개성고의 3관왕이 가장 큰 이슈입니다. FC서울 유스(오산고)의 부활, 학원축구 신평고의 대통령금배 제패, 클럽형 포천시민의 연맹전 우승 등 다양한 유형의 팀들이 고루 성과를 거두며 <strong>고교축구 생태계의 다양성과 경쟁력</strong>이 한층 강화된 시즌으로 평가됩니다.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+  <p><strong>대한민국 고등학교(U-18) 축구 생태계 보고서</strong></p>
+  <p>조사 기준: 2025년 4월 | 본 보고서는 공개 자료를 기반으로 작성되었습니다.</p>
+  <p>K리그 유스 12팀 + K리그2 유스 14팀 + 학원축구 12팀 + 클럽형 3팀 = 총 41팀 수록</p>
+</div>
+
+<!-- Scroll to top -->
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
+
+<script>
+// === Filter / Search / Sort Logic ===
+let currentType = 'all';
+let currentRegion = 'all';
+let currentSearch = '';
+
+function updateVisibility() {
+  const rows = document.querySelectorAll('#teamBody tr');
+  let count = 0;
+  rows.forEach(row => {
+    const type = row.getAttribute('data-type');
+    const region = row.getAttribute('data-region');
+    const text = row.textContent.toLowerCase();
+    const matchType = currentType === 'all' || type === currentType;
+    const matchRegion = currentRegion === 'all' || region === currentRegion ||
+      (currentRegion === '경기' && ['수원','성남','안양','부천','용인','평택','포천','안산','김포'].some(c => region.includes(c))) ||
+      (currentRegion === '경북' && ['포항','김천'].some(c => region.includes(c))) ||
+      (currentRegion === '경남' && ['진주'].some(c => region.includes(c))) ||
+      (currentRegion === '전남' && ['광양','영광'].some(c => region.includes(c))) ||
+      (currentRegion === '전북' && ['전주','익산'].some(c => region.includes(c))) ||
+      (currentRegion === '충남' && ['아산','천안','당진'].some(c => region.includes(c))) ||
+      (currentRegion === '충북' && ['청주'].some(c => region.includes(c))) ||
+      (currentRegion === '강원' && ['강릉'].some(c => region.includes(c)));
+    const matchSearch = !currentSearch || text.includes(currentSearch.toLowerCase());
+    if (matchType && matchRegion && matchSearch) {
+      row.style.display = '';
+      count++;
+    } else {
+      row.style.display = 'none';
+    }
+  });
+  document.getElementById('teamCount').textContent = '검색 결과: ' + count + '팀';
+}
+
+function filterType(type) {
+  currentType = type;
+  document.querySelectorAll('.filter-btn[data-type]').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-type') === type);
+  });
+  updateVisibility();
+}
+
+function filterRegion(region) {
+  currentRegion = region;
+  updateVisibility();
+}
+
+function searchTeam(query) {
+  currentSearch = query;
+  updateVisibility();
+}
+
+// Sort table
+let sortDir = {};
+function sortTable(colIndex) {
+  const tbody = document.getElementById('teamBody');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+  sortDir[colIndex] = !sortDir[colIndex];
+  rows.sort((a, b) => {
+    const aText = a.children[colIndex].textContent.trim();
+    const bText = b.children[colIndex].textContent.trim();
+    return sortDir[colIndex] ? aText.localeCompare(bText, 'ko') : bText.localeCompare(aText, 'ko');
+  });
+  rows.forEach(row => tbody.appendChild(row));
+}
+
+// Scroll to top button
+window.addEventListener('scroll', () => {
+  document.getElementById('scrollTop').style.display = window.scrollY > 400 ? 'block' : 'none';
+});
+</script>
+
+</body>
+</html>
