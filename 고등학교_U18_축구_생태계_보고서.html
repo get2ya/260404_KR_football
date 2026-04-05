@@ -196,6 +196,22 @@
     .modal-info-grid { grid-template-columns:1fr; }
     .modal-overlay { padding:10px; }
   }
+
+  /* Ecosystem Stats Strip */
+  .stat-strip { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px; margin:20px 0; }
+  .stat-block { background:var(--gray-light,#f8f9fa); border-radius:12px; padding:16px 14px; text-align:center; border:1px solid #eee; }
+  .stat-block .stat-num { font-size:2em; font-weight:900; line-height:1.1; margin-bottom:4px; }
+  .stat-block .stat-label { font-size:12px; color:#6c757d; font-weight:500; line-height:1.4; }
+  .stat-block .stat-sub { font-size:11px; color:#aaa; margin-top:3px; }
+  .stat-block.primary { background:#f0f7f2; border-color:#a9d4b8; }
+  .stat-block.primary .stat-num { color:#1a5632; }
+  .stat-block.info { background:#eaf2f8; border-color:#aed6f1; }
+  .stat-block.info .stat-num { color:#2471a3; }
+  .stat-block.accent { background:#fef9e7; border-color:#f9e79f; }
+  .stat-block.accent .stat-num { color:#856404; }
+  .stat-block.danger { background:#fdecea; border-color:#f1948a; }
+  .stat-block.danger .stat-num { color:#c0392b; }
+  .ecosystem-note { font-size:11px; color:#aaa; margin-top:10px; text-align:right; }
 </style>
 </head>
 <body>
@@ -230,11 +246,116 @@
 <div class="toc-section">
   <div class="toc-title">목차 Table of Contents</div>
   <div class="toc-grid">
-    <a href="#sec1" class="toc-item"><span class="toc-num">01</span>고교 축구 대회 체계</a>
-    <a href="#sec2" class="toc-item"><span class="toc-num">02</span>최근 대회 우승팀 종합 (2020~2025)</a>
-    <a href="#sec3" class="toc-item"><span class="toc-num">03</span>팀 리스트업 (필터/정렬)</a>
-    <a href="#sec4" class="toc-item"><span class="toc-num">04</span>명문팀 프로파일 카드</a>
-    <a href="#sec5" class="toc-item"><span class="toc-num">05</span>2025년 최강팀 분석</a>
+    <a href="#sec0" class="toc-item"><span class="toc-num">01</span>Executive Summary</a>
+    <a href="#sec1" class="toc-item"><span class="toc-num">02</span>고교 축구 대회 체계</a>
+    <a href="#sec2" class="toc-item"><span class="toc-num">03</span>최근 대회 우승팀 종합 (2020~2025)</a>
+    <a href="#sec3" class="toc-item"><span class="toc-num">04</span>팀 리스트업 (필터/정렬)</a>
+    <a href="#sec4" class="toc-item"><span class="toc-num">05</span>명문팀 프로파일 카드</a>
+    <a href="#sec5" class="toc-item"><span class="toc-num">06</span>2025년 최강팀 분석</a>
+  </div>
+</div>
+
+<!-- ===== SECTION 0: Executive Summary ===== -->
+<div class="section" id="sec0">
+  <div class="section-header">
+    <span class="section-num">1</span>
+    <h2>Executive Summary</h2>
+  </div>
+  <div class="section-body">
+
+    <h3>전국 고등 U-18 축구 생태계 규모 개요</h3>
+
+    <div class="stat-strip">
+      <div class="stat-block primary">
+        <div class="stat-num">101</div>
+        <div class="stat-label">본 보고서 수록 팀<br>(전국 주요 팀)</div>
+        <div class="stat-sub">K1유스·K2유스·학원·클럽</div>
+      </div>
+      <div class="stat-block info">
+        <div class="stat-num">26</div>
+        <div class="stat-label">K리그 유스 U-18<br>구단 수</div>
+        <div class="stat-sub">K1 12팀 + K2 14팀</div>
+      </div>
+      <div class="stat-block primary">
+        <div class="stat-num">60+</div>
+        <div class="stat-label">학원축구팀 수<br>(고등 축구부)</div>
+        <div class="stat-sub">전국 고교 축구부 기준</div>
+      </div>
+      <div class="stat-block accent">
+        <div class="stat-num">~40</div>
+        <div class="stat-label">서울/인천 권역<br>참가팀 수</div>
+        <div class="stat-sub">2025년 전반기 기준</div>
+      </div>
+      <div class="stat-block accent">
+        <div class="stat-num">13+</div>
+        <div class="stat-label">주요 전국대회 수<br>(화랑대기 등)</div>
+        <div class="stat-sub">KFA + 지자체 주관</div>
+      </div>
+      <div class="stat-block danger">
+        <div class="stat-num">~39%</div>
+        <div class="stat-label">프로선수 중<br>유스 출신 비율</div>
+        <div class="stat-sub">2025년 기준 (↑ 매년 증가)</div>
+      </div>
+    </div>
+
+    <div class="table-wrap"><table>
+      <thead><tr><th>구분</th><th>팀 수 (수록)</th><th>팀당 선수</th><th>총 선수 추정</th><th>비용</th><th>특징</th></tr></thead>
+      <tbody>
+        <tr class="highlight-green">
+          <td><strong>K리그 유스 U-18</strong><br><small>K1 12 + K2 14 구단</small></td>
+          <td class="text-center"><strong>26팀</strong></td>
+          <td class="text-center">22~28명</td>
+          <td class="text-center"><strong>약 570~730명</strong></td>
+          <td><span class="score score-a">무료</span></td>
+          <td>프로 직행 최단 경로. U-18→2군→1군 파이프라인. 드래프트 면제 가능</td>
+        </tr>
+        <tr class="highlight">
+          <td><strong>학원축구팀</strong><br><small>(고교 소속 축구부)</small></td>
+          <td class="text-center"><strong>62팀</strong></td>
+          <td class="text-center">20~30명</td>
+          <td class="text-center"><strong>약 1,240~1,860명</strong></td>
+          <td><span class="score score-b">소액~중간</span></td>
+          <td>전국 고등리그 주축. 대학 진학 경로 다수. 명문고 → 대학 → 프로 루트</td>
+        </tr>
+        <tr>
+          <td><strong>클럽형 팀</strong></td>
+          <td class="text-center"><strong>13팀</strong></td>
+          <td class="text-center">15~25명</td>
+          <td class="text-center"><strong>약 195~325명</strong></td>
+          <td><span class="score score-c">중간~고비용</span></td>
+          <td>학업 병행 가능. 고교 재학 중 클럽팀 소속 증가 추세</td>
+        </tr>
+        <tr style="background:#f8f9fa;font-weight:700">
+          <td>합계 (수록 팀 기준)</td>
+          <td class="text-center">101팀</td>
+          <td class="text-center">—</td>
+          <td class="text-center"><strong>약 2,000~2,900명</strong></td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table></div>
+    <p class="ecosystem-note">⚠️ AI 분석 · 추정치 포함 — 수록 팀은 전국 주요 팀 기준. 선수 수는 팀당 평균으로 추정. 정확한 수치는 <a href="https://g1.sports.or.kr/stat/stat01.do" target="_blank" style="color:#2471a3">대한체육회 스포츠지원포털</a> 확인</p>
+
+    <h3>고교 진학 핵심 판단 포인트</h3>
+    <div class="card-grid">
+      <div class="card" style="border-left:4px solid #1a5632">
+        <div class="card-title">🏆 K리그 유스 = 프로 최단 경로</div>
+        <div class="card-body">유스 출신 프로 비율 매년 증가(~39%). 대학 미경유 직행 가능. 단, <strong>방출 리스크</strong>도 상존 (3학년 말 평가 필수).</div>
+      </div>
+      <div class="card" style="border-left:4px solid #2471a3">
+        <div class="card-title">🎓 학원팀 → 대학 경로 여전히 유효</div>
+        <div class="card-body">프로선수 중 대학 출신이 여전히 61%. 명문 고교 + 명문 대학 루트는 <strong>장기적 커리어 안정성</strong> 높음.</div>
+      </div>
+      <div class="card" style="border-left:4px solid #d4a017">
+        <div class="card-title">⚡ 화랑대기 = 스카우트 최대 집결</div>
+        <div class="card-body">고교 최대 규모 대회. 프로 구단 스카우트가 이 대회를 가장 집중 관찰. 고3 선수의 <strong>사실상 공개 채용 무대</strong>.</div>
+      </div>
+      <div class="card" style="border-left:4px solid #c0392b">
+        <div class="card-title">⚠️ 비공식 찬조금 관행 주의</div>
+        <div class="card-body">2025년 인천 고교 불법 찬조금 수사 진행 중. 입단 전 비용 서면 명세 요구 필수. 비공식 요구는 즉시 거부.</div>
+      </div>
+    </div>
   </div>
 </div>
 
