@@ -181,6 +181,23 @@
 
   .footer { text-align:center; padding:40px 20px; color:var(--gray); font-size:13px; line-height:1.8; }
 
+  /* Ecosystem Stats Strip */
+  .stat-strip { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px; margin:20px 0; }
+  .stat-block { background:var(--gray-light); border-radius:12px; padding:16px 14px; text-align:center; border:1px solid #eee; }
+  .stat-block .stat-num { font-size:2em; font-weight:900; line-height:1.1; margin-bottom:4px; }
+  .stat-block .stat-label { font-size:12px; color:var(--gray); font-weight:500; line-height:1.4; }
+  .stat-block .stat-sub { font-size:11px; color:#aaa; margin-top:3px; }
+  .stat-block.primary { background:var(--primary-bg); border-color:var(--primary-light); }
+  .stat-block.primary .stat-num { color:var(--primary); }
+  .stat-block.info { background:var(--info-light); border-color:#aed6f1; }
+  .stat-block.info .stat-num { color:var(--info); }
+  .stat-block.accent { background:var(--accent-light); border-color:#f9e79f; }
+  .stat-block.accent .stat-num { color:#856404; }
+  .stat-block.danger { background:var(--danger-light); border-color:#f1948a; }
+  .stat-block.danger .stat-num { color:var(--danger); }
+  .ecosystem-table th { background:#2c3e50; }
+  .ecosystem-note { font-size:11px; color:#aaa; margin-top:10px; text-align:right; }
+
   /* Month Timeline */
   .month-timeline { display:flex; gap:0; overflow-x:auto; padding-bottom:12px; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; }
   .month-timeline::-webkit-scrollbar { height:4px; } .month-timeline::-webkit-scrollbar-thumb { background:#ccc; border-radius:2px; }
@@ -298,6 +315,97 @@
 <div class="section" id="sec1">
   <div class="section-header"><span class="section-num">1</span><h2>Executive Summary</h2></div>
   <div class="section-body">
+
+    <h3>전국 중등 U-15 축구 생태계 규모 개요</h3>
+
+    <!-- 핵심 수치 -->
+    <div class="stat-strip">
+      <div class="stat-block primary">
+        <div class="stat-num">~200</div>
+        <div class="stat-label">KFA 등록 팀 수<br>(전국 중등리그)</div>
+        <div class="stat-sub">학원팀 + 클럽팀</div>
+      </div>
+      <div class="stat-block info">
+        <div class="stat-num">22</div>
+        <div class="stat-label">K리그 유스 U-15<br>구단 수 (2024)</div>
+        <div class="stat-sub">K리그 주니어 참가</div>
+      </div>
+      <div class="stat-block primary">
+        <div class="stat-num">15</div>
+        <div class="stat-label">전국 중등리그<br>권역 수</div>
+        <div class="stat-sub">서울·경기·인천 등</div>
+      </div>
+      <div class="stat-block accent">
+        <div class="stat-num">64</div>
+        <div class="stat-label">왕중왕전<br>참가팀 수</div>
+        <div class="stat-sub">권역별 상위팀 진출</div>
+      </div>
+      <div class="stat-block accent">
+        <div class="stat-num">134</div>
+        <div class="stat-label">춘계 전국대회<br>최대 참가팀</div>
+        <div class="stat-sub">STAY영덕 (2024)</div>
+      </div>
+      <div class="stat-block danger">
+        <div class="stat-num">~39%</div>
+        <div class="stat-label">프로선수 중<br>유스 출신 비율</div>
+        <div class="stat-sub">2025년 기준 (↑ 증가)</div>
+      </div>
+    </div>
+
+    <!-- 팀 유형별 현황표 -->
+    <div class="table-wrap"><table class="ecosystem-table">
+      <thead><tr><th>구분</th><th>팀 수</th><th>팀당 선수</th><th>총 선수 추정</th><th>비용</th><th>주요 리그</th></tr></thead>
+      <tbody>
+        <tr class="highlight-green">
+          <td><strong>K리그 유스</strong><br><small>프로구단 산하 U-15</small></td>
+          <td class="text-center"><strong>22개 구단</strong><br><small>K1 13팀 + K2 9팀</small></td>
+          <td class="text-center">20~25명</td>
+          <td class="text-center"><strong>약 440~550명</strong></td>
+          <td><span class="score score-a">무료</span></td>
+          <td>K리그 주니어 U-15<br>+ 전국 중등리그 참가</td>
+        </tr>
+        <tr class="highlight">
+          <td><strong>학원팀</strong><br><small>중학교 소속 축구부</small></td>
+          <td class="text-center"><strong>약 130~160개교</strong><br><small>KFA 등록 기준</small></td>
+          <td class="text-center">15~25명</td>
+          <td class="text-center"><strong>약 2,000~4,000명</strong></td>
+          <td><span class="score score-b">월 10~30만</span></td>
+          <td>전국 중등리그<br>+ 전국 단위 토너먼트</td>
+        </tr>
+        <tr>
+          <td><strong>클럽팀</strong><br><small>KFA 등록 독립 클럽</small></td>
+          <td class="text-center"><strong>약 40~60팀</strong><br><small>(중등리그 참가 기준)</small></td>
+          <td class="text-center">15~25명</td>
+          <td class="text-center"><strong>약 600~1,500명</strong></td>
+          <td><span class="score score-c">월 20~60만</span></td>
+          <td>전국 중등리그<br>+ 각종 전국대회</td>
+        </tr>
+        <tr style="background:#f8f9fa;font-weight:700">
+          <td>합계</td>
+          <td class="text-center">약 200~240팀</td>
+          <td class="text-center">—</td>
+          <td class="text-center"><strong>약 3,000~6,000명</strong></td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table></div>
+    <p class="ecosystem-note">⚠️ AI 분석 · 추정치 포함 — 팀 수는 KFA 전국 중등리그 참가팀 기준. 선수 수는 팀당 평균 인원으로 추정. 정확한 수치는 <a href="https://g1.sports.or.kr/stat/stat01.do" target="_blank" style="color:var(--info)">대한체육회 스포츠지원포털</a> 또는 <a href="https://www.joinkfa.com" target="_blank" style="color:var(--info)">KFA joinKFA</a> 확인</p>
+
+    <!-- 연도별 트렌드 -->
+    <h3>주요 트렌드 (2019→2025)</h3>
+    <div class="table-wrap"><table>
+      <thead><tr><th>지표</th><th>2019</th><th>2021</th><th>2023</th><th>2025</th><th>방향</th></tr></thead>
+      <tbody>
+        <tr><td>프로선수 중 유스 출신 비율</td><td class="text-center">~30%</td><td class="text-center">~33%</td><td class="text-center">~36%</td><td class="text-center"><strong>~39%</strong></td><td class="text-center" style="color:var(--primary)">↑ 증가</td></tr>
+        <tr><td>K리그 유스 U-15 구단 수</td><td class="text-center">신설</td><td class="text-center">~20</td><td class="text-center">~22</td><td class="text-center"><strong>22</strong></td><td class="text-center" style="color:var(--primary)">→ 안정</td></tr>
+        <tr><td>클럽팀 전국대회 우승</td><td class="text-center">드물음</td><td class="text-center">간헐적</td><td class="text-center">증가</td><td class="text-center"><strong>5관왕</strong></td><td class="text-center" style="color:var(--danger)">↑ 급증</td></tr>
+        <tr><td>왕중왕전 참가팀 중 클럽팀 비율</td><td class="text-center">~10%</td><td class="text-center">~20%</td><td class="text-center">~30%</td><td class="text-center"><strong>4강 2팀</strong></td><td class="text-center" style="color:var(--danger)">↑ 급증</td></tr>
+      </tbody>
+    </table></div>
+    <p class="ecosystem-note">⚠️ AI 분석 — 일부 항목 추정치 포함. 실제 수치는 KFA 공식 발표 기준으로 다를 수 있음</p>
+
+    <h3>핵심 시사점</h3>
     <div class="card-grid">
       <div class="card" style="border-left:4px solid var(--primary)"><div class="card-title">클럽팀의 부상</div><div class="card-body">2025 왕중왕전에서 클럽팀(천안축구센터)이 <strong>5관왕</strong>. 4강 중 2팀이 클럽팀.</div></div>
       <div class="card" style="border-left:4px solid var(--info)"><div class="card-title">K리그 유스 출신 급증</div><div class="card-body">프로 등록선수 중 유스 출신: 2018년 25.7% &rarr; 2025년 <strong>~39%</strong>. 매년 증가.</div></div>
