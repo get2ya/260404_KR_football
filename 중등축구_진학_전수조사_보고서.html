@@ -140,6 +140,13 @@
 
   .hidden { display:none!important; }
 
+  /* Glossary Tooltip */
+  .glossary { border-bottom:1.5px dotted var(--primary); cursor:help; position:relative; color:var(--primary); font-weight:500; }
+  .glossary .tip { visibility:hidden; opacity:0; position:absolute; bottom:calc(100% + 8px); left:50%; transform:translateX(-50%); background:var(--dark); color:#fff; padding:10px 14px; border-radius:8px; font-size:12px; font-weight:400; line-height:1.6; width:280px; z-index:10; box-shadow:0 4px 16px rgba(0,0,0,.25); transition:opacity .2s,visibility .2s; pointer-events:none; }
+  .glossary .tip::after { content:''; position:absolute; top:100%; left:50%; transform:translateX(-50%); border:6px solid transparent; border-top-color:var(--dark); }
+  .glossary:hover .tip, .glossary:focus .tip { visibility:visible; opacity:1; }
+  @media(max-width:768px) { .glossary .tip { width:220px; font-size:11px; left:0; transform:none; } .glossary .tip::after { left:20px; } }
+
   /* Modal */
   .modal-overlay { display:none; position:fixed; top:0;left:0;right:0;bottom:0; background:rgba(0,0,0,.55); z-index:1000; justify-content:center; align-items:center; padding:20px; }
   .modal-overlay.active { display:flex; }
@@ -2690,6 +2697,34 @@ function getStyleTag(style) {
 
 function esc(s) { if (!s) return ''; const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 
+// 초보자용 용어 사전 (호버 툴팁)
+const glossary = {
+  'A/B권역': 'A권역(중부): 서울/경기/인천/충청 소속 약 11팀\nB권역(남부): 영남/호남/강원/제주 소속 약 11팀\n각 권역 내에서 홈/어웨이 리그전 진행',
+  '우선지명': '유스팀 소속 선수가 프로 전환 시 해당 구단이 우선적으로 계약할 수 있는 권리. 다른 구단 선택 불가',
+  '스플릿': '리그 전반기 성적 기준으로 상위/하위 그룹을 나눠 후반기를 진행하는 방식',
+  '왕중왕전': '각 권역 리그 상위팀들이 모여 전국 최강을 가리는 토너먼트 대회',
+  '셀렉션': '구단이 유소년 선수를 선발하는 입단 테스트. 보통 매년 11~1월에 실시',
+  'KFA': '대한축구협회 (Korea Football Association). 한국 축구를 총괄하는 단체',
+  'AFC 라이선스': '아시아축구연맹(AFC) 공인 지도자 자격증. C/B/A/Pro 등급이 있으며, 높을수록 상위 레벨 지도 가능',
+  '찬조금': '학부모가 팀 운영비 명목으로 비공식적으로 내는 돈. 법적으로 불법이며 청탁금지법 위반 소지',
+  'K리그 주니어': 'K리그 프로 구단 산하 유소년팀(U-15, U-18)만 참가하는 연간 리그',
+  '드래프트': '프로팀이 아마추어 선수를 지명하여 영입하는 제도. 유스 출신이 아닌 선수의 프로 진출 경로',
+  '전지훈련': '팀이 다른 지역에 가서 집중적으로 하는 합숙 훈련. 방학 기간에 주로 실시',
+  'U-15': '만 15세 이하 선수가 참가하는 카테고리. 중학교 연령대에 해당',
+  'U-14': '만 14세 이하. 중학교 저학년(1~2학년) 연령대',
+  '피더': '상위 팀에 선수를 공급하는 하위 팀. 예: 포철중(피더) → 포철고'
+};
+function addGlossary(text) {
+  let result = esc(text);
+  for (const [term, desc] of Object.entries(glossary)) {
+    const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const re = new RegExp('(' + escaped + ')', 'g');
+    const tipHtml = '<span class="glossary" tabindex="0">' + term + '<span class="tip">' + esc(desc).replace(/\n/g,'<br>') + '</span></span>';
+    result = result.replace(re, tipHtml);
+  }
+  return result;
+}
+
 /* ====== 필터/정렬 (기존 기능 유지) ====== */
 function filterTeams(trigger, btn) {
   if (trigger === 'type') {
@@ -2756,7 +2791,7 @@ function openModal(idx) {
     body += '<div class="modal-section"><div class="modal-section-title">감독 / 코치진</div>';
     body += '<div class="coach-detail">';
     if (team.coach.name) body += '<div class="coach-name">' + esc(team.coach.name) + (team.coach.style ? ' ' + getStyleTag(team.coach.style) : '') + '</div>';
-    if (team.coach.career) body += '<div class="coach-career">' + esc(team.coach.career) + '</div>';
+    if (team.coach.career) body += '<div class="coach-career">' + addGlossary(team.coach.career) + '</div>';
     body += '</div></div>';
   }
 
@@ -2785,11 +2820,11 @@ function openModal(idx) {
   if (team.youthSystem) {
     const ys = team.youthSystem;
     body += '<div class="modal-section"><div class="modal-section-title">구단 육성 시스템</div>';
-    if (ys.philosophy) body += '<div style="background:var(--primary-bg);padding:14px;border-radius:10px;margin-bottom:12px;font-size:14px;line-height:1.7"><strong style="color:var(--primary)">육성 철학:</strong> ' + esc(ys.philosophy) + '</div>';
-    if (ys.pipeline) body += '<div style="background:var(--info-light);padding:14px;border-radius:10px;margin-bottom:12px;font-size:14px;line-height:1.7"><strong style="color:var(--info)">파이프라인:</strong> ' + esc(ys.pipeline) + '</div>';
+    if (ys.philosophy) body += '<div style="background:var(--primary-bg);padding:14px;border-radius:10px;margin-bottom:12px;font-size:14px;line-height:1.7"><strong style="color:var(--primary)">육성 철학:</strong> ' + addGlossary(ys.philosophy) + '</div>';
+    if (ys.pipeline) body += '<div style="background:var(--info-light);padding:14px;border-radius:10px;margin-bottom:12px;font-size:14px;line-height:1.7"><strong style="color:var(--info)">파이프라인:</strong> ' + addGlossary(ys.pipeline) + '</div>';
     body += '<div class="modal-info-grid">';
-    if (ys.proPromotion) body += '<div class="modal-info-item"><div class="modal-info-label">프로 승격/배출</div><div class="modal-info-value">' + esc(ys.proPromotion) + '</div></div>';
-    if (ys.partnership) body += '<div class="modal-info-item"><div class="modal-info-label">해외 파트너십</div><div class="modal-info-value">' + esc(ys.partnership) + '</div></div>';
+    if (ys.proPromotion) body += '<div class="modal-info-item"><div class="modal-info-label">프로 승격/배출</div><div class="modal-info-value">' + addGlossary(ys.proPromotion) + '</div></div>';
+    if (ys.partnership) body += '<div class="modal-info-item"><div class="modal-info-label">해외 파트너십</div><div class="modal-info-value">' + addGlossary(ys.partnership) + '</div></div>';
     if (ys.facility) body += '<div class="modal-info-item"><div class="modal-info-label">시설</div><div class="modal-info-value">' + esc(ys.facility) + '</div></div>';
     if (ys.recentRecord) body += '<div class="modal-info-item"><div class="modal-info-label">최근 성적</div><div class="modal-info-value">' + esc(ys.recentRecord) + '</div></div>';
     body += '</div></div>';
@@ -2932,7 +2967,7 @@ function showTournamentDetail(id) {
   // 중요도/의의
   if (t.importance) {
     body += '<div class="modal-section"><div class="modal-section-title">대회 중요도 / 의의</div>';
-    body += '<p style="font-size:14px;color:#333;line-height:1.7;background:var(--primary-bg);padding:12px 16px;border-radius:8px;border-left:3px solid var(--primary)">' + esc(t.importance) + '</p></div>';
+    body += '<p style="font-size:14px;color:#333;line-height:1.7;background:var(--primary-bg);padding:12px 16px;border-radius:8px;border-left:3px solid var(--primary)">' + addGlossary(t.importance) + '</p></div>';
   }
 
   // 기본 정보
@@ -2986,7 +3021,7 @@ function showTournamentDetail(id) {
 
 function tInfoItemT(label, value) {
   const v = value || '-';
-  return '<div class="modal-info-item"><div class="label">' + esc(label) + '</div><div class="value">' + esc(v) + '</div></div>';
+  return '<div class="modal-info-item"><div class="label">' + esc(label) + '</div><div class="value">' + addGlossary(v) + '</div></div>';
 }
 
 function closeTournamentModal() {
