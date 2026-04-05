@@ -181,6 +181,22 @@
     .modal-info-grid { grid-template-columns:1fr; }
     .modal-overlay { padding:10px; }
   }
+
+  /* Ecosystem Stats Strip */
+  .stat-strip { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px; margin:20px 0; }
+  .stat-block { background:var(--gray-light); border-radius:12px; padding:16px 14px; text-align:center; border:1px solid #eee; }
+  .stat-block .stat-num { font-size:2em; font-weight:900; line-height:1.1; margin-bottom:4px; }
+  .stat-block .stat-label { font-size:12px; color:var(--gray); font-weight:500; line-height:1.4; }
+  .stat-block .stat-sub { font-size:11px; color:#aaa; margin-top:3px; }
+  .stat-block.primary { background:var(--primary-bg); border-color:#a9d4b8; }
+  .stat-block.primary .stat-num { color:var(--primary); }
+  .stat-block.info { background:var(--info-light); border-color:#aed6f1; }
+  .stat-block.info .stat-num { color:var(--info); }
+  .stat-block.accent { background:var(--accent-light); border-color:#f9e79f; }
+  .stat-block.accent .stat-num { color:#856404; }
+  .stat-block.danger { background:var(--danger-light); border-color:#f1948a; }
+  .stat-block.danger .stat-num { color:var(--danger); }
+  .ecosystem-note { font-size:11px; color:#aaa; margin-top:10px; text-align:right; }
 </style>
 </head>
 <body>
@@ -216,11 +232,113 @@
 <div class="toc-section">
   <div class="toc-title">목차</div>
   <div class="toc-grid">
-    <a href="#sec1" class="toc-item"><span class="toc-num">01</span> 초등 축구 주요 대회 체계</a>
-    <a href="#sec2" class="toc-item"><span class="toc-num">02</span> 팀 리스트업 (필터/정렬)</a>
-    <a href="#sec3" class="toc-item"><span class="toc-num">03</span> 유명 아카데미 소개</a>
-    <a href="#sec4" class="toc-item"><span class="toc-num">04</span> 비용 비교 분석</a>
-    <a href="#sec5" class="toc-item"><span class="toc-num">05</span> 주요 배출 선수 계보</a>
+    <a href="#sec0" class="toc-item"><span class="toc-num">01</span> Executive Summary</a>
+    <a href="#sec1" class="toc-item"><span class="toc-num">02</span> 초등 축구 주요 대회 체계</a>
+    <a href="#sec2" class="toc-item"><span class="toc-num">03</span> 팀 리스트업 (필터/정렬)</a>
+    <a href="#sec3" class="toc-item"><span class="toc-num">04</span> 유명 아카데미 소개</a>
+    <a href="#sec4-alumni" class="toc-item"><span class="toc-num">05</span> 주요 배출 선수 계보</a>
+    <a href="#sec5-cost" class="toc-item"><span class="toc-num">06</span> 비용 비교 분석</a>
+  </div>
+</div>
+
+<!-- ===== 0. Executive Summary ===== -->
+<div class="section" id="sec0">
+  <div class="section-header"><span class="section-num">1</span><h2>Executive Summary</h2></div>
+  <div class="section-body">
+
+    <h3>전국 초등 U-12 축구 생태계 규모 개요</h3>
+
+    <div class="stat-strip">
+      <div class="stat-block primary">
+        <div class="stat-num">108</div>
+        <div class="stat-label">본 보고서 수록 팀<br>(전국 주요 팀)</div>
+        <div class="stat-sub">유스·학교·클럽 통합</div>
+      </div>
+      <div class="stat-block info">
+        <div class="stat-num">23</div>
+        <div class="stat-label">K리그 유스 U-12<br>구단 수</div>
+        <div class="stat-sub">K리그 산하 전구단</div>
+      </div>
+      <div class="stat-block primary">
+        <div class="stat-num">66</div>
+        <div class="stat-label">학교팀 수<br>(초등 축구부)</div>
+        <div class="stat-sub">KFA 등록 기준</div>
+      </div>
+      <div class="stat-block accent">
+        <div class="stat-num">19</div>
+        <div class="stat-label">클럽/아카데미 수<br>(수록 팀 기준)</div>
+        <div class="stat-sub">KFA 등록 독립 클럽</div>
+      </div>
+      <div class="stat-block accent">
+        <div class="stat-num">27</div>
+        <div class="stat-label">주요 대회 수<br>(공식·민간 합산)</div>
+        <div class="stat-sub">KFA + 지자체 주관</div>
+      </div>
+      <div class="stat-block danger">
+        <div class="stat-num">~25개</div>
+        <div class="stat-label">K리그 전 구단 보유<br>U-12 유스팀</div>
+        <div class="stat-sub">K1 13 + K2 12 구단</div>
+      </div>
+    </div>
+
+    <div class="table-wrap"><table>
+      <thead><tr><th>구분</th><th>팀 수 (본 보고서)</th><th>팀당 선수</th><th>총 선수 추정</th><th>비용 수준</th><th>특징</th></tr></thead>
+      <tbody>
+        <tr class="highlight-green">
+          <td><strong>K리그 유스 U-12</strong></td>
+          <td class="text-center"><strong>23팀</strong></td>
+          <td class="text-center">18~22명</td>
+          <td class="text-center"><strong>약 400~500명</strong></td>
+          <td><span class="score score-a">무료</span></td>
+          <td>프로 구단 공식 산하. 셀렉션 통해 입단. U-15 직행 유리</td>
+        </tr>
+        <tr class="highlight">
+          <td><strong>학교팀</strong><br><small>(초등 축구부)</small></td>
+          <td class="text-center"><strong>66팀</strong></td>
+          <td class="text-center">15~25명</td>
+          <td class="text-center"><strong>약 1,000~1,650명</strong></td>
+          <td><span class="score score-b">소액~중간</span></td>
+          <td>학교 배정 기반. 전국 초등리그 참가. 지역 대회 강자 다수</td>
+        </tr>
+        <tr>
+          <td><strong>클럽/아카데미</strong></td>
+          <td class="text-center"><strong>19팀</strong></td>
+          <td class="text-center">20~40명</td>
+          <td class="text-center"><strong>약 380~760명</strong></td>
+          <td><span class="score score-c">중간~고비용</span></td>
+          <td>학교와 무관, 주말 훈련 중심. 학업 병행 최적. 아카데미 포함</td>
+        </tr>
+        <tr style="background:#f8f9fa;font-weight:700">
+          <td>합계 (수록 팀 기준)</td>
+          <td class="text-center">108팀</td>
+          <td class="text-center">—</td>
+          <td class="text-center"><strong>약 1,780~2,910명</strong></td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table></div>
+    <p class="ecosystem-note">⚠️ AI 분석 · 추정치 포함 — 수록 팀은 전국 주요 팀 기준이며 전체 KFA 등록팀과 다를 수 있음. 선수 수는 팀당 평균으로 추정. 정확한 수치는 <a href="https://g1.sports.or.kr/stat/stat01.do" target="_blank" style="color:var(--info)">대한체육회 스포츠지원포털</a> 확인</p>
+
+    <h3>핵심 판단 포인트</h3>
+    <div class="card-grid">
+      <div class="card" style="border-left:4px solid var(--primary)">
+        <div class="card-title">🏆 화랑대기·소년체전 = 스카우트 집중</div>
+        <div class="card-body">프로 유스 스카우트가 가장 많이 관찰하는 두 대회. 이 대회 활약이 U-15 유스 입단에 <strong>직결</strong>.</div>
+      </div>
+      <div class="card" style="border-left:4px solid var(--info)">
+        <div class="card-title">📈 K리그 유스 출신 비율 증가</div>
+        <div class="card-body">프로 선수 중 유스 출신이 매년 증가 추세(~39%). 유스 입단 경쟁은 초등부터 시작.</div>
+      </div>
+      <div class="card" style="border-left:4px solid var(--accent)">
+        <div class="card-title">💰 클럽/아카데미 비용 가장 높음</div>
+        <div class="card-body">월 15~60만원 + 대회비 별도. 학업 병행 최적이나 비용 대비 효과 검증 필수.</div>
+      </div>
+      <div class="card" style="border-left:4px solid var(--danger)">
+        <div class="card-title">⚠️ 초등부터 과도한 전문화 주의</div>
+        <div class="card-body">성장기 다양한 운동 경험이 장기 발달에 유리. 훈련 과부하, 조기 번아웃 리스크 확인.</div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -338,9 +456,35 @@
   </div>
 </div>
 
-<!-- ===== 4. 비용 비교 ===== -->
-<div class="section" id="sec4">
-  <div class="section-header"><span class="section-num">4</span><h2>비용 비교 분석</h2></div>
+<!-- ===== 4. 주요 배출 선수 계보 ===== -->
+<div class="section" id="sec4-alumni">
+  <div class="section-header"><span class="section-num">4</span><h2>주요 배출 선수 계보</h2></div>
+  <div class="section-body">
+
+    <div class="table-wrap">
+    <table class="accent">
+      <thead><tr><th>선수명</th><th>초등 소속</th><th>유형</th><th>현재/최종 소속</th><th>비고</th></tr></thead>
+      <tbody>
+        <tr class="highlight"><td><strong>석현준</strong></td><td>대동초 (서울)</td><td>학교팀</td><td>아인트라흐트 프랑크푸르트 등 유럽</td><td>최광원 감독 지도</td></tr>
+        <tr class="highlight"><td><strong>이승우</strong></td><td>대동초 (서울)</td><td>학교팀</td><td>바르셀로나 유스 &rarr; 유럽 리그</td><td>대동초 &rarr; 바르셀로나 직행</td></tr>
+        <tr class="highlight"><td><strong>백승호</strong></td><td>대동초 (서울)</td><td>학교팀</td><td>바르셀로나 유스 &rarr; 유럽 리그</td><td>대동초 &rarr; 바르셀로나 직행</td></tr>
+        <tr><td><strong>김보경</strong></td><td>용인시축구센터</td><td>클럽</td><td>전북현대 등 K리그</td><td>A매치 다수</td></tr>
+        <tr><td><strong>김진수</strong></td><td>용인시축구센터</td><td>클럽</td><td>전북현대 등 K리그</td><td>A매치 다수</td></tr>
+        <tr><td><strong>이종성</strong></td><td>계성초 (당진)</td><td>학교팀</td><td>프로 활동</td><td>유재호 감독 지도</td></tr>
+        <tr><td><strong>서명원</strong></td><td>계성초 (당진)</td><td>학교팀</td><td>프로 활동</td><td>유재호 감독 지도</td></tr>
+        <tr><td><strong>송시율</strong></td><td>포항제철동초</td><td>유스/학교</td><td>포항스틸러스 유스</td><td>2024~25 소년체전 MVP</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="alert alert-success"><div class="alert-icon">&#127942;</div><div><strong>트렌드:</strong> 대동초(서울 영등포)는 석현준, 이승우, 백승호를 배출하며 한국 초등축구 역사상 최고의 선수 배출 학교로 평가됩니다. 용인시축구센터는 클럽 중 유일하게 프로 200명+ 배출 기록을 보유하고 있습니다.</div></div>
+
+  </div>
+</div>
+
+<!-- ===== 5. 비용 비교 ===== -->
+<div class="section" id="sec5-cost">
+  <div class="section-header"><span class="section-num">5</span><h2>비용 비교 분석</h2></div>
   <div class="section-body">
 
     <div class="table-wrap">
@@ -400,32 +544,6 @@
     <div class="alert alert-warning"><div class="alert-icon">&#128176;</div><div><strong>비용 판단 기준:</strong> 프로 유스는 무상이지만 입단 난이도가 극히 높습니다(상위 1~2%). 학교팀은 무료에 가깝지만 전문성에 편차가 큽니다. 아카데미는 비용 대비 코칭 품질을 반드시 비교 후 결정해야 합니다.</div></div>
 
     <div class="alert alert-info"><div class="alert-icon">&#128161;</div><div><strong>계성초 사례:</strong> 당진화력에서 연간 5,000만원을 후원하고 있어 학부모 부담이 최소화됩니다. 지역 기업 후원이 있는 학교팀은 시설과 원정 지원이 우수합니다.</div></div>
-  </div>
-</div>
-
-<!-- ===== 5. 주요 배출 선수 계보 ===== -->
-<div class="section" id="sec5">
-  <div class="section-header"><span class="section-num">5</span><h2>주요 배출 선수 계보</h2></div>
-  <div class="section-body">
-
-    <div class="table-wrap">
-    <table class="accent">
-      <thead><tr><th>선수명</th><th>초등 소속</th><th>유형</th><th>현재/최종 소속</th><th>비고</th></tr></thead>
-      <tbody>
-        <tr class="highlight"><td><strong>석현준</strong></td><td>대동초 (서울)</td><td>학교팀</td><td>아인트라흐트 프랑크푸르트 등 유럽</td><td>최광원 감독 지도</td></tr>
-        <tr class="highlight"><td><strong>이승우</strong></td><td>대동초 (서울)</td><td>학교팀</td><td>바르셀로나 유스 &rarr; 유럽 리그</td><td>대동초 &rarr; 바르셀로나 직행</td></tr>
-        <tr class="highlight"><td><strong>백승호</strong></td><td>대동초 (서울)</td><td>학교팀</td><td>바르셀로나 유스 &rarr; 유럽 리그</td><td>대동초 &rarr; 바르셀로나 직행</td></tr>
-        <tr><td><strong>김보경</strong></td><td>용인시축구센터</td><td>클럽</td><td>전북현대 등 K리그</td><td>A매치 다수</td></tr>
-        <tr><td><strong>김진수</strong></td><td>용인시축구센터</td><td>클럽</td><td>전북현대 등 K리그</td><td>A매치 다수</td></tr>
-        <tr><td><strong>이종성</strong></td><td>계성초 (당진)</td><td>학교팀</td><td>프로 활동</td><td>유재호 감독 지도</td></tr>
-        <tr><td><strong>서명원</strong></td><td>계성초 (당진)</td><td>학교팀</td><td>프로 활동</td><td>유재호 감독 지도</td></tr>
-        <tr><td><strong>송시율</strong></td><td>포항제철동초</td><td>유스/학교</td><td>포항스틸러스 유스</td><td>2024~25 소년체전 MVP</td></tr>
-      </tbody>
-    </table>
-    </div>
-
-    <div class="alert alert-success"><div class="alert-icon">&#127942;</div><div><strong>트렌드:</strong> 대동초(서울 영등포)는 석현준, 이승우, 백승호를 배출하며 한국 초등축구 역사상 최고의 선수 배출 학교로 평가됩니다. 용인시축구센터는 클럽 중 유일하게 프로 200명+ 배출 기록을 보유하고 있습니다.</div></div>
-
   </div>
 </div>
 
