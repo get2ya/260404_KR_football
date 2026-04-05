@@ -330,59 +330,20 @@
   <div class="section-header"><span class="section-num">3</span><h2>감독/코치진 심층 조사</h2></div>
   <div class="section-body">
 
-    <h3>3대 시스템별 코칭 철학</h3>
-    <div class="table-wrap"><table>
-      <thead><tr><th>비교 항목</th><th>K리그 유스</th><th>학원축구</th><th>클럽팀</th></tr></thead>
-      <tbody>
-        <tr><td><strong>핵심 목표</strong></td><td>프로 선수 장기 육성</td><td>대회 성적 중심</td><td>기술 육성 + 학업 병행</td></tr>
-        <tr><td><strong>훈련 철학</strong></td><td>창의성 존중, 기본기 70%+전술 30%</td><td>조직력+체력 위주</td><td>기술 중심, 개인 발전</td></tr>
-        <tr><td><strong>감독 권한</strong></td><td>구단 철학에 종속</td><td>개인 재량 <strong>매우 큼</strong></td><td>공동 운영</td></tr>
-        <tr><td><strong>스태프</strong></td><td>GK코치, 피지컬코치 등 다수</td><td>감독+코치 2~3명</td><td>소규모</td></tr>
-        <tr><td><strong>프로 진출</strong></td><td><strong>우선지명</strong> (구단 귀속)</td><td>드래프트/자유계약</td><td>드래프트/자유계약</td></tr>
-        <tr><td><strong>해외 진출</strong></td><td>구단 동의 필요</td><td>자유</td><td><strong>가장 자유</strong></td></tr>
-      </tbody>
-    </table></div>
-
-    <h3>주요 팀 감독 프로파일</h3>
-    <div class="card-grid">
-      <div class="card" style="border-top:3px solid #1a5632"><div class="card-title">수원삼성 U-15 &mdash; 백승주</div><div class="card-body"><strong>성과:</strong> K리그 주니어 <strong>2년 연속 1위</strong>, 2023 왕중왕전 우승 5관왕<br><strong>성향:</strong> <span class="coach-tag tag-tact">기술+전술 균형</span><br><strong>배출:</strong> 권창훈(유럽), 정상빈, 오현규</div></div>
-      <div class="card" style="border-top:3px solid #2471a3"><div class="card-title">울산HD U-15</div><div class="card-body"><strong>특징:</strong> K리그 최초 외국인 기술코치(페르난도 살레스)<br><strong>성과:</strong> <strong>2024 U14+U15 동반 우승</strong>. 유소년 7명 유럽 이적<br><strong>성향:</strong> <span class="coach-tag tag-tech">기술중심</span> 해외진출 적극</div></div>
-      <div class="card" style="border-top:3px solid #d4a017"><div class="card-title">전북현대 U-15 &mdash; 신용주</div><div class="card-body"><strong>성과:</strong> <strong>2025 전국소년체전 우승</strong> (부임 첫해)<br><strong>특징:</strong> PSV 아인트호벤 매년 연수. 보급반 1,300명<br><strong>성향:</strong> <span class="coach-tag tag-tech">기술+국제교류</span></div></div>
-      <div class="card" style="border-top:3px solid #c0392b"><div class="card-title">FC서울 U-15 &mdash; 윤시호</div><div class="card-body"><strong>총괄:</strong> 차두리 유스 강화실장<br><strong>스태프:</strong> 허재원 코치, 방형곤 GK코치, 소기동 피지컬코치<br><strong>철학:</strong> <span class="coach-tag tag-happy">"행복 축구"</span> 기본기 중시</div></div>
-      <div class="card" style="border-top:3px solid #7b1fa2"><div class="card-title">성남FC U-15 (풍생중) &mdash; 권순형</div><div class="card-body"><strong>선수시절:</strong> K리그 <strong>373경기</strong> 미드필더. 강원/제주/상주/성남<br><strong>특기:</strong> 경기 운영+리더십, 세트피스 전담<br><strong>이후:</strong> 2026 전북 N팀 감독 승격<br><strong>배출:</strong> 김치우(국대), 홍철(올림픽)</div></div>
-      <div class="card" style="border-top:3px solid #1a5632"><div class="card-title">전남드래곤즈 U-15 (광철중) &mdash; 손형선</div><div class="card-body"><strong>성과:</strong> 다수 전국대회 우승, 지도자상 수상<br><strong>배출:</strong> 지동원, 김영욱, 이종호, 허용준, 이슬찬<br><strong>성향:</strong> <span class="coach-tag tag-tech">기술지향</span></div></div>
-      <div class="card" style="border-top:3px solid var(--info)"><div class="card-title">염기훈주니어 &mdash; 염기훈</div><div class="card-body"><strong>선수시절:</strong> <strong>K리그 최다어시스트 92도움</strong>. 수원삼성 13년<br><strong>국가대표:</strong> A매치 57경기 5골<br><strong>클럽:</strong> 경기 오산(동탄). U6~U15. 아들 염선우 U12 주장<br><strong>성과:</strong> <strong>2025 왕중왕전 4강</strong></div></div>
-      <div class="card" style="border-top:3px solid var(--accent)"><div class="card-title">천안축구센터 &mdash; 김경일</div><div class="card-body"><strong>성과:</strong> <strong>2025 전국 중등축구 5관왕</strong> (왕중왕전 우승 포함)<br><strong>위치:</strong> 천안시 서북구 축구센터로 150<br><strong>U-12 감독:</strong> 조영탁</div></div>
+    <!-- 감독 프로파일 필터 -->
+    <div class="filter-bar">
+      <label>유형:</label>
+      <button class="filter-btn active" data-cf="all" onclick="filterCoach('type',this)">전체</button>
+      <button class="filter-btn" data-cf="유스" onclick="filterCoach('type',this)">K리그 유스</button>
+      <button class="filter-btn" data-cf="학원" onclick="filterCoach('type',this)">학원축구</button>
+      <button class="filter-btn" data-cf="클럽" onclick="filterCoach('type',this)">클럽팀</button>
+      <div class="filter-sep"></div>
+      <input class="search-box" type="text" id="coachSearch" placeholder="감독/팀명 검색..." oninput="filterCoach('search')">
+      <span class="team-count" id="coachCount"></span>
     </div>
-
-    <h3>학원축구 주요 감독</h3>
-    <div class="alert alert-warning">
-      <div class="alert-icon">&#9888;&#65039;</div>
-      <div><strong>문래중 김태인 감독</strong> (1999~2023, 24년 재임) &rarr; 2024년 부탄 국가대표 감독 부임<br>
-      선수시절: 전북현대/울산미포조선 수비수. 철학: "즐거운 축구, 창의적 축구"<br>
-      배출: 문선민(2018 월드컵), 박규현(독일 진출) 등<br>
-      <strong>주의: 후임 감독 확인 필수. 팀 문화가 크게 달라질 수 있음</strong></div>
+    <div class="card-grid" id="coachGrid">
+      <!-- JS 동적 생성 -->
     </div>
-    <div class="alert alert-info">
-      <div class="alert-icon">&#128200;</div>
-      <div><strong>안동중:</strong> 2022~2025 전국대회 최강급. U-14 5연패 달성. 감독 상세정보 직접 확인 필요<br>
-      <strong>광철중 손형선 감독:</strong> 전남 광양. 지동원 등 다수 프로선수 배출. 지도자상 수상</div>
-    </div>
-
-    <h3>수원월드컵FC (오퍼 수령 팀)</h3>
-    <div class="card-grid">
-      <div class="card" style="border-top:3px solid var(--accent)"><div class="card-title">수원월드컵FC U-15 &mdash; 허남철 감독</div><div class="card-body">
-        <strong>선수시절:</strong> FW. 울산현대 드래프트 6순위(1997) &rarr; 한국수력원자력(K2, 15경기) &rarr; 경주시민(K3) &rarr; 서울마르티스(K3)<br>
-        <strong>지도자:</strong> 경수유소년클럽 코치 &rarr; 수원월드컵FC U-15 감독<br>
-        <strong>성과:</strong> <strong>2024 추계 전국 U15 준우승</strong> (결승: 천안축구센터 0-1)<br>
-        <strong>대회경로:</strong> 예선 전승 &rarr; 중동중 4-1 &rarr; 천안중 4-0 &rarr; 결승<br>
-        <strong>수상:</strong> 페어플레이상(팀), 우수선수상 김동훈, 수비상 최석환<br>
-        <strong>훈련장:</strong> 수원 월드컵경기장 보조구장/인조구장<br>
-        <strong>후원:</strong> 파이어웍스(TIAM), 어반앤(Urban&) | <strong>설립:</strong> ~2015년 (창단 약 9년차)
-      </div></div>
-    </div>
-    <div class="alert alert-warning"><div class="alert-icon">&#9888;&#65039;</div><div><strong>추가 확인 필요:</strong> 월 회비/비용, 졸업생 고교 진학 실적, 코치진 구성, AFC 라이선스.<br>
-    <strong>확인 방법:</strong> JoinKFA "수원월드컵" 검색 / 경기도축구협회 031-202-2002 / 인스타그램 해시태그 / 다음카페 "축구선수 학부모연합회"</div></div>
 
     <h3>K리그 유스 출신 프로 비율 추이</h3>
     <div class="compare-row"><div class="compare-label"><span>2018</span><span>25.7%</span></div><div class="compare-bar"><div class="compare-fill fill-green" style="width:25.7%"></div></div></div>
@@ -2644,6 +2605,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     teamsData = teamsDataInline;
   }
   renderTable();
+  renderCoachGrid();
 });
 
 /* ====== 테이블 렌더링 ====== */
@@ -2766,6 +2728,50 @@ function sortTable(col) {
     return sortDir[col] ? aVal.localeCompare(bVal, 'ko') : bVal.localeCompare(aVal, 'ko');
   });
   rows.forEach(r => tbody.appendChild(r));
+}
+
+/* ====== 감독 프로파일 카드 그리드 ====== */
+let coachTypeFilter = 'all';
+function renderCoachGrid() {
+  const grid = document.getElementById('coachGrid');
+  if (!grid) return;
+  const search = (document.getElementById('coachSearch')?.value || '').toLowerCase();
+  const coaches = teamsData.filter(t => {
+    const hasCoach = t.coach && t.coach.name && t.coach.name !== '-' && t.coach.name !== '';
+    if (!hasCoach) return false;
+    const matchType = coachTypeFilter === 'all' || t.type === coachTypeFilter;
+    const text = (t.name + ' ' + t.coach.name + ' ' + (t.coach.career||'') + ' ' + (t.coach.style||'')).toLowerCase();
+    const matchSearch = !search || text.includes(search);
+    return matchType && matchSearch;
+  });
+  const colors = {'유스':'var(--primary)','클럽':'var(--info)','학원':'var(--accent)'};
+  let html = '';
+  coaches.forEach((t, i) => {
+    const c = t.coach;
+    const borderColor = colors[t.type] || 'var(--gray)';
+    const gradeClass = t.type === '유스' ? 'grade-a' : t.type === '클럽' ? 'grade-b' : 'grade-c';
+    const idx = teamsData.indexOf(t);
+    html += '<div class="card" style="border-top:3px solid ' + borderColor + ';cursor:pointer" onclick="openModal(' + idx + ')">';
+    html += '<div class="card-title">' + esc(t.name) + ' <span class="grade ' + gradeClass + '" style="font-size:11px">' + esc(t.type) + '</span></div>';
+    html += '<div class="card-body">';
+    html += '<div style="font-size:16px;font-weight:700;color:var(--dark);margin-bottom:6px">' + esc(c.name);
+    if (c.style) html += ' ' + getStyleTag(c.style);
+    html += '</div>';
+    if (c.career) html += '<div style="font-size:13px;color:#555;line-height:1.6;margin-bottom:6px">' + addGlossary(c.career).substring(0,150) + (c.career.length > 150 ? '...' : '') + '</div>';
+    if (t.achievements && t.achievements.length) html += '<div style="font-size:12px;color:var(--primary);font-weight:500">' + esc(t.achievements[0]) + '</div>';
+    html += '</div></div>';
+  });
+  grid.innerHTML = html;
+  const countEl = document.getElementById('coachCount');
+  if (countEl) countEl.textContent = coaches.length + '명 감독 표시';
+}
+function filterCoach(trigger, btn) {
+  if (trigger === 'type') {
+    document.querySelectorAll('.filter-bar .filter-btn[data-cf]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    coachTypeFilter = btn.dataset.cf;
+  }
+  renderCoachGrid();
 }
 
 /* ====== 모달 ====== */
