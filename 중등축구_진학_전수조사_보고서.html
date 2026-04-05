@@ -2788,6 +2788,20 @@ function openModal(idx) {
     body += '</ul></div>';
   }
 
+  // 구단 육성 시스템 (유스팀 전용)
+  if (team.youthSystem) {
+    const ys = team.youthSystem;
+    body += '<div class="modal-section"><div class="modal-section-title">구단 육성 시스템</div>';
+    if (ys.philosophy) body += '<div style="background:var(--primary-bg);padding:14px;border-radius:10px;margin-bottom:12px;font-size:14px;line-height:1.7"><strong style="color:var(--primary)">육성 철학:</strong> ' + esc(ys.philosophy) + '</div>';
+    if (ys.pipeline) body += '<div style="background:var(--info-light);padding:14px;border-radius:10px;margin-bottom:12px;font-size:14px;line-height:1.7"><strong style="color:var(--info)">파이프라인:</strong> ' + esc(ys.pipeline) + '</div>';
+    body += '<div class="modal-info-grid">';
+    if (ys.proPromotion) body += '<div class="modal-info-item"><div class="modal-info-label">프로 승격/배출</div><div class="modal-info-value">' + esc(ys.proPromotion) + '</div></div>';
+    if (ys.partnership) body += '<div class="modal-info-item"><div class="modal-info-label">해외 파트너십</div><div class="modal-info-value">' + esc(ys.partnership) + '</div></div>';
+    if (ys.facility) body += '<div class="modal-info-item"><div class="modal-info-label">시설</div><div class="modal-info-value">' + esc(ys.facility) + '</div></div>';
+    if (ys.recentRecord) body += '<div class="modal-info-item"><div class="modal-info-label">최근 성적</div><div class="modal-info-value">' + esc(ys.recentRecord) + '</div></div>';
+    body += '</div></div>';
+  }
+
   // 장점/단점
   if ((team.pros && team.pros.length) || (team.cons && team.cons.length)) {
     body += '<div class="modal-section"><div class="modal-section-title">장점 / 단점 분석</div>';

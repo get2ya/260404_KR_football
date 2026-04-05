@@ -38,7 +38,15 @@
       "상대적 신생 유스(2012 재창단)",
       "우선지명 구속",
       "수도권 경쟁 치열"
-    ]
+    ],
+    "youthSystem": {
+      "philosophy": "TIPS - Technic(기술)·Intelligence(지능)·Personality(인성)·Speciality(특성). '행복 축구' 지향",
+      "pipeline": "유소년 축구교실(Future of FC서울) → U-12 → U-15 → U-18(오산고) → 1군",
+      "proPromotion": "황현수, 김주성, 이인규 등",
+      "partnership": "",
+      "facility": "서울 FC서울 축구센터",
+      "recentRecord": "2025 K리그 주니어 A 1위, 2025 백운기 우승, 2023 협회장배 우승"
+    }
   },
   {
     "id": "seoul-eland-u15",
@@ -117,7 +125,15 @@
       "수원 지역 거주 필요",
       "구단 2부 강등 여파 가능성",
       "우선지명 구속"
-    ]
+    ],
+    "youthSystem": {
+      "philosophy": "기술·정신력·인간미 3대 육성철학. K리그 유소년 최강자",
+      "pipeline": "U-12(리틀윙즈) → U-15(화도중 협약) → U-18(매탄고) → 1군",
+      "proPromotion": "유럽 진출 다수: 권창훈(프라이부르크), 정상빈, 오현규, 황인택, 강현묵 등 6명+",
+      "partnership": "",
+      "facility": "수원 전용 훈련장",
+      "recentRecord": "K리그 주니어 4연패(2021-2024), 2023 왕중왕전 5관왕, 무패(15승1무) 시즌 달성"
+    }
   },
   {
     "id": "suwon-fc-u15",
@@ -331,6 +347,14 @@
       "coaching": 16,
       "infra": 12,
       "cost": 15
+    },
+    "youthSystem": {
+      "philosophy": "해외 진출 선수 배출 최다급. U-12→U-15→U-18 완성된 유스 체계",
+      "pipeline": "U-12(2006 창단) → U-15 광성중(2009) → U-18 대건고(2008) → 1군",
+      "proPromotion": "이강인(PSG), 이승우, 정우영(슈투트가르트), 천성훈(아우크스부르크), 김정민 등",
+      "partnership": "이강인 일일 코칭 프로그램 등 선배-후배 교류",
+      "facility": "인천유나이티드 축구센터(선학동)",
+      "recentRecord": "2025 금강송 춘계 우승"
     }
   },
   {
@@ -363,6 +387,14 @@
       "coaching": 17,
       "infra": 12,
       "cost": 15
+    },
+    "youthSystem": {
+      "philosophy": "U-12→U-15→U-18→ProB(19-23세) 단계별 성장 시스템 구축 목표",
+      "pipeline": "U-12 → U-15 → U-18(충남기계공고) → Pro B팀(K4) → 1군",
+      "proPromotion": "황인범(페예노르트), 배준호(스토크시티) 등",
+      "partnership": "",
+      "facility": "대전 훈련시설",
+      "recentRecord": "K리그 주니어 중등리그 우승 경력"
     }
   },
   {
@@ -496,7 +528,15 @@
       "금산(충남) 지역 거주 필요",
       "우선지명 구속",
       "보급반→육성반 선발 경쟁"
-    ]
+    ],
+    "youthSystem": {
+      "philosophy": "보급반(1,300명)→육성반(50명) 대규모 선발 시스템. 박지성 TD 주도",
+      "pipeline": "U-12 보급반 1,300명+육성반 50명 → U-15 금산중 40명 → U-18 영생고 30명 → 1군/N팀",
+      "proPromotion": "권경원, 이주용, 장윤호, 김준홍(MLS DC유나이티드) 등",
+      "partnership": "PSV 아인트호벤(네덜란드) 유소년 육성 협약. 매년 해외 연수. 2026 포르투갈 이베르컵 참가",
+      "facility": "금산중 전용 훈련장",
+      "recentRecord": "2025 전국소년체전 우승, 2024 K리그 유스 챔피언십 U-18 우승"
+    }
   },
   {
     "id": "jeonnam-dragons-u15",
@@ -565,6 +605,14 @@
       "coaching": 21,
       "infra": 13,
       "cost": 15
+    },
+    "youthSystem": {
+      "philosophy": "국내 최장 유소년 역사(1990~). 포철초→포철중→포철고 일관 시스템",
+      "pipeline": "포철초(U-12) → 포철중(U-15) → 포철고(U-18) → 1군. 1990년부터 35년+ 운영",
+      "proPromotion": "이동국, 신화용, 황진성, 신광훈, 김승대, 강현무 등 다수",
+      "partnership": "",
+      "facility": "포철중 전용 훈련장. 포스코교육재단 지원",
+      "recentRecord": "2024-25 전국소년체전 U-12 2연패, 2020 왕중왕전 우승, 2024 백운기 우승"
     }
   },
   {
@@ -671,7 +719,15 @@
       "울산 지역 거주 필요",
       "우선지명 구속",
       "높은 내부 경쟁"
-    ]
+    ],
+    "youthSystem": {
+      "philosophy": "유럽 진출 적극 장려. 임대 통한 해외 경험 정책. K리그 최초 외국인 기술코치(페르난도 살레스) 도입",
+      "pipeline": "U-12 → U-15(현대중) → U-18(현대고) → 울산대 → 1군",
+      "proPromotion": "유소년 7명 유럽 임대/이적. 이을용, 설기현, 양민혁(토트넘), 강민우 등",
+      "partnership": "유럽 클럽 직접 교류. 유망주 해외 임대 적극 지원",
+      "facility": "울산 전용 훈련시설. 피지컬+기술 증진 프로그램",
+      "recentRecord": "2024 K리그 U14+U15 동반우승, 2026 울진 금강송 U14 우승"
+    }
   },
   {
     "id": "busan-ipark-u15",
@@ -704,6 +760,14 @@
       "coaching": 18,
       "infra": 13,
       "cost": 15
+    },
+    "youthSystem": {
+      "philosophy": "유소년 육성→프로 연계 훈련 시스템. 완성형 선수 육성 목표",
+      "pipeline": "U-9 심화반 → U-12 → U-15 낙동중 → U-18 개성고 → 1군",
+      "proPromotion": "이호진, 김동윤, 권준성, 송안톤 등 2025 프로계약 4명 (개성고 황금세대)",
+      "partnership": "",
+      "facility": "부산아이파크 유소년 전용시설",
+      "recentRecord": "2025 U-18 개성고 3관왕(춘계+유스챔피언십+K리그주니어), 2024 U-15 소년체전 1위"
     }
   },
   {
@@ -734,6 +798,14 @@
       "coaching": 13,
       "infra": 10,
       "cost": 15
+    },
+    "youthSystem": {
+      "philosophy": "경남FC유소년재단-군북중 11년 연속 협약. 안정적 장기 파트너십",
+      "pipeline": "U-12 → U-15 군북중(함안) → U-18 진주고 → 1군",
+      "proPromotion": "서재원(경남FC) 등",
+      "partnership": "",
+      "facility": "함안 군북중 ���련시설",
+      "recentRecord": "K리그 U-15 챔피언십 3위"
     }
   },
   {
@@ -764,6 +836,14 @@
       "coaching": 13,
       "infra": 10,
       "cost": 15
+    },
+    "youthSystem": {
+      "philosophy": "1975년 금호고 축구부 역사 기반. 전통의 유스 명가",
+      "pipeline": "U-12 → U-15(광덕중) → U-18 금호고(1975~) → 1군",
+      "proPromotion": "나상호, 엄원상, 허율, 기성용, 김태영, 윤정환 등",
+      "partnership": "",
+      "facility": "광주FC 유소년재단 운영",
+      "recentRecord": "2025 K리그 주니어 C권역 고·저학년 동반 우승(구단 최초)"
     }
   },
   {
@@ -798,6 +878,14 @@
       "coaching": 15,
       "infra": 11,
       "cost": 15
+    },
+    "youthSystem": {
+      "philosophy": "1958년 주문진중 창단, 강원 지역 유소년 육성",
+      "pipeline": "U-12(2008 창단) → U-15 주문진중 → U-18 강릉제일고 → 1군",
+      "proPromotion": "설기현, 양민혁(토트넘) 등",
+      "partnership": "",
+      "facility": "강릉 훈련시설",
+      "recentRecord": "춘계 연맹전 준우승"
     }
   },
   {
@@ -828,6 +916,14 @@
       "coaching": 14,
       "infra": 11,
       "cost": 15
+    },
+    "youthSystem": {
+      "philosophy": "제주 지역 기반 유소년 육성",
+      "pipeline": "U-12 → U-15(제주중) → U-18 → 1군",
+      "proPromotion": "",
+      "partnership": "",
+      "facility": "제주 훈련시설",
+      "recentRecord": "2025 울진 금강송 춘계 진출, 2023 문체부장관배 U-18 우승"
     }
   },
   {
