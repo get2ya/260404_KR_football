@@ -687,9 +687,23 @@ function renderTournamentTables() {
   const tournaments = tournamentsData.tournaments;
   let html = '';
 
+  // 지역/민간 대회 인구순 정렬용 (서울→경기→인천→부산→대구→대전→광주→전북→전남→경북→경남→강원→제주→기타)
+  const regionOrder = ['서울','경기','인천','부산','대구','대전','광주','전북','전남','충남','충북','경북','경남','강원','제주'];
+  function getRegionRank(location) {
+    if (!location) return 99;
+    for (let i = 0; i < regionOrder.length; i++) {
+      if (location.includes(regionOrder[i])) return i;
+    }
+    if (location.includes('전국')) return -1;
+    return 98;
+  }
+
   tournamentCategories.forEach(cat => {
-    const items = tournaments.filter(t => t.category === cat.key);
+    let items = tournaments.filter(t => t.category === cat.key);
     if (items.length === 0) return;
+    if (cat.key === '지역/민간 대회') {
+      items.sort((a, b) => getRegionRank(a.location) - getRegionRank(b.location));
+    }
 
     html += '<h3 style="border-bottom-color:' + cat.color + '">' + esc(cat.label) + ' <span style="font-size:12px;font-weight:400;color:var(--gray)">(' + items.length + '개 / ' + esc(cat.desc) + ')</span></h3>';
     html += '<div class="table-wrap"><table class="tournament-cat-table"><thead><tr>';
