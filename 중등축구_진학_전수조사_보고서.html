@@ -405,24 +405,8 @@
 <div class="section" id="sec4">
   <div class="section-header"><span class="section-num">4</span><h2>대회 성적 데이터 분석</h2></div>
   <div class="section-body">
-    <h3>주요 대회 체계 (연간 11개+ 전국대회)</h3>
-    <div class="table-wrap"><table class="alt">
-      <thead><tr><th>대회명</th><th>주최</th><th>시기</th><th>참가</th><th>최근 우승 (2025)</th></tr></thead>
-      <tbody>
-        <tr><td><strong>전국 중등 축구리그</strong> (권역별)</td><td>KFA</td><td>3~10월</td><td>~200팀, 15개 권역</td><td>권역별 1위</td></tr>
-        <tr><td><strong>왕중왕전</strong></td><td>KFA</td><td>11월 (영덕)</td><td>권역 상위 64팀</td><td><strong>천안축구센터</strong></td></tr>
-        <tr><td><strong>K리그 주니어 U-15</strong></td><td>K리그</td><td>3~10월</td><td>K리그 U-15 ~25팀</td><td>수원삼성 (4연패 2021~24)</td></tr>
-        <tr><td><strong>K리그 유스 챔피언십 U-15</strong></td><td>K리그</td><td>8월</td><td>K리그 U-15</td><td><strong>부산 낙동중</strong></td></tr>
-        <tr><td><strong>춘계 전국중등축구대회</strong> (STAY영덕)</td><td>KFA</td><td>1~2월 (영덕)</td><td>115~134팀</td><td>천안축구센터 / 문래중</td></tr>
-        <tr><td><strong>울진 금강송 춘계대회</strong></td><td>KFA</td><td>1~2월 (울진)</td><td>학원+클럽</td><td>광성중(인천) 등</td></tr>
-        <tr><td><strong>추계 전국중등축구대회</strong></td><td>KFA</td><td>9~10월 (제천 등)</td><td>학원+클럽</td><td>천안축구센터</td></tr>
-        <tr><td><strong>금강대기 전국중학교대회</strong></td><td>강원도민일보/KFA</td><td>7~8월 (평창)</td><td>64~87팀</td><td><strong>문래중</strong></td></tr>
-        <tr><td><strong>금석배</strong></td><td>군산시축구협회</td><td>7~8월 (군산)</td><td>32~64팀</td><td>남해FC (2024)</td></tr>
-        <tr><td><strong>전국소년체육대회 중등부</strong></td><td>대한체육회</td><td>5~6월</td><td>시도 대표</td><td><strong>전북 금산중</strong></td></tr>
-        <tr><td><strong>대한축구협회장배</strong> (만세보령머드)</td><td>KFA</td><td>1~2월 (보령)</td><td>학원+클럽</td><td>-</td></tr>
-        <tr><td><strong>탐라기 전국중학교대회</strong></td><td>제주시/KFA</td><td>1~2월 (제주)</td><td>~55팀</td><td>-</td></tr>
-      </tbody>
-    </table></div>
+    <h3>주요 대회 체계 (연간 12개 전국대회) <span style="font-size:12px;font-weight:400;color:var(--gray)">- 대회를 클릭하면 상세 정보와 역대 결과를 볼 수 있습니다</span></h3>
+    <div id="tournamentTables"></div>
     <div class="alert alert-info"><div class="alert-icon">&#128197;</div><div><strong>겨울방학(1~2월) 대회 집중:</strong> 춘계(영덕), 울진금강송, 협회장배(보령), 탐라기(제주) 등 4~5개 대회가 동시 진행. 대회 선택이 중요.</div></div>
 
     <h3>2025 왕중왕전 결과</h3>
@@ -639,6 +623,15 @@
     <button class="modal-close" onclick="closeModal()">&times;</button>
     <div class="modal-header" id="modalHeader"></div>
     <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- Tournament Detail Modal -->
+<div class="modal-overlay" id="tournamentModal">
+  <div class="modal-card" style="max-width:700px">
+    <button class="modal-close" onclick="closeTournamentModal()">&times;</button>
+    <div class="modal-header" id="tournamentModalHeader"></div>
+    <div class="modal-body" id="tournamentModalBody"></div>
   </div>
 </div>
 
@@ -2864,10 +2857,156 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 
-// ESC 키로 닫기
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+// =============================================
+// 대회 체계 - 데이터 & 렌더링
+// =============================================
+const tournamentsU15 = {"metadata":{"title":"대한민국 중등(U-15) 축구 주요 대회 체계","updated":"2026-04-05","note":"웹 검색 기반 조사. 일부 연도 결과 미확인. AI 분석 포함."},"tournaments":[{"id":"u15_league","name":"전국 중등 축구리그","category":"공식 리그","organizer":"대한축구협회(KFA), 교육부","period":"3~10월 (연간 리그)","location":"전국 15개 권역 홈/어웨이","participants":"KFA 등록 학교팀 + 클럽팀 약 200팀","format":"권역별 리그전 (U-15/U-14 분리). 왕중왕전 별도","importance":"연간 리그로 팀의 기본 실력을 판단하는 핵심 지표. 왕중왕전 진출권 결정","notes":"2009년 시작. 15개 권역(서울/경기/인천/충남/충북+대전/전북/전남+광주/경북/경남A/경남B/대구/부산+울산/강원/제주) 운영","history":[]},{"id":"u15_king_of_kings","name":"전국 중등 축구리그 왕중왕전","category":"공식 리그","organizer":"대한축구협회(KFA)","period":"11월 (약 10일)","location":"경북 영덕 (2023~2027 장기계약)","participants":"권역 상위 64팀 토너먼트","format":"64강 싱글 엘리미네이션 토너먼트","importance":"중등 축구 최고 권위 대회. 리그 전체 시즌의 최종 챔피언 결정전. 유스/학원/클럽 통합 경쟁","notes":"2018년 초등부 왕중왕전 폐지 후 중등부만 운영. 영덕군과 5년 장기계약(2023~2027)","history":[{"year":2025,"winner":"충남천안축구센터","runnerUp":"서울 목동중","third":"경기 염기훈주니어, 경기 백마중","note":"결승 3-1. 천안축구센터 5관왕. MVP 홍유준"},{"year":2024,"winner":"미확인","runnerUp":"미확인","third":"","note":"영덕 개최"},{"year":2023,"winner":"수원삼성 U-15","runnerUp":"미확인","third":"","note":"수원삼성 5관왕 달성"},{"year":2022,"winner":"미확인","runnerUp":"","third":"","note":"왕중왕전 부활 이후"},{"year":2021,"winner":"미확인","runnerUp":"","third":"","note":"왕중왕전 부활 첫 대회"}]},{"id":"kleague_junior_u15","name":"K리그 주니어 U-15","category":"K리그 유스","organizer":"한국프로축구연맹","period":"3~10월 (연간 리그)","location":"각 구단 홈구장","participants":"K리그 산하 U-15팀 약 25팀 (A/B권역)","format":"A조(중부)·B조(남부) 각 11팀, 2라운드 로빈 20경기 + 스플릿","importance":"K리그 프로 유스팀만 참가하는 최고 수준 리그. 향후 프로 직행의 핵심 무대","notes":"2019년 U-15 부문 신설. A권역(서울/경기/인천/충청)과 B권역(영남/호남/강원/제주)으로 나뉨","history":[{"year":2024,"winner":"울산HD U-15 (현대중)","runnerUp":"미확인","third":"","note":"U-14, U-15 동반 우승"},{"year":2023,"winner":"수원삼성 U-15","runnerUp":"미확인","third":"","note":"3연패 달성"},{"year":2022,"winner":"수원삼성 U-15","runnerUp":"미확인","third":"","note":"2연패"},{"year":2021,"winner":"수원삼성 U-15","runnerUp":"미확인","third":"","note":"수원삼성 4연패의 시작"},{"year":2020,"winner":"미확인","runnerUp":"","third":"","note":""},{"year":2019,"winner":"전북현대 U-15 (금산중)","runnerUp":"미확인","third":"","note":"U-15 부문 초대 챔피언"}]},{"id":"kleague_youth_championship_u15","name":"K리그 유스 챔피언십 U-15","category":"K리그 유스","organizer":"한국프로축구연맹","period":"8월 (약 7일)","location":"경북 영덕군 등","participants":"K리그 전 구단 U-15팀","format":"집중 토너먼트 (K리그 주니어 리그와 별도)","importance":"K리그 주니어 리그와 별개의 단기 집중 토너먼트. 유스팀 간 직접 대결","notes":"2018년 신설. K리그 주니어(연간 리그)와 병행 운영","history":[{"year":2025,"winner":"부산아이파크 U-15 (낙동중)","runnerUp":"전북현대 U-15","third":"","note":"결승 승부차기 4-3. 부산 우승"},{"year":2024,"winner":"미확인","runnerUp":"","third":"","note":""},{"year":2023,"winner":"미확인","runnerUp":"","third":"","note":""},{"year":2022,"winner":"미확인","runnerUp":"","third":"","note":""}]},{"id":"spring_u15","name":"춘계 전국중등축구대회 (STAY영덕)","category":"전국 대회","organizer":"대한축구협회(KFA)","period":"1~2월 (약 14일)","location":"경북 영덕군 신태용축구공원 등 6개 구장","participants":"학원팀 + 클럽팀 115~134팀 (최대 규모)","format":"U-15/U-14 연령별 토너먼트","importance":"시즌 첫 전국대회. 겨울방학 중 개최되어 참가율 높음. 전국 최대 규모(134팀)","notes":"영덕군과 5년 장기계약(2023~2027). 'STAY영덕' 브랜드. 울진 금강송 춘계와 분리 운영","history":[{"year":2026,"winner":"문래중 (U-14+U-15 동반 우승)","runnerUp":"미확인","third":"","note":"문래중 U14+U15 동반 우승"},{"year":2025,"winner":"대전하나시티즌 U-15","runnerUp":"미확인","third":"","note":"천안축구센터도 우승 기록 있음(다른 부문 추정)"},{"year":2024,"winner":"미확인","runnerUp":"","third":"","note":""}]},{"id":"uljin_spring","name":"울진 금강송 춘계 중등대회","category":"전국 대회","organizer":"대한축구협회(KFA)","period":"1~2월","location":"경북 울진","participants":"학원팀 + 클럽팀","format":"U-15/U-14 토너먼트 + U-14 유스컵","importance":"STAY영덕 춘계와 별도 운영. 울진 지역 활성화 목적","notes":"K리그 유스팀의 U-14 유스컵도 함께 개최","history":[{"year":2025,"winner":"인천 광성중 (인천유나이티드 U-15)","runnerUp":"미확인","third":"","note":""}]},{"id":"autumn_u15","name":"추계 전국중등축구대회","category":"전국 대회","organizer":"대한축구협회(KFA)","period":"9~10월","location":"충북 제천 등 (매년 변경)","participants":"학원팀 + 클럽팀","format":"U-15/U-14 토너먼트","importance":"시즌 후반기 최대 대회. 왕중왕전 직전 팀 컨디션 확인 지표","notes":"","history":[{"year":2025,"winner":"충남천안축구센터","runnerUp":"미확인","third":"","note":"천안축구센터 5관왕 중 하나"},{"year":2024,"winner":"수원월드컵FC","runnerUp":"천안축구센터","third":"","note":"결승 0-1. 수원월드컵FC 창단 9년만 전국 준우승"}]},{"id":"geumgang_u15","name":"금강대기 전국중학교축구대회","category":"전국 대회","organizer":"강원도민일보, KFA","period":"7~8월 (약 15일)","location":"강원 평창군 (진부/봉평/용평/대관령)","participants":"64~87팀","format":"U-15 토너먼트 + U-14 유스컵","importance":"여름 방학 최대 규모 전국대회. 강원도 개최로 전지훈련 겸 참가. 역사 깊은 전통 대회","notes":"문화체육관광부 후원. 강원도민일보 주최","history":[{"year":2025,"winner":"문래중","runnerUp":"목동중","third":"","note":"결승 승부차기 5-3(연장 0-0). 문래중 우승"},{"year":2024,"winner":"목동중","runnerUp":"미확인","third":"","note":"목동중 4년 연속 우승(2021-2024)"},{"year":2023,"winner":"석관중","runnerUp":"목동중","third":"","note":"결승 2-1. 석관중 대회 첫 우승. 박건후 멀티골. U-14: 목동중 3연패"},{"year":2022,"winner":"목동중","runnerUp":"미확인","third":"","note":"목동중 연속 우승 시작"},{"year":2021,"winner":"목동중","runnerUp":"미확인","third":"","note":""}]},{"id":"geumseok_u15","name":"금석배 전국중학생축구대회","category":"전국 대회","organizer":"군산시축구협회, KFA","period":"7~8월","location":"전북 군산","participants":"32~64팀","format":"토너먼트","importance":"1992년 창설 전통 대회. 전북 지역 유소년 축구 발전 기여","notes":"축구인 채금석 선생 기념 대회","history":[{"year":2024,"winner":"남해FC","runnerUp":"미확인","third":"","note":""},{"year":2023,"winner":"미확인","runnerUp":"","third":"","note":""}]},{"id":"youth_sports_festival_u15","name":"전국소년체육대회 중등부","category":"전국 대회","organizer":"대한체육회","period":"5~6월","location":"매년 변경 (시도 순환)","participants":"16개 시도 대표팀","format":"토너먼트","importance":"시도 대표 자격으로 출전. 지역 최강팀을 가리는 대회. 국가대표 선발 참고 지표","notes":"K리그 유스팀도 시도 대표로 참가 가능","history":[{"year":2025,"winner":"전북 (전북현대 U-15 금산중)","runnerUp":"미확인","third":"","note":"신용주 감독 부임 첫해 우승"},{"year":2024,"winner":"부산 (부산아이파크 U-15 낙동중)","runnerUp":"미확인","third":"","note":""},{"year":2023,"winner":"미확인","runnerUp":"","third":"","note":""}]},{"id":"kfa_president_cup_u15","name":"대한축구협회장배 (만세보령머드)","category":"전국 대회","organizer":"대한축구협회(KFA)","period":"1~2월","location":"충남 보령","participants":"학원팀 + 클럽팀","format":"토너먼트","importance":"겨울방학 대회 중 하나. 보령시 지원으로 개최","notes":"","history":[]},{"id":"tamna_cup_u15","name":"탐라기 전국중학교축구대회","category":"지역 대회","organizer":"제주시, KFA","period":"1~2월","location":"제주","participants":"약 55팀","format":"토너먼트","importance":"제주 원정 대회. 겨울 전지훈련 겸 참가하는 팀 다수","notes":"2000년 창설. 제27회(2025) 개최 확인","history":[]}]};
+
+// 대회 카테고리 정의
+const tournamentCategoriesU15 = [
+  { key: '공식 리그', label: '공식 리그', color: 'var(--primary)', desc: 'KFA 주관 연간 리그' },
+  { key: 'K리그 유스', label: 'K리그 유스', color: '#7b1fa2', desc: 'K리그 구단 유스팀 전용' },
+  { key: '전국 대회', label: '전국 대회', color: 'var(--info)', desc: '소년체전, 금강대기 등 전국 규모 토너먼트' },
+  { key: '지역 대회', label: '지역 대회', color: 'var(--accent)', desc: '지자체 주최 전국/지역 대회' }
+];
+
+function renderTournamentTables() {
+  const container = document.getElementById('tournamentTables');
+  if (!container) return;
+  const tournaments = tournamentsU15.tournaments;
+  let html = '';
+
+  tournamentCategoriesU15.forEach(cat => {
+    let items = tournaments.filter(t => t.category === cat.key);
+    if (items.length === 0) return;
+
+    html += '<h4 style="border-bottom:2px solid ' + cat.color + ';padding-bottom:6px;margin-top:20px">' + esc(cat.label) + ' <span style="font-size:12px;font-weight:400;color:var(--gray)">(' + items.length + '개 / ' + esc(cat.desc) + ')</span></h4>';
+    html += '<div class="table-wrap"><table class="tournament-cat-table"><thead><tr>';
+    html += '<th style="background:' + cat.color + ';color:#fff">대회명</th>';
+    html += '<th style="background:' + cat.color + ';color:#fff">주최</th>';
+    html += '<th style="background:' + cat.color + ';color:#fff">시기</th>';
+    html += '<th style="background:' + cat.color + ';color:#fff">참가</th>';
+    html += '<th style="background:' + cat.color + ';color:#fff">비고</th>';
+    html += '</tr></thead><tbody>';
+
+    items.forEach(t => {
+      const hasHistory = t.history && t.history.length > 0;
+      const historyNote = hasHistory ? ' (역대 ' + t.history.length + '건)' : '';
+      html += '<tr class="clickable-row" onclick="showTournamentDetail(\'' + t.id + '\')" style="cursor:pointer">';
+      html += '<td><strong>' + esc(t.name) + '</strong></td>';
+      html += '<td>' + esc(t.organizer) + '</td>';
+      html += '<td style="white-space:nowrap">' + esc(t.period) + '</td>';
+      html += '<td style="font-size:13px">' + esc(t.participants) + '</td>';
+      html += '<td style="font-size:13px">';
+      if (t.notes) html += esc(t.notes.substring(0, 60)) + (t.notes.length > 60 ? '...' : '');
+      if (hasHistory) html += '<br><span style="color:var(--primary);font-weight:500;font-size:12px">&#128200; 역대 결과 보기' + historyNote + '</span>';
+      html += '</td></tr>';
+    });
+
+    html += '</tbody></table></div>';
+  });
+
+  container.innerHTML = html;
+}
+
+function showTournamentDetail(id) {
+  const t = tournamentsU15.tournaments.find(x => x.id === id);
+  if (!t) return;
+
+  // Header
+  let catColor = 'var(--gray)';
+  const catDef = tournamentCategoriesU15.find(c => c.key === t.category);
+  if (catDef) catColor = catDef.color;
+
+  document.getElementById('tournamentModalHeader').innerHTML =
+    '<h2>' + esc(t.name) + ' <span class="badge" style="background:' + catColor + ';font-size:11px;color:#fff;padding:2px 8px;border-radius:10px">' + esc(t.category || '') + '</span></h2>' +
+    '<div class="modal-meta">' +
+    '<span>' + esc(t.organizer) + '</span>' +
+    '<span>' + esc(t.period) + '</span>' +
+    (t.location ? '<span>' + esc(t.location) + '</span>' : '') +
+    '</div>';
+
+  // Body
+  let body = '';
+
+  // 중요도/의의
+  if (t.importance) {
+    body += '<div class="modal-section"><div class="modal-section-title">대회 중요도 / 의의</div>';
+    body += '<p style="font-size:14px;color:#333;line-height:1.7;background:var(--primary-bg);padding:12px 16px;border-radius:8px;border-left:3px solid var(--primary)">' + esc(t.importance) + '</p></div>';
+  }
+
+  // 기본 정보
+  body += '<div class="modal-section"><div class="modal-section-title">대회 정보</div>';
+  body += '<div class="modal-info-grid">';
+  body += tInfoItemT('참가자격', t.participants);
+  body += tInfoItemT('형식', t.format);
+  body += tInfoItemT('개최지', t.location);
+  body += tInfoItemT('시기', t.period);
+  body += '</div></div>';
+
+  // 역대 우승팀
+  if (t.history && t.history.length > 0) {
+    body += '<div class="modal-section"><div class="modal-section-title">역대 우승팀</div>';
+    body += '<div class="table-wrap"><table><thead><tr>';
+    body += '<th style="background:' + catColor + ';color:#fff">연도</th>';
+    body += '<th style="background:' + catColor + ';color:#fff">우승</th>';
+    body += '<th style="background:' + catColor + ';color:#fff">준우승</th>';
+    body += '<th style="background:' + catColor + ';color:#fff">3위</th>';
+    body += '<th style="background:' + catColor + ';color:#fff">비고</th>';
+    body += '</tr></thead><tbody>';
+
+    t.history.forEach(h => {
+      const isUnknown = (v) => !v || v === '미확인';
+      const grayStyle = 'color:#aaa;font-style:italic';
+      body += '<tr>';
+      body += '<td style="white-space:nowrap;font-weight:700">' + esc(String(h.year)) + '</td>';
+      body += '<td' + (isUnknown(h.winner) ? ' style="' + grayStyle + '"' : '') + '>' + esc(h.winner || '-') + '</td>';
+      body += '<td' + (isUnknown(h.runnerUp) ? ' style="' + grayStyle + '"' : '') + '>' + esc(h.runnerUp || '-') + '</td>';
+      body += '<td' + (isUnknown(h.third) ? ' style="' + grayStyle + '"' : '') + '>' + esc(h.third || '-') + '</td>';
+      body += '<td style="font-size:12px;color:#666">' + esc(h.note || '') + '</td>';
+      body += '</tr>';
+    });
+
+    body += '</tbody></table></div></div>';
+  } else {
+    body += '<div class="modal-section"><div class="modal-section-title">역대 우승팀</div>';
+    body += '<div class="alert alert-info" style="margin:0"><div class="alert-icon">&#128203;</div><div>이 대회의 역대 결과 데이터가 아직 확인되지 않았습니다.</div></div></div>';
+  }
+
+  // 참고사항
+  if (t.notes) {
+    body += '<div class="modal-section"><div class="modal-section-title">참고사항</div>';
+    body += '<p style="font-size:14px;color:#555;line-height:1.7">' + esc(t.notes) + '</p></div>';
+  }
+
+  document.getElementById('tournamentModalBody').innerHTML = body;
+  document.getElementById('tournamentModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function tInfoItemT(label, value) {
+  const v = value || '-';
+  return '<div class="modal-info-item"><div class="label">' + esc(label) + '</div><div class="value">' + esc(v) + '</div></div>';
+}
+
+function closeTournamentModal() {
+  document.getElementById('tournamentModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// 대회 테이블 렌더링
+renderTournamentTables();
+
+// ESC 키로 닫기 (팀 + 대회)
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeModal();
+    closeTournamentModal();
+  }
+});
 // 오버레이 클릭으로 닫기
 document.getElementById('teamModal').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal(); });
+document.getElementById('tournamentModal').addEventListener('click', e => { if (e.target === e.currentTarget) closeTournamentModal(); });
 </script>
 
 </body>
