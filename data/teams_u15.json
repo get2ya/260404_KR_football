@@ -20,7 +20,11 @@
     "alumni": [],
     "cost": "무료 (K리그 유스)",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "1661-7900",
+      "email": "",
+      "website": "academy.fcseoul.com"
+    },
     "sns": "",
     "score": {
       "performance": 17,
@@ -46,6 +50,11 @@
       "partnership": "",
       "facility": "서울 FC서울 축구센터",
       "recentRecord": "2025 K리그 주니어 A 1위, 2025 백운기 우승, 2023 협회장배 우승"
+    },
+    "dormitory": {
+      "available": false,
+      "capacity": null,
+      "note": "서울 소재. 통학 중심"
     }
   },
   {
@@ -68,7 +77,11 @@
     "alumni": [],
     "cost": "무료 (K리그 유스)",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "02-2007-2022",
+      "email": "",
+      "website": "seouleland.com"
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -76,6 +89,11 @@
       "coaching": 13,
       "infra": 10,
       "cost": 15
+    },
+    "dormitory": {
+      "available": false,
+      "capacity": null,
+      "note": "서울 소재. 통학 중심"
     }
   },
   {
@@ -107,7 +125,11 @@
     ],
     "cost": "무료 (K리그 유스)",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "031-240-5000",
+      "email": "",
+      "website": "bluewings.kr/youth/u15"
+    },
     "sns": "",
     "score": {
       "performance": 19,
@@ -133,6 +155,11 @@
       "partnership": "",
       "facility": "수원 전용 훈련장",
       "recentRecord": "K리그 주니어 4연패(2021-2024), 2023 왕중왕전 5관왕, 무패(15승1무) 시즌 달성"
+    },
+    "dormitory": {
+      "available": false,
+      "capacity": null,
+      "note": "경기 화성 소재. 통학 중심"
     }
   },
   {
@@ -155,7 +182,11 @@
     "alumni": [],
     "cost": "무료 (K리그 유스)",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -163,6 +194,11 @@
       "coaching": 13,
       "infra": 10,
       "cost": 15
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -189,7 +225,11 @@
     ],
     "cost": "무료 (K리그 유스)",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "031-709-8700",
+      "email": "",
+      "website": "seongnamfc.com"
+    },
     "sns": "",
     "score": {
       "performance": 14,
@@ -197,6 +237,11 @@
       "coaching": 20,
       "infra": 12,
       "cost": 15
+    },
+    "dormitory": {
+      "available": false,
+      "capacity": null,
+      "note": "경기 성남. 통학 중심"
     }
   },
   {
@@ -219,7 +264,11 @@
     "alumni": [],
     "cost": "무료 (K리그 유스)",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "032-614-9400",
+      "email": "",
+      "website": "bucheonfc.net"
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -227,6 +276,11 @@
       "coaching": 13,
       "infra": 10,
       "cost": 15
+    },
+    "dormitory": {
+      "available": false,
+      "capacity": null,
+      "note": "경기 부천. 통학 중심"
     }
   },
   {
@@ -249,7 +303,11 @@
     "alumni": [],
     "cost": "무료 (K리그 유스)",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "031-401-7882",
+      "email": "",
+      "website": "greeners.co.kr"
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -257,6 +315,11 @@
       "coaching": 13,
       "infra": 10,
       "cost": 15
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -279,7 +342,11 @@
     "alumni": [],
     "cost": "무료 (K리그 유스)",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "031-988-9000",
+      "email": "",
+      "website": "gimpofc.com"
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -287,6 +354,11 @@
       "coaching": 13,
       "infra": 10,
       "cost": 15
+    },
+    "dormitory": {
+      "available": false,
+      "capacity": null,
+      "note": "경기 김포. 통학 중심"
     }
   },
   {
@@ -309,7 +381,11 @@
     "alumni": [],
     "cost": "무료 (K리그 유스)",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "031-380-0577",
+      "email": "",
+      "website": "fcanyang.com"
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -317,6 +393,11 @@
       "coaching": 13,
       "infra": 10,
       "cost": 15
+    },
+    "dormitory": {
+      "available": false,
+      "capacity": null,
+      "note": "경기 안양. 통학 중심"
     }
   },
   {
@@ -339,7 +420,11 @@
     "alumni": [],
     "cost": "무료 (K리그 유스)",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "032-458-4700",
+      "email": "",
+      "website": "iufc.co.kr"
+    },
     "sns": "",
     "score": {
       "performance": 16,
@@ -355,6 +440,11 @@
       "partnership": "이강인 일일 코칭 프로그램 등 선배-후배 교류",
       "facility": "인천유나이티드 축구센터(선학동)",
       "recentRecord": "2025 금강송 춘계 우승"
+    },
+    "dormitory": {
+      "available": false,
+      "capacity": null,
+      "note": "인천 소재. 통학 중심"
     }
   },
   {
@@ -379,7 +469,11 @@
     ],
     "cost": "무료 (K리그 유스)",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "042-486-2002",
+      "email": "",
+      "website": "dhfc.co.kr"
+    },
     "sns": "",
     "score": {
       "performance": 15,
@@ -395,6 +489,11 @@
       "partnership": "",
       "facility": "대전 훈련시설",
       "recentRecord": "K리그 주니어 중등리그 우승 경력"
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -417,7 +516,11 @@
     "alumni": [],
     "cost": "무료 (K리그 유스)",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "041-544-7979",
+      "email": "",
+      "website": "asanfc.co.kr"
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -425,6 +528,11 @@
       "coaching": 13,
       "infra": 10,
       "cost": 15
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -447,7 +555,11 @@
     "alumni": [],
     "cost": "무료 (K리그 유스)",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "041-521-7070",
+      "email": "",
+      "website": "cheonancityfc.com"
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -455,6 +567,11 @@
       "coaching": 13,
       "infra": 10,
       "cost": 15
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -477,7 +594,11 @@
     "alumni": [],
     "cost": "무료 (K리그 유스)",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "043-255-7979",
+      "email": "",
+      "website": "chfc.kr/fc/youth/u15"
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -485,6 +606,52 @@
       "coaching": 13,
       "infra": 10,
       "cost": 15
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
+    }
+  },
+  {
+    "id": "hwaseong-fc-u15",
+    "name": "화성FC U-15",
+    "type": "유스",
+    "region": "경기",
+    "city": "화성",
+    "linked_club": "화성FC",
+    "founded": "2025",
+    "coach": {
+      "name": "",
+      "career": "",
+      "style": ""
+    },
+    "achievements": [],
+    "features": [
+      "2025 K리그2 신규 구단",
+      "자체 운영",
+      "공개테스트 선발 (연령별 약 35명)"
+    ],
+    "alumni": [],
+    "cost": "무료 (K리그 유스)",
+    "facility": "",
+    "contact": {
+      "phone": "031-8015-6600",
+      "email": "",
+      "website": "hwaseongfc.com"
+    },
+    "sns": "",
+    "score": {
+      "performance": 9,
+      "advancement": 13,
+      "coaching": 11,
+      "infra": 9,
+      "cost": 15
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -510,7 +677,11 @@
     "alumni": [],
     "cost": "무료 (K리그 유스)",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "063-543-0722",
+      "email": "",
+      "website": "hyundai-motorsfc.com/team/u15"
+    },
     "sns": "",
     "score": {
       "performance": 18,
@@ -536,6 +707,11 @@
       "partnership": "PSV 아인트호벤(네덜란드) 유소년 육성 협약. 매년 해외 연수. 2026 포르투갈 이베르컵 참가",
       "facility": "금산중 전용 훈련장",
       "recentRecord": "2025 전국소년체전 우승, 2024 K리그 유스 챔피언십 U-18 우승"
+    },
+    "dormitory": {
+      "available": true,
+      "capacity": 40,
+      "note": "충남 금산 소재, 전원 기숙 운영 추정. 선수단 약 40명"
     }
   },
   {
@@ -564,7 +740,11 @@
     ],
     "cost": "무료 (K리그 유스)",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "061-350-3000",
+      "email": "",
+      "website": "jeonnamdragon.com"
+    },
     "sns": "",
     "score": {
       "performance": 17,
@@ -572,6 +752,11 @@
       "coaching": 22,
       "infra": 13,
       "cost": 15
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "전남 광양. 확인 필요"
     }
   },
   {
@@ -597,7 +782,11 @@
     "alumni": [],
     "cost": "무료 (K리그 유스)",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "054-279-4666",
+      "email": "",
+      "website": "school.gyo6.net/pocheolms"
+    },
     "sns": "",
     "score": {
       "performance": 17,
@@ -613,6 +802,11 @@
       "partnership": "",
       "facility": "포철중 전용 훈련장. 포스코교육재단 지원",
       "recentRecord": "2024-25 전국소년체전 U-12 2연패, 2020 왕중왕전 우승, 2024 백운기 우승"
+    },
+    "dormitory": {
+      "available": true,
+      "capacity": null,
+      "note": "포스코재단 운영 기숙사. 전국모집, 코치 상주. 입사 절차 학교 직접 문의"
     }
   },
   {
@@ -635,7 +829,11 @@
     "alumni": [],
     "cost": "무료 (K리그 유스)",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "054-435-0700",
+      "email": "",
+      "website": "gimcheonfc.com"
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -643,6 +841,11 @@
       "coaching": 13,
       "infra": 10,
       "cost": 15
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "경북 김천. 확인 필요"
     }
   },
   {
@@ -667,7 +870,11 @@
     "alumni": [],
     "cost": "무료 (K리그 유스)",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "053-602-1114",
+      "email": "",
+      "website": "daegufc.co.kr"
+    },
     "sns": "",
     "score": {
       "performance": 17,
@@ -675,6 +882,11 @@
       "coaching": 17,
       "infra": 12,
       "cost": 15
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -701,7 +913,11 @@
     "alumni": [],
     "cost": "무료 (K리그 유스)",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "052-220-3000",
+      "email": "",
+      "website": "uhdfc.com/player/youth_list.php?gbn=U-15"
+    },
     "sns": "",
     "score": {
       "performance": 18,
@@ -727,6 +943,11 @@
       "partnership": "유럽 클럽 직접 교류. 유망주 해외 임대 적극 지원",
       "facility": "울산 전용 훈련시설. 피지컬+기술 증진 프로그램",
       "recentRecord": "2024 K리그 U14+U15 동반우승, 2026 울진 금강송 U14 우승"
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -752,7 +973,11 @@
     "alumni": [],
     "cost": "무료 (K리그 유스)",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "051-941-5500",
+      "email": "",
+      "website": "busanipark.com"
+    },
     "sns": "",
     "score": {
       "performance": 18,
@@ -768,6 +993,11 @@
       "partnership": "",
       "facility": "부산아이파크 유소년 전용시설",
       "recentRecord": "2025 U-18 개성고 3관왕(춘계+유스챔피언십+K리그주니어), 2024 U-15 소년체전 1위"
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -790,7 +1020,11 @@
     "alumni": [],
     "cost": "무료 (K리그 유스)",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "055-283-2020",
+      "email": "",
+      "website": "gyeongnamfc.com"
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -806,6 +1040,11 @@
       "partnership": "",
       "facility": "함안 군북중 ���련시설",
       "recentRecord": "K리그 U-15 챔피언십 3위"
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -828,7 +1067,11 @@
     "alumni": [],
     "cost": "무료 (K리그 유스)",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "062-607-7979",
+      "email": "",
+      "website": "gwangjufc.com"
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -844,6 +1087,11 @@
       "partnership": "",
       "facility": "광주FC 유소년재단 운영",
       "recentRecord": "2025 K리그 주니어 C권역 고·저학년 동반 우승(구단 최초)"
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -870,7 +1118,11 @@
     ],
     "cost": "무료 (K리그 유스)",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "033-252-0808",
+      "email": "",
+      "website": "gangwon-fc.com"
+    },
     "sns": "",
     "score": {
       "performance": 13,
@@ -886,6 +1138,11 @@
       "partnership": "",
       "facility": "강릉 훈련시설",
       "recentRecord": "춘계 연맹전 준우승"
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "강원 춘천 소재. 원거리 선수 기숙 여부 확인 필요"
     }
   },
   {
@@ -908,7 +1165,11 @@
     "alumni": [],
     "cost": "무료 (K리그 유스)",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "064-738-0800",
+      "email": "",
+      "website": "jeju-utd.com"
+    },
     "sns": "",
     "score": {
       "performance": 12,
@@ -924,6 +1185,11 @@
       "partnership": "",
       "facility": "제주 훈련시설",
       "recentRecord": "2025 울진 금강송 춘계 진출, 2023 문체부장관배 U-18 우승"
+    },
+    "dormitory": {
+      "available": true,
+      "capacity": null,
+      "note": "육지 출신 선수 기숙 운영 가능성 높음. 직접 확인 필요"
     }
   },
   {
@@ -954,7 +1220,11 @@
     ],
     "cost": "확인 필요 (학원축구 월 110~195만원 추정)",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 17,
@@ -962,6 +1232,11 @@
       "coaching": 18,
       "infra": 10,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -986,7 +1261,11 @@
     "alumni": [],
     "cost": "확인 필요 (학원축구 월 110~195만원 추정)",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "02-2646-5133",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 18,
@@ -994,6 +1273,11 @@
       "coaching": 17,
       "infra": 10,
       "cost": 9
+    },
+    "dormitory": {
+      "available": false,
+      "capacity": null,
+      "note": "서울 양천. 통학 중심"
     }
   },
   {
@@ -1017,7 +1301,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 13,
@@ -1025,6 +1313,11 @@
       "coaching": 15,
       "infra": 10,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1047,7 +1340,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 12,
@@ -1055,6 +1352,11 @@
       "coaching": 14,
       "infra": 10,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1077,7 +1379,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 12,
@@ -1085,6 +1391,11 @@
       "coaching": 14,
       "infra": 10,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1105,7 +1416,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -1113,6 +1428,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1133,7 +1453,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -1141,6 +1465,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1161,7 +1490,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -1169,6 +1502,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1189,7 +1527,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -1197,6 +1539,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1217,7 +1564,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -1225,6 +1576,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1245,7 +1601,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -1253,6 +1613,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1273,7 +1638,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -1281,6 +1650,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1304,7 +1678,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 13,
@@ -1312,6 +1690,11 @@
       "coaching": 14,
       "infra": 10,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1334,7 +1717,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 12,
@@ -1342,6 +1729,11 @@
       "coaching": 14,
       "infra": 10,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1364,7 +1756,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "031-912-8282",
+      "email": "",
+      "website": "baekma-m.goegy.kr"
+    },
     "sns": "",
     "score": {
       "performance": 16,
@@ -1372,6 +1768,11 @@
       "coaching": 15,
       "infra": 10,
       "cost": 8
+    },
+    "dormitory": {
+      "available": false,
+      "capacity": null,
+      "note": "경기 고양. 통학 중심"
     }
   },
   {
@@ -1396,7 +1797,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "기숙사 보유",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 16,
@@ -1404,6 +1809,11 @@
       "coaching": 15,
       "infra": 11,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1426,7 +1836,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 14,
@@ -1434,6 +1848,11 @@
       "coaching": 14,
       "infra": 10,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1456,7 +1875,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 13,
@@ -1464,6 +1887,11 @@
       "coaching": 14,
       "infra": 10,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1484,7 +1912,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -1492,6 +1924,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1512,7 +1949,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -1520,6 +1961,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1540,7 +1986,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -1548,6 +1998,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1568,7 +2023,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -1576,6 +2035,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1596,7 +2060,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -1604,6 +2072,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1624,7 +2097,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -1632,6 +2109,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1652,7 +2134,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -1660,6 +2146,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1682,7 +2173,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "042-623-0703",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 13,
@@ -1690,6 +2185,11 @@
       "coaching": 14,
       "infra": 10,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "대전 소재. 직접 확인 필요"
     }
   },
   {
@@ -1710,7 +2210,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -1718,6 +2222,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1740,7 +2249,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "054-672-2212",
+      "email": "",
+      "website": "school.gyo6.net/bonghwams"
+    },
     "sns": "",
     "score": {
       "performance": 13,
@@ -1748,6 +2261,11 @@
       "coaching": 14,
       "infra": 10,
       "cost": 8
+    },
+    "dormitory": {
+      "available": true,
+      "capacity": null,
+      "note": "경북 봉화 소재. 원거리 선수 기숙 운영 추정"
     }
   },
   {
@@ -1773,7 +2291,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 19,
@@ -1791,7 +2313,12 @@
       "안동 지역(수도권 접근성 불리)",
       "학원축구 비용/찬조금 리스크",
       "감독 1인 의존 구조"
-    ]
+    ],
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
+    }
   },
   {
     "id": "punggi-ms",
@@ -1813,7 +2340,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 16,
@@ -1821,6 +2352,11 @@
       "coaching": 15,
       "infra": 10,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1844,7 +2380,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "053-656-7700",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 13,
@@ -1852,6 +2392,11 @@
       "coaching": 14,
       "infra": 10,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1872,7 +2417,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 11,
@@ -1880,6 +2429,11 @@
       "coaching": 13,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1900,7 +2454,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 11,
@@ -1908,6 +2466,11 @@
       "coaching": 13,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1928,7 +2491,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 11,
@@ -1936,6 +2503,11 @@
       "coaching": 13,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1956,7 +2528,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 11,
@@ -1964,6 +2540,11 @@
       "coaching": 13,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -1984,7 +2565,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 11,
@@ -1992,6 +2577,11 @@
       "coaching": 13,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2012,7 +2602,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 11,
@@ -2020,6 +2614,11 @@
       "coaching": 13,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2040,7 +2639,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -2048,6 +2651,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2068,7 +2676,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -2076,6 +2688,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2096,7 +2713,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -2104,6 +2725,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2124,7 +2750,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -2132,6 +2762,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2152,7 +2787,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -2160,6 +2799,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2180,7 +2824,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -2188,6 +2836,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2208,7 +2861,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -2216,6 +2873,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2236,7 +2898,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -2244,6 +2910,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2264,7 +2935,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -2272,6 +2947,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2292,7 +2972,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -2300,6 +2984,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2320,7 +3009,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -2328,6 +3021,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2348,7 +3046,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -2356,6 +3058,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2376,7 +3083,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -2384,6 +3095,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2404,7 +3120,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -2412,6 +3132,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2432,7 +3157,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -2440,6 +3169,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2460,7 +3194,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -2468,6 +3206,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2488,7 +3231,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -2496,6 +3243,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2516,7 +3268,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -2524,6 +3280,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2546,7 +3307,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 12,
@@ -2554,6 +3319,11 @@
       "coaching": 13,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2574,7 +3344,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -2582,6 +3356,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2602,7 +3381,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -2610,6 +3393,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2630,7 +3418,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -2638,6 +3430,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2658,7 +3455,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -2666,6 +3467,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2689,7 +3495,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 14,
@@ -2697,6 +3507,11 @@
       "coaching": 13,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2717,7 +3532,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -2725,6 +3544,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 8
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2751,7 +3575,11 @@
     "alumni": [],
     "cost": "확인 필요 (클럽팀 월 120~215만원 추정)",
     "facility": "천안시 서북구 축구센터",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 20,
@@ -2769,7 +3597,12 @@
       "프로 직행 루트 없음",
       "고교 진학 네트워크 미검증",
       "사설 운영(해체 리스크)"
-    ]
+    ],
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
+    }
   },
   {
     "id": "suwon-worldcup-fc",
@@ -2796,7 +3629,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "수원 월드컵경기장 보조구장/인조구장",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 17,
@@ -2814,7 +3651,12 @@
       "프로 직행 루트 없음",
       "감독 프로 실적 제한적",
       "졸업생 고교 진학 실적 미공개"
-    ]
+    ],
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
+    }
   },
   {
     "id": "yeomgihun-junior",
@@ -2840,7 +3682,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 16,
@@ -2858,7 +3704,12 @@
       "창단 역사 짧음",
       "프로 직행 루트 없음",
       "소규모 클럽 운영"
-    ]
+    ],
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
+    }
   },
   {
     "id": "yongin-soccer-center",
@@ -2881,7 +3732,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 13,
@@ -2889,6 +3744,11 @@
       "coaching": 16,
       "infra": 11,
       "cost": 9
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2911,7 +3771,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 16,
@@ -2919,6 +3783,11 @@
       "coaching": 14,
       "infra": 10,
       "cost": 9
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2942,7 +3811,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 13,
@@ -2950,6 +3823,11 @@
       "coaching": 13,
       "infra": 9,
       "cost": 9
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -2972,7 +3850,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -2980,6 +3862,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 9
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -3003,7 +3890,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -3011,6 +3902,11 @@
       "coaching": 14,
       "infra": 10,
       "cost": 7
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -3033,7 +3929,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -3041,6 +3941,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 9
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -3063,7 +3968,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 16,
@@ -3071,6 +3980,11 @@
       "coaching": 14,
       "infra": 10,
       "cost": 9
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -3093,7 +4007,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 16,
@@ -3101,6 +4019,11 @@
       "coaching": 14,
       "infra": 10,
       "cost": 9
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -3126,7 +4049,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 14,
@@ -3134,6 +4061,11 @@
       "coaching": 13,
       "infra": 9,
       "cost": 9
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -3154,7 +4086,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -3162,6 +4098,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 9
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -3182,7 +4123,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -3190,6 +4135,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 9
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -3210,7 +4160,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -3218,6 +4172,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 9
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -3238,7 +4197,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -3246,6 +4209,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 9
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -3266,7 +4234,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -3274,6 +4246,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 9
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -3294,7 +4271,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -3302,6 +4283,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 9
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -3322,7 +4308,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -3330,6 +4320,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 9
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   },
   {
@@ -3350,7 +4345,11 @@
     "alumni": [],
     "cost": "확인 필요",
     "facility": "",
-    "contact": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "website": ""
+    },
     "sns": "",
     "score": {
       "performance": 10,
@@ -3358,6 +4357,11 @@
       "coaching": 12,
       "infra": 9,
       "cost": 9
+    },
+    "dormitory": {
+      "available": null,
+      "capacity": null,
+      "note": "직접 확인 필요"
     }
   }
 ]
