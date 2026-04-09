@@ -433,11 +433,11 @@
   },
   {
     "id": "jeju-utd-u12",
-    "name": "제주유나이티드 U-12",
+    "name": "제주SK FC U-12",
     "type": "유스",
     "region": "제주",
     "city": "제주",
-    "linked_club": "제주유나이티드",
+    "linked_club": "제주SK FC",
     "founded": "",
     "coach": { "name": "", "career": "", "style": "" },
     "achievements": [],

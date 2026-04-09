@@ -469,11 +469,11 @@
   },
   {
     "id": "daejeon-citizen-u15",
-    "name": "대전시티즌 U-15",
+    "name": "대전하나시티즌 U-15",
     "type": "유스",
     "region": "충청",
     "city": "대전",
-    "linked_club": "대전시티즌",
+    "linked_club": "대전하나시티즌",
     "founded": "",
     "coach": {
       "name": "",
@@ -1197,15 +1197,15 @@
   },
   {
     "id": "jeju-utd-u15",
-    "name": "제주유나이티드 U-15 (제주중)",
+    "name": "제주SK FC U-15 (제주중)",
     "type": "유스",
     "region": "제주",
     "city": "제주",
-    "linked_club": "제주유나이티드",
+    "linked_club": "제주SK FC",
     "founded": "",
     "coach": {
       "name": "신병호",
-      "career": "제주유나이티드 U-15 감독. 수석코치 박진옥, 코치 심영성, 피지컬코치 강건희, GK코치 정성탄",
+      "career": "제주SK FC U-15 감독. 수석코치 박진옥, 코치 심영성, 피지컬코치 강건희, GK코치 정성탄",
       "style": ""
     },
     "achievements": [
